@@ -1,0 +1,167 @@
+<section class="row" style="background-color:rgb(255, 255, 255);" >
+    <div class=" col-md-6 m-auto">
+
+
+        <div class=" mt-5 pl-5 "> 
+            <h2 class="text-center">User Login</h2>
+            <form action=" /user-login" method="post">
+            {{#if loginErr}}
+            <p class="error">{{loginErr}} </p>
+            {{/if}}
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <input type="email" id="form2Example1" name="Email" class="form-control" />
+                    <label class="form-label" for="form2Example1">Email address</label>
+                </div>
+
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <input type="password" id="form2Example2" name="Password" class="form-control" />
+                    <label class="form-label" for="form2Example2">Password</label>
+                </div>
+
+                <!-- 2 column grid layout for inline styling -->
+                <div class="row mb-4">
+                    <div class="col d-flex justify-content-center">
+                        <!-- Checkbox -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                            <label class="form-check-label" for="form2Example31"> Remember me </label>
+                        </div>
+                    </div>
+
+                     <div class="col">
+                        <!-- Simple link -->
+                        <a href=" /user-signup">Create new account</a>
+                    </div>
+
+
+                    {{!-- <div class="col">
+                        <!-- Simple link -->
+                        <a href="#!">Forgot password?</a>
+                    </div> --}}
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary float-right">Login</button>
+                {{!-- <button type="submit" value="Login" class="btn btn-primary"> --}}
+
+
+        </div>
+        </form>
+    </div>
+    </div>
+</section>
+
+{{!-- <script>
+    $("#submit-form").submit((e)=>{
+        e.preventDefault()
+        $.ajax({
+            url:"https://script.google.com/macros/s/AKfycbz8LvGzSAit7eF7x5Bjm_s9AOsM1grn4YEV1PW6cEVc55jI3nhy/exec",
+            
+            data:$("#submit-form").serialize(),
+            method:"post",
+            success:function (response){
+                alert("Form submitted successfully")
+                window.location.reload()
+                //window.location.href="https://google.com"
+            },
+            error:function (err){
+                alert("Something Error")
+
+            }
+        })
+    })
+</script> --}}
+
+{{!-- <script>
+
+var nameError = document.getElementById('name-error');
+var emailError = document.getElementById('email-error');
+var passwordError = document.getElementById('password-error');
+
+
+
+
+
+function validateName(){
+  var name = document.getElementById('contact-name').value;
+
+  if(name.length == 0){
+    nameError.innerHTML = 'Name is required';
+    return false;
+  }
+  
+
+   if(!name.match(/^[A-Za-z]+ [A-Za-z]+$/)){
+     nameError.innerHTML = 'write full name';
+     return false;
+
+   }
+   nameError.innerHTML = 'valid';
+   nameError.style.color="seagreen";
+   return true;
+}
+
+
+function validateEmail(){
+  var email = document.getElementById('contact-email').value;
+
+  if(email.length == 0){
+    emailError.innerHTML = 'Email is required';
+    return false;
+  }
+
+
+  if(!email.match(/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/)){
+        emailError.innerHTML = 'Email invalid'
+        return false;
+
+   }
+
+
+   
+   emailError.innerHTML = 'valid';
+   emailError.style.color="seagreen";
+
+   return true;
+}
+
+function validatePassword(){
+  var password = document.getElementById('contact-password').value;
+
+  if(password.length == 0){
+    passwordError.innerHTML = 'Password is required';
+    return false;
+  }
+
+  if(password.length <= 6){
+    passwordError.innerHTML = 'Please fill the Password';
+    return false;
+  }
+
+   passwordError.innerHTML = 'valid';
+   passwordError.style.color="seagreen";
+   return true;
+
+
+}
+
+function validateForm(){
+  if(!validateName() || !validateEmail() || !validatePassword()){
+    submitError.style.display = 'block';
+    submitError.innerHTML = 'Please fix error to submit';
+    
+    setTimeout(function(){submitError.style.display='none';}, 3000);
+    return false;
+
+  submitError.innerHTML = 'valid';
+  submitError.style.color="seagreen";
+   return true;
+
+  }
+
+  
+}
+
+</script> --}}

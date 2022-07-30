@@ -1,0 +1,52 @@
+ <div class="page-wrapper">
+			<div class="page-content">
+
+<h6 class="mb-0 text-uppercase">User Management</h6>
+	<hr />
+	<div class="card">
+		<div class="card-body">
+			<div class="table-responsive">
+				<table id="example" class="table table-striped table-bordered" style="width:100%">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Phone</th>
+							<th>Status</th>
+							<th>Action</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						
+						{{#each listOfUsers}}
+                        <tr>                        
+                            <th scope="row">*</th>
+                           
+						    
+                            <td>{{this.Name}}</td>
+                            <td>{{this.Email}}</td>
+                            <td>{{this.Phone}}</td>
+							<td>{{this.status}}</td>
+                           
+                            {{!-- <td>@mdo</td> --}}
+                            <td>
+                                {{#if this.status}}
+                            <a href=" /admin/block/{{this._id}}" class="btn btn-danger" >Block  </a>
+                                {{else}}
+                            <a href=" /admin/unblock/{{this._id}}" class="btn btn-success" >Unblock </a>
+                                {{/if}}
+                            </td>
+                        </tr>
+                         {{/each}}
+
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+    	</div>
+		</div>

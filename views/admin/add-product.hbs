@@ -1,0 +1,218 @@
+
+<div class="page-wrapper">
+			<div class="page-content">
+
+{{!-- <section>
+    <div class="container mt-4">
+        <div class="row">
+
+            <div class="col-md-6"> --}}
+                <h2 class="text-center">Add Products</h2>
+                
+                <form action="/admin/add-product" method="post" enctype="multipart/form-data">
+                {{#if loginErr}}
+            <p class="error">{{loginErr}} </p>
+            {{/if}}
+
+                    <label for="">Name</label>
+                    <input type="text" class="form-control"  name="Name" id="contact-name" onkeyup="validateName()" placeholder="Enter Name" />
+                    <span id="name-error" class=" font-weight-bold" style="color:red"></span>
+
+                    <label for="">Category</label>
+                    <input type="text" class="form-control"  name="Category" id="contact-category" onkeyup="validateCategory()" placeholder="Enter Category" />
+                    <span id="category-error" class=" font-weight-bold" style="color:red"></span>
+
+                    <label for="">Sub-Category</label>
+                     <input type="text" class="form-control"  name="SubCategory" id="contact-subcategory" onkeyup="validateSubCategory()" placeholder="Enter SubCategory" />
+                    <span id="subcategory-error" class=" font-weight-bold" style="color:red"></span>
+
+
+                    <label for="">Size</label>
+                      <input type="text" class="form-control"  name="Size" id="contact-size" onkeyup="validateSize()" placeholder="Enter Size" />
+                    <span id="size-error" class=" font-weight-bold" style="color:red"></span>
+
+                    <label for="">Price</label>
+                      <input type="text" class="form-control"  name="Price" id="contact-price" onkeyup="validatePrice()" placeholder="Enter Price" />
+                    <span id="price-error" class=" font-weight-bold" style="color:red"></span>
+
+                    <label for="">Description</label>
+                     <input type="text" class="form-control"  name="Description" id="contact-description" onkeyup="validateDescription()" placeholder="Enter Description" />
+                    <span id="description-error" class=" font-weight-bold" style="color:red"></span>
+
+                    <label for="">Image</label>
+                    <input type="file" name="Image" class="form-control" multiple>
+
+                    <button type="submit"  onclick="return validateProduct()" class="btn btn-primary float-right mb-4">Submit</button>
+                    {{!-- <button type="submit"  class="btn btn-primary float-right mb-4">Submit</button> --}}
+                 <span id="submit-error" style="color:red" class=" font-weight-bold" ></span> 
+
+
+
+
+                </form>
+
+
+            {{!-- </div>
+        </div>
+    </div>
+</section> --}}
+
+
+    </div>
+</div>    
+
+
+<script>
+
+var nameError = document.getElementById('name-error');
+var categoryError = document.getElementById('category-error');
+var subcategoryError = document.getElementById('subcategory-error');
+var sizeError = document.getElementById('size-error');
+var priceError = document.getElementById('price-error');
+var descriptionError = document.getElementById('description-error');
+
+var submitError = document.getElementById('submit-error');
+
+
+
+
+
+function validateName(){
+  var name = document.getElementById('contact-name').value;
+
+  if(name.length == 0){
+    nameError.innerHTML = 'Product Title is required';
+    return false;
+  }
+  
+
+   if(!name.match(/^[A-Za-z\\s]+$/)){
+     nameError.innerHTML = 'Please Enter Product Title';
+     return false;
+
+   }
+   nameError.innerHTML = 'VALID';
+   nameError.style.color="seagreen";
+   return true;
+}
+
+
+function validateCategory(){
+  var category = document.getElementById('contact-category').value;
+
+  if(category.length == 0){
+    categoryError.innerHTML = 'Category is required';
+    return false;
+  }
+  
+
+   if(!category.match(/^([a-zA-Z0-9 _-]+)$/)){
+     categoryError.innerHTML = 'Please Enter Product Category';
+     return false;
+
+   }
+   categoryError.innerHTML = 'VALID';
+   categoryError.style.color="seagreen";
+   return true;
+}
+
+function validateSubCategory() {
+  var subcategory = document.getElementById('contact-subcategory').value;
+
+  if(subcategory.length == 0){
+    subcategoryError.innerHTML = 'Subcategory is required';
+    return false;
+  }
+  
+
+   if(!subcategory.match(/^([a-zA-Z0-9 _-]+)$/)){
+     subcategoryError.innerHTML = 'Please Enter Product SubCategory';
+     return false;
+
+   }
+   subcategoryError.innerHTML = 'VALID';
+   subcategoryError.style.color="seagreen";
+   return true;
+
+
+}
+
+function validateSize(){
+   var size = document.getElementById('contact-size').value;
+
+  if(size.length == 0){
+    sizeError.innerHTML = 'Size is required';
+    return false;
+  }
+  
+
+   if(!size.match(/^([a-zA-Z0-9 _-]+)$/)){
+     sizeError.innerHTML = 'Please Enter Product size';
+     return false;
+
+   }
+   sizeError.innerHTML = 'VALID';
+   sizeError.style.color="seagreen";
+   return true;
+
+
+}
+function validatePrice(){
+   var price = document.getElementById('contact-price').value;
+
+  if(price.length == 0){
+    priceError.innerHTML = 'Price is required';
+    return false;
+  }
+  
+
+   if(!price.match^([a-zA-Z0-9]+[_-])*[a-zA-Z0-9]+\.[a-zA-Z0-9]+$){
+     priceError.innerHTML = 'Please Enter Product price';
+     return false;
+
+   }
+   priceError.innerHTML = 'VALID';
+   priceError.style.color="seagreen";
+   return true;
+
+
+}
+function validateDescription(){
+   var description = document.getElementById('contact-description').value;
+
+  if(description.length == 0){
+    descriptionError.innerHTML = 'Description is required';
+    return false;
+  }
+  
+
+   if(!description.match(/^[A-Za-z\\s]+$/)){
+     descriptionError.innerHTML = 'Please Enter Product description';
+     return false;
+
+   }
+   descriptionError.innerHTML = 'VALID';
+   descriptionError.style.color="seagreen";
+   return true;
+
+
+}
+
+function validateProduct(){
+  if(!validateName() || !validateCategory() || !validateSubCategory() || !validateSize() ||!validatePrice()||!validateDescription()){
+    submitError.style.display = 'block';
+    submitError.innerHTML = 'Please fix error to submit';
+    
+    setTimeout(function(){submitError.style.display='none';}, 3000);
+    return false;
+
+  submitError.innerHTML = 'VALID';
+  submitError.style.color="seagreen";
+   return true;
+
+  }
+
+  
+}
+
+</script>

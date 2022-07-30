@@ -1,0 +1,58 @@
+<section>
+    <div class="container mt-5">
+        <div class="row-mt-4">
+            <a href="/admin/add-"></a>
+        </div>
+<table class="table-mt-5 table ">
+    <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th>Address</th>
+            {{!-- <th>Pincode</th> --}}
+            {{!-- <th>Mobile</th> --}}
+            <th scope="col">Amount</th>
+            <th scope="col">Payment</th>
+            <th>Status</th>
+
+
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        {{#each order}}
+        <tr>
+            <td>{{this.date}} </td>
+            <td>{{this.deliveryDetails.address}}<p>{{this.deliveryDetails.pincode}}</p><p>{{this.deliveryDetails.mobile}}</p></td>
+            {{!-- <td>{{this.deliveryDetails.pincode}} </td> --}}
+            {{!-- <td>{{this.deliveryDetails.mobile}} </td> --}}
+            <td>{{this.totalAmount}} </td>
+            <td>{{this.paymentMethod}} </td>
+            <td>{{this.status}} </td>
+
+            <td>
+                <a href="/view-order-product/{{this._id}}" class="btn btn-primary">View Products</a>
+            </td>
+        </tr>
+        {{/each}}
+
+
+
+
+
+
+    </tbody>
+
+
+
+
+
+</table>
+
+
+
+
+
+    </div>
+</section>
