@@ -139,7 +139,80 @@ blockUser:(usrId, usrDetail)=>{
         resolve()
     })
 
-  }
+},
+cancelOrder: (orderId) => {
+
+  return new Promise((resolve, reject) => {
+
+    db.get().collection(collection.ORDER_COLLECTION).updateOne({ _id: objectId(orderId) },
+      {
+        $set: {
+          status: "Canceled",
+          cancel:true,
+        }
+
+      }).then((response) => {
+          
+          console.log(response.status);
+
+        resolve()
+      })
+
+
+  })
+
+},
+
+shippOrder: (orderId) => {
+
+  return new Promise((resolve, reject) => {
+
+    db.get().collection(collection.ORDER_COLLECTION).updateOne({ _id: objectId(orderId) },
+      {
+        $set: {
+          status: "Shipped",
+          shipp:true,
+          cancel:null,
+
+
+        }
+
+      }).then((response) => {
+          
+          console.log(response.status);
+
+        resolve()
+      })
+
+
+  })
+
+},
+
+deliverOrder: (orderId) => {
+
+  return new Promise((resolve, reject) => {
+
+    db.get().collection(collection.ORDER_COLLECTION).updateOne({ _id: objectId(orderId) },
+      {
+        $set: {
+          status: "Delivered",
+          delivered:true,
+          cancel:true,
+          return:true
+        }
+
+      }).then((response) => {
+          
+          console.log(response.status);
+
+        resolve()
+      })
+
+
+  })
+
+}
 
 
 

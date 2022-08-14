@@ -1,149 +1,215 @@
 <section class="check-contact section-padding">
-        <div class="container">
-            
+  <div class="container">
 
 
-{{!-- <section>
-  <div class="container mt-5"> --}}
-    <form id="checkout-form">
-      <div class="row">
 
-        <div class="col-md-6">
-             <h2>Enter Deliver Details</h2><br>
+    {{!-- <section>
+      <div class="container mt-5"> --}}
+        <form id="checkout-form">
+          <div class="row">
+
+          <h2>Choose Address</h2>
+          
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
+              <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> E-199 kalka ji New Delhi infront
+                of Sanatan Dharam Mandir New Delhi 110019
+              </label>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
+              <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> E-199 kalka ji New Delhi infront
+                of Sanatan Dharam Mandir New Delhi 110019
+              </label>
+            </div>
+          
+          
+            <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
+              <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> E-199 kalka ji New Delhi infront
+                of Sanatan Dharam Mandir New Delhi 110019
+              </label>
+            </div>
+          
+          </div>
+
+
+
+
         
-        <div>
 
-          <label for="">Address</label>
-          <input class="form-control" type="text" id="address" name="address" />
+            <div class="col-md-6">
+              <h2>Enter Deliver Details</h2><br>
 
-          <label for="">Pincode</label>
-          <input class="form-control" type="text" id="pincode" name="pincode" />
+              <div>
 
-          <label for="">Mobile</label>
-          <input class="form-control" type="text" id="mobile" name="mobile" />
-          <input type="text" name="userId" id="" value="{{user._id}}" hidden>
+                <label for="">Address</label>
+                <input class="form-control" type="text" id="address" name="address" />
 
-         </div>
-          <div class="bill-text">
-                        <input type="checkbox" name="vehicle" value="Bike"> Ship Items To The Above Billing Address<br>
-                        <input type="checkbox" name="vehicle" value="Bike"> Create new Address<br>
-                        
-                        
+                <label for="">Pincode</label>
+                <input class="form-control" type="text" id="pincode" name="pincode" />
+
+                <label for="">Town</label>
+                <input class="form-control" type="text" id="town" name="town" />
+                <input type="text" name="userId" id="" value="{{user._id}}" hidden>
+
+              </div>
+              <div class="bill-text">
+                <input type="checkbox" name="vehicle" value="Bike"> Ship Items To The Above Billing Address<br>
+                {{!-- <a></a><input type="checkbox" href="/user-profile">Create new Address</a><br> --}}
+                <a href="/user-profile">Create new Address</a>
+
+
                 </label>
-                        </div>
-        </div>
+              </div>
+            </div>
 
-      
+               {{!-- <div class="col-md-6">
+                    <div class="headline">
+
+                        <h2>Order summary</h2>
+                    </div>
+                    {{!-- <div class="summary">
+                        <h2>Products<span>Total</span></h2> --}}
 
 
-      <div class="col-md-5 col-sm-5 col-xs-12">
-        <div class="headline">
+                        
+                    {{!-- {{#each product}}
+                        <p>{{this.product.Name}}<span>{{this.product.Price}}</span>
+                        </p>
+                {{/each }} --}}
 
-            <h5>Total Amount : USD{{total}}</h5>
-            <hr>
-            <div class="payment">
-                <p>Payment Method</p>
-                <label class="radio-inline" for="">
+                        {{!-- <h3 class="line">Cart subtotal<span>$155</span></h3> --}}
+                        {{!-- <h3 class="line2">Shipping<span class="mcolor">Free shipping</span></h3>
+                        <h3>Order Total Price<span>Rs{{total}} </span></h3>
+
+                    </div>
+                </div> --}}
+
+
+            <div class="col-md-5 col-sm-5 col-xs-12">
+              <div class="headline">
+
+                {{!-- <h4 class="line2">Shipping<span class="mcolor">You are eligible for Free shipping</span></h4> --}}
+                <h3>Total Amount : Rs{{total}}</h3>
+                <hr>
+                <div class="payment">
+                  <p>Payment Method</p>
+                  <label class="radio-inline" for="">
                     <input type="radio" name="payment-method" value="COD" checked>COD
-                </label>
+                  </label>
 
-                <label class="radio-inline mt-2" for="">
-                    <input type="radio" name="payment-method" value="ONLINE" >Online payment
-                </label>
-                <button class="btn btn-primary float-right " type="submit" >Checkout</button>
+                  <label class="radio-inline mt-2" for="">
+                    <input type="radio" name="payment-method" value="RAZORPAY">RazorPay
+                  </label>
 
-                
+                  <label class="radio-inline mt-2" for="">
+                    <input type="radio" name="payment-method" value="PAYPAL">Paypal
+                  </label>
+                  <button class="btn btn-primary float-right " type="submit">Checkout</button>
+
+
+
+
+                </div>
+
+              </div>
 
 
             </div>
 
-        </div>
+          </div>
 
 
-        </div>
+
+
+        </form>
 
       </div>
+    </section>
 
 
 
-
-    </form>
-
-  </div>
-</section>
-
-
-
-<script>
-  $("#checkout-form").submit((e)=>{
-    e.preventDefault()
-    $.ajax({
-        url:'/place-order',
-        method:'post',
-        data:$('#checkout-form').serialize(),
-        success:(response)=>{
+    <script>
+      $("#checkout-form").submit((e) => {
+        e.preventDefault()
+        $.ajax({
+          url: '/place-order',
+          method: 'post',
+          data: $('#checkout-form').serialize(),
+          success: (response) => {
             alert(response)
-            if(response.codSuccess){
-                location.href='/order-success'
-            }else{
-                razorpayPayment(response)
 
+            if (response.codSuccess) {
+              location.href = '/order-success'
+
+            } else if (response.razorpay) {
+
+              razorpayPayment(response)
+
+            } else if (response.payer.payment_method == 'paypal') {
+              console.log('paypal')
+              //generatePaypal(response)
+              for (let i = 0; i < response.links.length; i++) {
+                if (response.links[i].rel === 'approval_url') {
+                  location.href = response.links[i].href;
+                }
+              }
             }
-        }
-    })
-})
+          }
+        })
+      })
 
-function razorpayPayment(order){
-  console.log(order)
-    var options = {
-"key": "rzp_test_zginGQrlDjXy7d", // Enter the Key ID generated from the Dashboard
-"amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-"currency": "INR",
-"name": "DazKart",
-"description": "Test Transaction",
-"image": "https://example.com/your_logo",
-"order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-"callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
-"handler":function(response){
-                alert(response.razorpay_payment_id);
-                alert(response.razorpay_order_id);
-                alert(response.razorpay_signature)
-                varifyPayment(response,order)
-},
-"prefill": {
-"name": "Gaurav Kumar",
-"email": "gaurav.kumar@example.com",
-"contact": "9999999999"
-},
-"notes": {
-"address": "Razorpay Corporate Office"
-},
-"theme": {
-"color": "#3399cc"
-}
-};
-var rzp1 = new Razorpay(options);
-rzp1.open();
-}
+      function razorpayPayment(order) {
+        console.log(order)
+        var options = {
+          "key": "rzp_test_zginGQrlDjXy7d", // Enter the Key ID generated from the Dashboard
+          "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+          "currency": "INR",
+          "name": "DazKart",
+          "description": "Test Transaction",
+          "image": "https://example.com/your_logo",
+          "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+          "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+          "handler": function (response) {
+            varifyPayment(response, order)
+          },
+          "prefill": {
+            "name": "Gaurav Kumar",
+            "email": "gaurav.kumar@example.com",
+            "contact": "9999999999"
+          },
+          "notes": {
+            "address": "Razorpay Corporate Office"
+          },
+          "theme": {
+            "color": "#3399cc"
+          }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+      }
 
 
-function verifyPayment(paayment,order){
-    $.ajax({
-        url:'/verify-payment',
-        data:{
+      function varifyPayment(payment, order) {
+        $.ajax({
+          url: '/verify-payment',
+          data: {
             payment,
-            order
-        },
-        method:'post',
-        success:(response)=>{
-             if(response.status){
-                location.href='/order-success'
+            order,
+          },
+          method: 'post',
+          success: (response) => {
+            console.log(response)
+            if (response.status) {
+              location.href = '/order-success'
 
 
-             }else{
-                alert("Payment failed")
-             }
-        }
-    })  
-}
-</script>
+            } else {
+              alert("Payment failed")
+            }
+          }
+        })
+      }
+    </script>

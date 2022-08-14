@@ -27,12 +27,16 @@
             <td>{{this.deliveryDetails.address}}<p>{{this.deliveryDetails.pincode}}</p><p>{{this.deliveryDetails.mobile}}</p></td>
             {{!-- <td>{{this.deliveryDetails.pincode}} </td> --}}
             {{!-- <td>{{this.deliveryDetails.mobile}} </td> --}}
-            <td>{{this.totalAmount}} </td>
+            <td>{{this.totalAmount}} </td> 
             <td>{{this.paymentMethod}} </td>
-            <td>{{this.status}} </td>
+            <td>{{this.status}}</td>
 
             <td>
                 <a href="/view-order-product/{{this._id}}" class="btn btn-primary">View Products</a>
+            </td>
+            <td>
+            <a href="/cancelOrder/{{this._id}}" class="w-100 btn btn-danger">Cancel Order</a>
+
             </td>
         </tr>
         {{/each}}

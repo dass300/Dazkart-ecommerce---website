@@ -1,85 +1,257 @@
-
-    <!-- PERSONAL-DETAIL-AREA -->
-    <section class="pessonal-detail section-padding">
-        <div class="container">
-            <div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12">
-					<div class="headline">
-						<h2>Personal details</h2>
+	<!-- page-title-wrapper-start -->
+		<div class="page-title-wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="page-title">
+							<h3>Create New Customer Account</h3>
+						</div>
 					</div>
-                
-                    <div class="personal-form">
-                        <div class="userleft">
-                            <form>
-                                Username
-                                <br>
-                                <input type="text" placeholder="Anderson">
-                                <br> Firstname
-                                <br>
-                                <input type="text" placeholder="Cory">
-                                <br> Email
-                                <br>
-                                <input type="email" placeholder="Mail@YourDomain.Com">
-                                <br> Address
-                                <br>
-                                <input type="text" placeholder="Street And House Number">
-                                <br> State/Country
-                                <br>
-                                <input type="text" placeholder="Your Country">
-                            </form>
-                        </div>
-                        <div class="userright">
-                            <h5>Username cannot be changed</h5>
-                            <form>
-                                Lastname
-                                <br>
-                                <input type="text" placeholder="Anderson">
-                                <br> Phone
-                                <br>
-                                <input type="text" placeholder="+91 123 456 78">
-                                <br> ZIP Code
-                                <br>
-                                <input type="text" placeholder="Your City Name">
-                                <br> State/Country
-                                <br>
-                                <input type="text" placeholder="0123 Australia">
-                                <br>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+				</div>
+			</div>
+		</div>
+		<!-- page-title-wrapper-end -->
+		<!-- contuct-form-area-start -->
+			<div class="login-area ptb-80">
+				<div class="container">
+					<div class="container">
+  <div  class="col-sm-12">
+        <h3>Edit Profile</h3>
+        <hr/>
+        <div class="col-sm-3"> <!-- required for floating -->
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs tabs-left">
+            <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
+             <li><a href="#chnage_passwrd" data-toggle="tab">Change Password</a></li>
+            <li><a href="#deliveryaddress" data-toggle="tab">Delivery Address</a></li>
+            <li><a href="#reentorders" data-toggle="tab">Recent Orders</a></li>
+         <li><a href="#returnorders" data-toggle="tab">Return Orders</a></li>
+          </ul>
         </div>
-    </section>
-    <!-- PERSONAL-DETAIL-AREA:END   -->
-	
-    <!-- CHANGE-PASSWORD-AREA   -->
-    <section class="password-change">
-        <div class="container">
-            <div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="headline">
-                    <h2>Change your password</h2>
-                </div>
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="change-form">
-                        <form>
-                            Old Password
-                            <br>
-                            <input type="text">
-                            <br> New Password
-                            <br>
-                            <input type="text">
-                            <br> Repeat New Password
-                            <br>
-                            <input type="text">
-                            <br>
-                        </form>
-                        <button type="button" class="btn btn-default">Save changes</button>
-                    </div>
-                </div>
+
+        <div class="col-sm-9">
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane active" id="profile">
+            <div class="login-form">
+								<form>
+									<div class="form-group login-page">
+										<label for="">First Name <span>*</span></label>
+										<input type="text" class="form-control" id="">
+									</div>
+									<div class="form-group login-page">
+										<label for="">Last Name <span>*</span></label>
+										<input type="email" class="form-control" id="">
+									</div>
+									<!--<div class="form-group">
+										<div class="checkbox">
+											<label>
+												<input type="checkbox"> Sign Up for Newsletter
+											</label>
+										</div>
+									</div>									
+									<div class="login-title">
+										<h3>Sign-in Information</h3>
+									</div>-->									
+									<div class="form-group login-page">
+										<label for="">Email <span>*</span></label>
+										<input type="text" class="form-control" id="">
+									</div>								
+									
+									<button type="submit" class="btn btn-default login-btn">Submit</button>
+								</form>						
+							</div>
+							
+            
             </div>
+            
+             <div class="tab-pane" id="chnage_passwrd">
+             <form>
+									<div class="form-group login-page">
+										<label for="">Old Password<span>*</span></label>
+										<input type="password" class="form-control" id="">
+									</div>
+									<div class="form-group login-page">
+										<label for="">New Password<span>*</span></label>
+										<input type="password" class="form-control" id="">
+									</div>
+																	
+									<div class="form-group login-page">
+										<label for="">Confirm Password<span>*</span></label>
+										<input type="password" class="form-control" id="">
+									</div>								
+									
+									<button type="submit" class="btn btn-default login-btn">Submit</button>
+								</form>	
+             
+             </div>
+            
+            
+            <div class="tab-pane" id="deliveryaddress">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+            
+             <h4 class="profile_addresstab">Choose Address</h4>
+            
+                               <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
+                                <label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> E-199 kalka ji New Delhi infront of Sanatan Dharam Mandir New Delhi 110019
+</label>
+                               </div>
+<div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
+                                <label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> E-199 kalka ji New Delhi infront of Sanatan Dharam Mandir New Delhi 110019
+</label>
+                               </div>
+                               
+                               
+                               <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
+                                <label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> E-199 kalka ji New Delhi infront of Sanatan Dharam Mandir New Delhi 110019  E-199 kalka ji New Delhi infront of Sanatan Dharam Mandir New Delhi 110019
+</label>
+                               </div>
+                               
+                               
+                               <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
+                                <label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> E-199 kalka ji New Delhi infront of Sanatan Dharam Mandir New Delhi 110019
+</label>
+                               </div>
+
+                                </div>
+
+                <!-- contuct-form-area-end -->
+
+
+                                <div class="col-md-12 col-sm-12">
+			<h4 class="profile_addresstab">Enter New Address Here</h4>
+			 <div class="personal-form">
+					   <div class="userleft">
+                        
+						   <form action="/userdeliveryaddress" method="post" >
+						   
+							   
+							   <label for="">Address</label> 
+						   
+							   <input class="form-control" type="text" name="address" id="address" placeholder="Address">
+							   
+							   <label for="">Pincode</label>
+							   
+							   <input class="form-control" type="text" name="pincode" id="pincode" placeholder="Pincode">
+						   
+							   <label for="">Town</label>
+
+
+							   <input class="form-control" type="text" name="town" id="mobile" placeholder="Town">
+							   {{!-- <input  type="text" name="userId" value="{{user}}" hidden> --}}
+
+                            <button type="submit" class="btn btn-default login-btn">Save</button>
+						   </form>
+
+					   </div>
+					  
+				   </div>
+
+			</div>
+                                
+                                
+                <!-- contuct-form-area-end -->             
+                       
+									
+                                
+            
+     </div>
+            
+            <div class="tab-pane" id="reentorders">
+            <div class="wishlist-table table-responsive">
+									<table class="table mt-5">
+										<thead>
+											<tr>
+												<th class="product-remove"><span class="nobr">Remove</span></th>
+												<th class="product-thumbnail">Image</th>
+												<th class="product-name"><span class="nobr">Product Name</span></th>
+                                                <th class="product-name"><span class="nobr">Order No.</span></th>
+												<th class="product-price"><span class="nobr"> Unit Price </span></th>
+												<!--<th class="product-stock-stauts"><span class="nobr"> Stock Status </span></th>
+												<th class="product-add-to-cart"><span class="nobr">Buy It Again </span></th>-->
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="product-remove"><a href="#">x</a></td>
+												<td class="product-thumbnail"><a href="#"><img src="img/wishlist/1.jpg" alt="" /></a></td>
+												<td class="product-name"><a href="#">Vestibulum suscipit</a></td>
+                                                <td class="product-name"><a href="#">GHJGHJGJHGHJHJHJ</a></td>
+												<td class="product-price"><span class="amount">Rs35.00</span></td>
+												<!--<td class="product-stock-status"><span class="wishlist-in-stock">In Stock</span></td>
+												<td class="product-add-to-cart"><a href="#"> Buy It Again</a></td>-->
+											</tr>
+											<tr>
+												<td class="product-remove"><a href="#">x</a></td>
+												<td class="product-thumbnail"><a href="#"><img src="img/wishlist/2.jpg" alt="" /></a></td>
+												<td class="product-name"><a href="#">Vestibulum dictum magna</a></td>
+                                                 <td class="product-name"><a href="#">GHJGHJGJHGHJHJHJ</a></td>
+												<td class="product-price"><span class="amount">Rs50.00</span></td>
+												<!--<td class="product-stock-status"><span class="wishlist-in-stock">In Stock</span></td>
+												<td class="product-add-to-cart"><a href="#"> Buy It Again</a></td>-->
+											</tr>
+										</tbody>
+										
+									</table>
+								</div>
+            
             </div>
+            
+            <div class="tab-pane" id="returnorders">
+            <div class="wishlist-table table-responsive">
+									<table class="table mt-5">
+										<thead>
+											<tr>
+												
+												
+												<th class="product-name"><span class="nobr">Product Name</span></th>
+                                                <th class="product-name"><span class="nobr">Order No.</span></th>
+												<th class="product-price"><span class="nobr"> Unit Price </span></th>
+                                                <th class="product-remove"><span class="nobr">Check Process</span></th>
+												<!--<th class="product-stock-stauts"><span class="nobr"> Stock Status </span></th>
+												<th class="product-add-to-cart"><span class="nobr">Buy It Again </span></th>-->
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<!--<td class="product-remove"><a href="#">x</a></td>-->
+												
+												<td class="product-name"><a href="#">Vestibulum suscipit</a></td>
+                                                <td class="product-name"><a href="#">GHJGHJGJHGHJHJHJ</a></td>
+												<td class="product-price"><span class="amount">Rs35.00</span></td>
+                                               <td class="product-name"><a href="#">Check Process</a></td>
+												<!--<td class="product-stock-status"><span class="wishlist-in-stock">In Stock</span></td>
+												<td class="product-add-to-cart"><a href="#"> Buy It Again</a></td>-->
+											</tr>
+											<tr>
+												<!--<td class="product-remove"><a href="#">x</a></td>-->
+												
+												<td class="product-name"><a href="#">Vestibulum dictum magna</a></td>
+                                                 <td class="product-name"><a href="#">GHJGHJGJHGHJHJHJ</a></td>
+												<td class="product-price"><span class="amount">Rs50.00</span></td>
+                                                <td class="product-name"><a href="#">Check Process</a></td>
+												<!--<td class="product-stock-status"><span class="wishlist-in-stock">In Stock</span></td>
+												<td class="product-add-to-cart"><a href="#"> Buy It Again</a></td>-->
+											</tr>
+										</tbody>
+										
+									</table>
+								</div>
+            
+            </div>
+            
+            
+          </div>
         </div>
-    </section>
-    <!-- CHANGE-PASSWORD-AREA:END -->
+
+        <div class="clearfix"></div>
+
+      </div>
+</div><!-- /container -->
+				</div>
+			</div>
+		<!-- contuct-form-area-end -->

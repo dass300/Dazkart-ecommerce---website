@@ -177,7 +177,7 @@ router.post("/product-category",uploads.array('Image',4),(req, res) => {
 router.get("/add-product", function (req, res, next) {
   res.render("admin/add-product", { admin: true });
 });
-``
+
 let fileStorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./public/product-image");
@@ -347,30 +347,11 @@ router.get("/unblock/:id", (req, res) => {
   });
 });
 
-// ---------multer----------------
 
-// const fileStorageEnginecategory = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, "./public/product-image/category");
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, Date.now() + "--" + file.originalname);
-//   },
-// });
+router.get("/order-summary",function (req, res) {
+  res.render("admin/order-summary", { admin: true });
+});
 
-// const uploadcategory = multer({ storage: fileStorageEnginecategory });
-// router.post("/product-category", uploadcategory.array("Image"), (req, res) => {
-//   var filenames = req.files.map(function (file) {
-//     return file.filename;
-//   });
 
-//   req.body.image = filenames;
-//   categoryHelper.addCategory(req.body).then(() => {
-//     req.session.category = true;
-//     res.redirect("/admin/product-category");
-//   });
-// });
-
-// -------------------------
 
 module.exports = router;

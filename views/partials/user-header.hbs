@@ -44,15 +44,18 @@
 				<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><img class="account" src="/img/account.png" alt="#"><span class="value">{{user.Name}}</span></a>
 									
 												{{else}}
-				<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><img class="account" src="/img/account.png" alt="#"><span class="value">My Account </span><i class="fa fa-angle-down"></i></a>
+				<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><img class="account" src="/img/account.png" alt="#"><span class="value">My Account </span></a>
 									{{/if}}
 									<ul class="dropdown-menu account-menu">
 										<li><a href="/user-profile">Profile</a>
 										</li>
 										<li><a href="/wishlist">Wishlist</a>
 										</li>
-										<li><a href="product-list.html">Shopping</a>
+										<li><a href="/order">Orders</a>
 										</li>
+										<li><a href="/view-order-product/{{this._id}}">Veiw Orders</a>
+										</li>
+										
 										
 									</ul>
 
@@ -74,67 +77,25 @@
 									</ul>
 								<li class="last-child">
 													{{#if user_log}}
+
 									<a class="logg" href="/user-logout"><img class="login" src="/img/log.png" alt="#">Logout</a>
-													{{else}}
+
+													{{else }}
+
 									<a class="logg" href="/user-login"><img class="login" src="/img/log.png" alt="#"> Login</a>
-													{{/if}}
+
+													{{/if }}
 
 								</li>
-													
-
 								
-
-								{{!-- dropdown
-									<div class="dropdown show">
-										<button class="btn btn-secondary dropdown-toggle" style="background-color:red;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											
-										{{#if admin}}
-											{{admin.Name}}
-										{{else}}
-											Account
-										{{/if}}
-											
-										
-										</button>
-
-										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-											{{#if admin}}
-										<a class="dropdown-item" href="/admin-login">Logout</a>
-										{{else}}
-											<a class="dropdown-item" href="/admin-login">Login</a>
-										{{/if}}
-											
-											
-										</div>
-									</div> --}}
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Header-area:END -->
-					
-
-
-					
-										
-										{{!-- <li><a href="">{{user.Name}}</a>
-										</li>
-										{{#if user}}
-										<li><a href="/user-login">Logout</a>
-										</li>
-										{{else}}
-										<li><a href="/user-logout">Login</a>
-										</li>
-										{{/if}}
-									</ul>
-									</li> --}}
-								{{!-- </li> --}}
+	
 								
-
-		
-
     <!-- Header-area:END -->
 	
 		
@@ -240,7 +201,8 @@
 										<li><a href="search-result.html">Search result</a></li>
 										<li><a href="/select-product">Single product</a></li>
 										<li><a href="/wishlist">wishlist</a></li>
-										<li><a href="404.html">404</a></li>
+										<li><a href="/404">404</a></li>
+										<li><a href="/modal">modal</a></li>
 									</ul>
 								</li>
 								<li><a href="about-us.html">About Us</a>

@@ -15,6 +15,14 @@ var instance = new Razorpay({
   key_id: 'rzp_test_zginGQrlDjXy7d',
   key_secret: 'URlsfCf9N3d6scwbEVFBQuW7',
 });
+
+var paypal = require('paypal-rest-sdk');
+
+paypal.configure({
+    'mode': 'sandbox', //sandbox or live
+    'client_id': 'AW1f3zaBA1_-HM7KQpqQMNSKk28szPtPuXdjSsdwXI0RMizlauCXGhsiIy3_QPzA5kb9QNgZBukcbokC',
+    'client_secret': 'EG7uKTRfBvnzk0hrFfcR9dYsKlZJhre3nMm7nGrH5tW9VsNlZ-y9SFDAKrHRUWU_xYPBJldBOLNacEaL'
+  });
 module.exports={
 
     // doSignup:(userData)=>{
@@ -197,6 +205,7 @@ module.exports={
                     as:'product'
                 }
                },
+               
                {
                 $project:{
                     item:1,quantity:1,product:{$arrayElemAt:['$product',0]}
@@ -466,14 +475,14 @@ verifyPayment:(details)=>{
         hmac.update(details['payment[razorpay_order_id]']+'|'+details['payment[razorpay_payment_id]'])
         hmac=hmac.digest('hex')
         if(hmac==details['payment[razorpay_signature]']){
-
+console.log('kkkkk')
             resolve()
         }else{
             reject()
         }
     })
 },changePaymentStatus:(orderId)=>{
-    return new promises((resolve,reject)=>{
+    return new Promise((resolve,reject)=>{
         db.get().collection(collection.ORDER_COLLECTION)
         .updateOne({_id:objectId(orderId)},
         {
@@ -487,6 +496,7 @@ verifyPayment:(details)=>{
     })
 },
 generatePaypal:(orderId,total)=>{
+    console.log(total)
     return new Promise((resolve,reject)=>{
         var create_payment_json = {
             "intent": "sale",
@@ -494,8 +504,8 @@ generatePaypal:(orderId,total)=>{
                 "payment_method": "paypal"
             },
             "redirect_urls": {
-                "return_url": "http://localhost:3000/success",
-                "cancel_url": "http://localhost:3000/success"
+                "return_url": "http://localhost:3000/order-success",
+                "cancel_url": "http://localhost:3000/cancel"
             },
             "transactions": [{
                 "item_list": {
@@ -508,8 +518,10 @@ generatePaypal:(orderId,total)=>{
                     }]
                 },
                 "amount": {
-                    "currency": "INR",
-                    "total": total
+                    "currency": "USD",
+                    "total": total,
+                    
+
                 },
                 "description": "This is the payment description."
             }]
@@ -527,7 +539,55 @@ generatePaypal:(orderId,total)=>{
         });
         
     })
+},
+cancelOrder: (orderId,userId) => {
+    console.log(orderId);
+    return new Promise(async(resolve, reject) => {
+        let totalamount = await db.get().collection(collection.ORDER_COLLECTION).findOne({ _id: objectId(orderId)})
+        db.get().collection(collection.ORDER_COLLECTION).updateOne({ _id: objectId(orderId) }, { $set: { status: "cancelled",cancelled:true} })
+        db.get().collection(collection.ORDER_COLLECTION).updateOne({ _id: objectId(orderId) }, { $set: { totalAmount: 0 } }) 
+        console.log(totalamount.totalAmount);
+        console.log(totalamount.paymentmethod);
+        if(totalamount.paymentmethod != "COD"){
+            console.log("Not cod");
+            if(totalamount.totalAmount > 1){
+                console.log("+0");
+                db.get().collection(collection.WALLET_COLLECTION).updateOne({user: objectId(userId) }, { $inc: { amount: totalamount.totalAmount } })
+            }else{
+                console.log("100");
+                db.get().collection(collection.WALLET_COLLECTION).updateOne({user: objectId(userId) }, { $set: { amount: totalamount.totalAmount } })
+            }
+            console.log(totalamount.totalAmount);
+        }else{
+            console.log("cod sds");
+        }
+       
+    })
+ 
+
+
+},
+
+
+userDeliveryAddress:(data,userId) => {
+   
+     let userObj = {
+        user :objectId(userId) ,
+        address:[data]
+     }
+    return new Promise(async(resolve,reject)=>{
+
+        db.get().collection(collection.ADDRESS_COLLECTION).insertOne(userObj).then((response)=>{
+        
+            resolve()
+            console.log(response);
+
+    })
+})
+
+
 }
+
  
 
 

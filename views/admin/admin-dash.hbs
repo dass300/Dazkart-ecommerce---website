@@ -141,22 +141,22 @@
 							<table class="table align-items-center mb-0">
 							  <tbody>
 								<tr>
-								  <td><i class="bx bxs-circle me-2" style="color: #14abef"></i> Direct</td>
+								  <td><i class="bx bxs-circle me-2" style="color: #14abef"></i> COD</td>
 								  <td>$5856</td>
 								  <td>+55%</td>
 								</tr>
 								<tr>
-								  <td><i class="bx bxs-circle me-2" style="color: #02ba5a"></i>Affiliate</td>
+								  <td><i class="bx bxs-circle me-2" style="color: #02ba5a"></i>PAYPAL</td>
 								  <td>$2602</td>
 								  <td>+25%</td>
 								</tr>
 								<tr>
-								  <td><i class="bx bxs-circle me-2" style="color: #d13adf"></i>E-mail</td>
+								  <td><i class="bx bxs-circle me-2" style="color: #d13adf"></i>RAZORPAY</td>
 								  <td>$1802</td>
 								  <td>+15%</td>
 								</tr>
 								<tr>
-								  <td><i class="bx bxs-circle me-2" style="color: #fba540"></i>Other</td>
+								  <td><i class="bx bxs-circle me-2" style="color: #fba540"></i>OTHERS</td>
 								  <td>$1105</td>
 								  <td>+5%</td>
 								</tr>
@@ -483,28 +483,31 @@
 											<th>Customer</th>
 											<th>Date</th>
 											<th>Price</th>
+											<th>Payment</th>
 											<th>Status</th>
 											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
+										{{#each order}}
 										<tr>
-											<td>#897656</td>
+											<td>{{this._id}}</td>
 											<td>
 												<div class="d-flex align-items-center">
 													<div class="recent-product-img">
-														<img src="/adm-public/images/icons/chair.png" alt="">
+														<img src="/product-image/{{this.image.[0]}}" alt="">
 													</div>
 													<div class="ms-2">
-														<h6 class="mb-1 font-14">Light Blue Chair</h6>
+														<h6 class="mb-1 font-14">{{ this.Name}}</h6>
 													</div>
 												</div>
 											</td>
 											<td>Brooklyn Zeo</td>
-											<td>12 Jul 2020</td>
-											<td>$64.00</td>
+											<td>{{this.date}}</td>
+											<td>{{this.totalAmount}}</td>
+											<td>{{this.paymentMethod}}</td>
 											<td>
-												<div class="badge rounded-pill bg-light-info text-info w-100">In Progress</div>
+												<div class="badge rounded-pill bg-light-info text-info w-100">{{this.status}} </div>
 											</td>
 											<td>
 												<div class="d-flex order-actions">	<a href="javascript:;" class=""><i class="bx bx-cog"></i></a>
@@ -512,155 +515,21 @@
 												</div>
 											</td>
 										</tr>
-										<tr>
-											<td>#987549</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<div class="recent-product-img">
-														<img src="/adm-public/images/icons/shoes.png" alt="">
-													</div>
-													<div class="ms-2">
-														<h6 class="mb-1 font-14">Green Sport Shoes</h6>
-													</div>
-												</div>
-											</td>
-											<td>Martin Hughes</td>
-											<td>14 Jul 2020</td>
-											<td>$45.00</td>
-											<td>
-												<div class="badge rounded-pill bg-light-success text-success w-100">Completed</div>
-											</td>
-											<td>
-												<div class="d-flex order-actions">	<a href="javascript:;" class=""><i class="bx bx-cog"></i></a>
-													<a href="javascript:;" class="ms-4"><i class="bx bx-down-arrow-alt"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>#685749</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<div class="recent-product-img">
-														<img src="/adm-public/images/icons/headphones.png" alt="">
-													</div>
-													<div class="ms-2">
-														<h6 class="mb-1 font-14">Red Headphone 07</h6>
-													</div>
-												</div>
-											</td>
-											<td>Shoan Stephen</td>
-											<td>15 Jul 2020</td>
-											<td>$67.00</td>
-											<td>
-												<div class="badge rounded-pill bg-light-danger text-danger w-100">Cancelled</div>
-											</td>
-											<td>
-												<div class="d-flex order-actions">	<a href="javascript:;" class=""><i class="bx bx-cog"></i></a>
-													<a href="javascript:;" class="ms-4"><i class="bx bx-down-arrow-alt"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>#887459</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<div class="recent-product-img">
-														<img src="/adm-public/images/icons/idea.png" alt="">
-													</div>
-													<div class="ms-2">
-														<h6 class="mb-1 font-14">Mini Laptop Device</h6>
-													</div>
-												</div>
-											</td>
-											<td>Alister Campel</td>
-											<td>18 Jul 2020</td>
-											<td>$87.00</td>
-											<td>
-												<div class="badge rounded-pill bg-light-success text-success w-100">Completed</div>
-											</td>
-											<td>
-												<div class="d-flex order-actions">	<a href="javascript:;" class=""><i class="bx bx-cog"></i></a>
-													<a href="javascript:;" class="ms-4"><i class="bx bx-down-arrow-alt"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>#335428</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<div class="recent-product-img">
-														<img src="/adm-public/images/icons/user-interface.png" alt="">
-													</div>
-													<div class="ms-2">
-														<h6 class="mb-1 font-14">Purple Mobile Phone</h6>
-													</div>
-												</div>
-											</td>
-											<td>Keate Medona</td>
-											<td>20 Jul 2020</td>
-											<td>$75.00</td>
-											<td>
-												<div class="badge rounded-pill bg-light-info text-info w-100">In Progress</div>
-											</td>
-											<td>
-												<div class="d-flex order-actions">	<a href="javascript:;" class=""><i class="bx bx-cog"></i></a>
-													<a href="javascript:;" class="ms-4"><i class="bx bx-down-arrow-alt"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>#224578</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<div class="recent-product-img">
-														<img src="/adm-public/images/icons/watch.png" alt="">
-													</div>
-													<div class="ms-2">
-														<h6 class="mb-1 font-14">Smart Hand Watch</h6>
-													</div>
-												</div>
-											</td>
-											<td>Winslet Maya</td>
-											<td>22 Jul 2020</td>
-											<td>$80.00</td>
-											<td>
-												<div class="badge rounded-pill bg-light-danger text-danger w-100">Cancelled</div>
-											</td>
-											<td>
-												<div class="d-flex order-actions">	<a href="javascript:;" class=""><i class="bx bx-cog"></i></a>
-													<a href="javascript:;" class="ms-4"><i class="bx bx-down-arrow-alt"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>#447896</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<div class="recent-product-img">
-														<img src="/adm-public/images/icons/tshirt.png" alt="">
-													</div>
-													<div class="ms-2">
-														<h6 class="mb-1 font-14">T-Shirt Blue</h6>
-													</div>
-												</div>
-											</td>
-											<td>Emy Jackson</td>
-											<td>28 Jul 2020</td>
-											<td>$96.00</td>
-											<td>
-												<div class="badge rounded-pill bg-light-success text-success w-100">Completed</div>
-											</td>
-											<td>
-												<div class="d-flex order-actions">	<a href="javascript:;" class=""><i class="bx bx-cog"></i></a>
-													<a href="javascript:;" class="ms-4"><i class="bx bx-down-arrow-alt"></i></a>
-												</div>
-											</td>
-										</tr>
+												{{/each}}
+
+										
+
 									</tbody>
 								</table>
 							</div>
 						</div>
 					</div>
+
+					
+
+
+
+
 
 			</div>
 		</div>
