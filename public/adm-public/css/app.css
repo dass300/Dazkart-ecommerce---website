@@ -146,6 +146,16 @@ a {
 	flex-direction: column
 }
 
+.dt-buttons .dt-button:last-child {
+    margin-right: 0;
+}
+
+.dt-buttons .dt-button {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
 .sidebar-wrapper .metismenu li+li {
 	margin-top: 5px
 }

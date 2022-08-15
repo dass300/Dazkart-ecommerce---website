@@ -14,7 +14,7 @@ function changeQuantity(cartId,proId,userId,count){
         method:'post',
         success:(response)=>{
             if(response.removeProduct){
-                alert('Product Removed from Cart')
+                // alert('Product Removed from Cart')
                 location.reload()
 
             }else{

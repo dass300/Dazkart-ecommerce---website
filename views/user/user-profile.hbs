@@ -64,29 +64,51 @@
 							
             
             </div>
+			
             
-             <div class="tab-pane" id="chnage_passwrd">
-             <form>
-									<div class="form-group login-page">
-										<label for="">Old Password<span>*</span></label>
-										<input type="password" class="form-control" id="">
-									</div>
-									<div class="form-group login-page">
-										<label for="">New Password<span>*</span></label>
-										<input type="password" class="form-control" id="">
-									</div>
-																	
-									<div class="form-group login-page">
-										<label for="">Confirm Password<span>*</span></label>
-										<input type="password" class="form-control" id="">
-									</div>								
-									
-									<button type="submit" class="btn btn-default login-btn">Submit</button>
-								</form>	
-             
-             </div>
+            <div class="tab-pane" id="chnage_passwrd">
+
+                <form action="/updatePassword" method="post" >
+
+                    {{!-- <div class="form-group login-page">
+                        <label for="">Old Password<span>*</span></label>
+                        <input type="password" class="form-control" id="">
+                    </div>
+
+                    <div class="form-group login-page">
+                        <label for="">New Password<span>*</span></label>
+                        <input type="password" class="form-control" id="">
+                    </div>
             
-            
+                    <div class="form-group login-page">
+                        <label for="">Confirm Password<span>*</span></label>
+                        <input type="password" class="form-control" id="">
+                    </div> --}}
+
+
+
+                    <div class="form-outline mb-4">
+                        <input type="password" id="form7Example4" class="form-control" name="currentpassword" />
+                        <label class="form-label" for="form7Example4">Current Password</label>
+                        {{#if passwordchange}}
+                        {{else}}
+                        <span id="passerror" style="color: red;">please enter correct current password</span>
+                        {{/if}}
+                    </div>
+                    
+                    <div class="form-outline mb-4">
+                        <input type="password" id="form7Example4" class="form-control" name="newpassword" />
+                        <label class="form-label" for="form7Example4"> New Password</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-default login-btn">Submit</button>
+
+                </form>     
+
+            </div>
+
+
+
             <div class="tab-pane" id="deliveryaddress">
             <div class="col-md-12 col-sm-12 col-xs-12">
             
@@ -126,8 +148,7 @@
 			<h4 class="profile_addresstab">Enter New Address Here</h4>
 			 <div class="personal-form">
 					   <div class="userleft">
-                        
-						   <form action="/userdeliveryaddress" method="post" >
+						   <form action="/userdeliveryaddress" method="post" enctype="multipart/form-data" >
 						   
 							   
 							   <label for="">Address</label> 

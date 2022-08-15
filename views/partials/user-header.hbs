@@ -30,7 +30,7 @@
 										</li>
 									</ul>
 								</li>
-								<li>Welcome to Ecommerce</li>
+								<li>Welcome to DAZKART</li>
 						</ul>
 						</div>
 					</div>
@@ -53,7 +53,7 @@
 										</li>
 										<li><a href="/order">Orders</a>
 										</li>
-										<li><a href="/view-order-product/{{this._id}}">Veiw Orders</a>
+										<li><a href="/view-product/{{this._id}}">View Products</a>
 										</li>
 										
 										
@@ -109,9 +109,12 @@
 							</a>
 						</div>
 					</div>
+
 					<div class="col-sm-8 col-md-8 col-xs-12">
-						<div class="search-area">
-							<form>
+						
+								<div class="search-area">
+
+							{{!-- <form>
 								<div class="control-group">
 
 									<ul class="categories-filter animate-dropdown">
@@ -137,14 +140,17 @@
 									<input class="search-field" placeholder="Search here..." />
 									<a class="search-button" href="#"></a>
 								</div>
-							</form>
+							</form> --}}
+
 						</div>
+						
 						<div class="logo_right">
 							<span><i class="fa fa-phone"></i></span>
 							<a href="tel:+112345689">CALL US FREE
-								<br/>+01 123 456 89</a>
+								<br/>+918921653181</a>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>
@@ -158,7 +164,7 @@
 						<div class="categories">
 							<ul id="nav">
 								<li>Categories <i class="fa fa-bars"></i>
-									<ul>
+									{{!-- <ul>
 										<li><a href="#"><i class="fa fa-male"></i> Fashion</a> </li>
 										<li><a href="#"><i class="fa fa-clock-o"></i> Watches<i class="fa fa-angle-right icon-right"></i></a>
 										</li>
@@ -178,7 +184,7 @@
 										</li>
 										<li class="last-li"><a href="#">View all categories</a>
 										</li>
-									</ul>
+									</ul> --}}
 								</li>
 							</ul>
 						</div>
@@ -186,32 +192,32 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<nav class="main-menu">
 							<ul id="navigation">
-								<li class="active"><a href="index.html">Home <i class="fa fa-caret-down"></i></a>
-									<ul class="drop_nav">
+								<li class="active"><a href="#">Home <i class="fa fa-caret-down"></i></a>
+									{{!-- <ul class="drop_nav">
 										<li><a href="/home-one">Home two</a></li>
-										<li><a href="homepage_03.html">Home three</a></li>
-									</ul>
+										<li><a href="#">Home three</a></li>
+									</ul> --}}
 								</li>
 								<li><a href="#">Pages <i class="fa fa-caret-down"></i></a>
 									<ul class="drop_nav">
-										<li><a href="blog.html">Blog</a></li>
+										{{!-- <li><a href="blog.html">Blog</a></li>
 										<li><a href="checkout.html">Checkout</a></li>
-										<li><a href="product-list.html">Product list</a></li>
-										<li><a href="profile.html">Profile</a></li>
-										<li><a href="search-result.html">Search result</a></li>
-										<li><a href="/select-product">Single product</a></li>
+										<li><a href="product-list.html">Product list</a></li> --}}
+										{{!-- <li><a href="profile.html">Profile</a></li> --}}
+										{{!-- <li><a href="search-result.html">Search result</a></li> --}}
+										{{!-- <li><a href="/select-product">Single product</a></li> --}}
 										<li><a href="/wishlist">wishlist</a></li>
 										<li><a href="/404">404</a></li>
-										<li><a href="/modal">modal</a></li>
+										{{!-- <li><a href="/modal">modal</a></li> --}}
 									</ul>
 								</li>
-								<li><a href="about-us.html">About Us</a>
+								<li><a href="#">About Us</a>
 								</li>
-								<li><a href="product-list.html">Men</a>
+								<li><a href="#">Men</a>
 								</li>
-								<li><a href="product-list.html">Women</a>
+								<li><a href="#">Women</a>
 								</li>
-								<li><a href="contact-us.html">Contacts</a>
+								<li><a href="#">Contacts</a>
 								</li>
 							</ul>
 						</nav>
@@ -267,8 +273,9 @@
 					</div>
 					<div class="col-md-3 col-sm-3 col-xs-12">
 						<div class="menu_right">
-							<a href="/cart"><i class="fa fa-shopping-cart" id="cart-count" ></i>My Cart</a>
-							<span>{{cartCount}}</span>
+							<a href="/cart"><i class="fa fa-shopping-cart"></i>My Cart</a>
+							<span id="cart-counts">{{cartCount}}</span>
+							<input type="text" value="{{cartCount}}" id="cart-count" hidden>
 
 
 						</div>

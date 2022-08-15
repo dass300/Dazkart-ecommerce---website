@@ -137,18 +137,10 @@
 <div class="shoping-cart-bottom-area">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="theme-box">
-                    <h4>Apply coupon code here</h4>
-                    <p>Enter your coupon code</p>
-                    <form id="discount-code">
-                        <input type="text" />
-                    </form>
-                    <button type="button" class="btn btn-default right-cart">Apply code</button>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="shiptax">
+            
+
+            <div class="ms-auto col-md-4 col-sm-4 col-xs-12">
+                {{!-- <div class="shiptax">
                     <h3>Estimate Shipping and Tax</h3>
                     <p class="form_caption">Enter your destination to get a shipping
                         estimate.</p>
@@ -186,8 +178,9 @@
                         </form>
                     </div>
                     <button type="button" class="btn btn-default add-cart">Get a quote</button>
-                </div>
+                </div> --}}
             </div>
+
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="checkout">
                     <p>Subtotal<span>{{this.product.Price}}</span>
@@ -200,7 +193,7 @@
                     <a href="/place-order"><button type="button" class="btn btn-default left-cart">Proceed to checkout</a></button>
 
 
-                    <h5>Checkout with multiple addresses</h5>
+                    <h5>You are eligible for free shipping</h5>
                 </div>
             </div>
         </div>

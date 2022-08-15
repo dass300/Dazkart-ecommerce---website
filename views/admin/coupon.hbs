@@ -1,0 +1,120 @@
+<!--end header -->
+<!--start page wrapper -->
+<div class="page-wrapper">
+    <div class="page-content">
+
+
+        <!--breadcrumb-->
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">eCommerce</div>
+            <div class="ps-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 p-0">
+                        <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Coupon Management</li>
+                    </ol>
+                </nav>
+            </div>
+
+            
+        </div>
+        <!--end breadcrumb-->
+
+
+
+
+
+
+            <form action="/admin/coupon" method="post">
+
+        {{!-- <div class="col-12">
+                <label for="inputcouponname" class="form-label">Coupon Name</label>
+                <select class="form-select" name="couponname" id="inputcouponname">
+                    <option></option>
+                    <option value="dazkart_20%">DAZ_KART_20%</option>
+                    <option value="dazkart_30%">DAZ_KART_30%</option>
+                </select>
+        </div> --}}
+
+        <div class="col-md-6">
+            <label for="inputcouponname" value="" class="form-label">Coupon Name</label>
+            <input type="text" name="couponname" class="form-control" id="inputcouponname" placeholder="Couponname">
+        </div>
+
+        {{!-- <div class="col-12">
+            <label for="inputdiscount" class="form-label">Discount</label>
+            <select class="form-select" name="discount" id="inputdiscount">
+                <option></option>
+                <option value="20">20%</option>
+                <option value="30">30%</option>
+            </select>
+        </div> --}}
+
+        <div class="col-md-6">
+            <label for="inputdiscount" value="" class="form-label">Discount</label>
+            <input type="text" name="discount" class="form-control" id="inputdiscount" placeholder="Discount">
+        </div>
+        
+
+        {{!-- <div class="col-12">
+            <label for="inputvalidupto" class="form-label">Valid upto</label>
+            <select class="form-select" name="validupto" id="inputvalidupto">
+                <option></option>
+                <option value="1month">1month</option>
+                <option value="2month">2month</option>
+            </select>
+        </div> --}}
+
+        {{!-- <div class="col-12 mt-4">
+            <label for="inputexpiry" class="form-label">Expiry</label>
+            <input type="date" name="expiry" id="">
+        </div> --}}
+
+        {{!-- <div class="col-md-6">
+            <label for="inputPrice" value="Price" class="form-label">Price</label>
+            <input type="taxt" name="Price" class="form-control" id="inputPrice" placeholder="00.00">
+        </div> --}}
+
+        <div class="col-12">
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary mt-4">Save coupon</button>
+            </div>
+        </div>
+
+        </form>
+
+
+
+
+<table class="table mt-5" id="productsTable">
+    <thead>
+        <tr>
+            <th scope="col">no</th>
+            <th scope="col">coupon name</th>
+            <th scope="col">discount</th>
+            {{!-- <th scope="col">action</th> --}}
+            
+        </tr>
+    </thead>
+    <tbody>
+        {{#each coupons}}
+        <tr>
+            <th scope="row">{{inc @index}}</th>
+            <td>{{this.couponname}} </td>
+            <td>{{this.discount}} </td>
+            {{!-- <td> <a href="/admin/edit-product/{{ this._id}}" class="btn btn-primary">Edit</a>
+                <a href="/admin/delete-product/{{ this._id}}" class="btn btn-danger"
+                    onclick=" return confirm('Are you want to delete {{this.Name}} ?')">Delete</a></td> --}}
+
+        </tr>
+
+        {{/each}}
+
+
+    </tbody>
+</table>
+
+    </div>
+</div>
+<!--end page wrapper -->

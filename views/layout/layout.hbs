@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ecomshop | Ecommerce HTL5 template | Home page 1</title>
+    <title>DAZKART | DAZKART HTL5 template | Home page</title>
     	           
                    
                     {{#if user}}
@@ -66,10 +66,15 @@
 
    
                  {{else}}
-                  <!-- JavaScript Bundle with Popper -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+
+
+                  <!-- JavaScript Bundle with Popper -->
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.2/chart.min.js"></script>
+
+{{!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 
+integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script> --}}
 
                     <!-- Required meta tags -->
                 <meta charset="utf-8">
@@ -98,10 +103,15 @@ integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4
                 <title>DazKart - Shopping is now easy</title>
 
                 
+<!-- Data table CSS -->
+	<link href="/adm-public/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
 
                  <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
                  <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js">
                  
+                   {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script> --}}
+  {{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}
+
                
                
 
@@ -271,9 +281,22 @@ integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4
                     <script src="/adm-public/plugins/jquery-knob/excanvas.js"></script>
                     <script src="/adm-public/plugins/jquery-knob/jquery.knob.js"></script>
 
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.2/chart.min.js"></script>
-                    <script>
 
+
+                    <!-- Data table JavaScript -->
+	<script src="/adm-public/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="/adm-public/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script src="/adm-public/bower_components/datatables.net-buttons/js/buttons.flash.min.js"></script>
+	<script src="/adm-public/bower_components/jszip/dist/jszip.min.js"></script>
+	<script src="/adm-public/bower_components/pdfmake/build/pdfmake.min.js"></script>
+	<script src="/adm-public/bower_components/pdfmake/build/vfs_fonts.js"></script>
+    <script src="/adm-public/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script src="/adm-public/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script src="/adm-public/dist/js/export-table-data.js"></script>
+
+                   
+                   
+                    <script>
                         $(function() {
                             $(".knob").knob();
                         });
@@ -283,9 +306,17 @@ integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4
                     <!--app JS-->
                     <script src="/adm-public/js/app.js"></script>
 
-        {{!-- <script src="/adm-public/javascripts/main.js"></script> --}}
+        <script src="/adm-public/javascripts/main.js"></script>
 
-        <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" ></script>
+
+            <!--data table-->
+
+        {{!-- <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" ></script> --}}
+
+
+
+
+
         {{!-- <script>
             $(document).ready( function () {
               $('#myTable').DataTable();
@@ -300,7 +331,8 @@ integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4
 			
 		});
 	</script> --}}
-    <script defer src="https://cdn.crop.guide/loader/l.js?c=LBYXBG"></script>
+    
+    <script defer src="https://cdn.crop.guide/loader/l.js?c=BHHRVS"></script>
     
 
 

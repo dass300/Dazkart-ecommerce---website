@@ -44,7 +44,7 @@
             <tbody>
                 {{#each product}}
                     <tr>
-                        <th scope="row">#</th>
+                        <th scope="row">{{inc @index}}</th>
                         <td>{{ this.Name}} </td>
                         <td>{{ this.Category}}  </td>
                         <td>{{ this.Description}} </td>
@@ -65,19 +65,8 @@
 
             </tbody>
         </table>
-{{!--     
-    </div>
-</section> --}}
 
-</div>
-		</div>
 
-        <script>
-            
-        $(function (){
 
-            $('#productTable').DataTable()           
-        })
-        </script>
 
 

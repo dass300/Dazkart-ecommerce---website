@@ -639,9 +639,9 @@ File: icons.css
 	content: "\e934"
 }
 
-.bx-bell:before {
+/* .bx-bell:before {
 	content: "\e935"
-}
+} */
 
 .bx-bell-minus:before {
 	content: "\e936"
@@ -1291,9 +1291,9 @@ File: icons.css
 	content: "\e9d7"
 }
 
-.bx-comment:before {
+/* .bx-comment:before {
 	content: "\e9d8"
-}
+} */
 
 .bx-comment-add:before {
 	content: "\e9d9"

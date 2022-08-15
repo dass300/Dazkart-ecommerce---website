@@ -7,11 +7,10 @@ var categoryHelper = require("../helpers/category-helper");
 
 // const { render } = require('../app');
 const { response } = require("express");
-const multer  = require('multer')
+const multer = require("multer");
 // const upload = multer({ dest: 'uploads/' })
 
-const app = express()
-
+const app = express();
 
 const verifyAdminLogin = (req, res, next) => {
   if (req.session.adminloggedIn) {
@@ -50,9 +49,8 @@ router.post("/admin-signup", (req, res) => {
 
 //Admin - login
 
-router.get("/admin-login",(req,res) => {
-  if(req.session.admin){
-
+router.get("/admin-login", (req, res) => {
+  if (req.session.admin) {
     res.render("admin/admin-login");
   }
   // res.send("sdfghjk   ")
@@ -73,20 +71,32 @@ router.post("/admin-login", (req, res) => {
 
 //Admin - logout
 
-router.get("/admin-logout",(req, res) => {
+router.get("/admin-logout", (req, res) => {
   // req.session.destroy()
   req.session.adminloggedIn = null;
   req.session.admin = null;
   res.redirect("/admin/admin-dash");
 });
 
-//Admin - pages
-
 //Admin - dash
 
 router.get("/admin-dash", verifyAdminLogin, function (req, res, next) {
-  productHelper.getAllProducts().then((product) => {
-    res.render("admin/admin-dash", { product,admin: true });
+  adminHelper.getAllOrders().then(async (order) => {
+    let usr = await adminHelper.getUserDetails();
+    let codTotal = await adminHelper.codTotal();
+    let paypalTotal = await adminHelper.paypalTotal();
+    let rasorpayTotal = await adminHelper.rasorpayTotal();
+    console.log(codTotal);
+    console.log(paypalTotal);
+    console.log(rasorpayTotal);
+    res.render("admin/admin-dash", {
+      order,
+      usr,
+      admin: true,
+      codTotal,
+      paypalTotal,
+      rasorpayTotal,
+    });
   });
 });
 
@@ -96,15 +106,15 @@ router.get("/admin-dash", verifyAdminLogin, function (req, res, next) {
 
 router.get("/products", (req, res) => {
   productHelper.getAllProducts().then((response) => {
-    product = response.product
-    res.render("admin/products", {admin:true, product });
+    product = response.product;
+    res.render("admin/products", { admin: true, product });
   });
 });
 
 router.get("/view-product", function (req, res, next) {
   productHelper.getAllProducts().then((response) => {
-    product = response.product
-    res.render("admin/view-product", { admin:true,  product});
+    product = response.product;
+    res.render("admin/view-product", { admin: true, product });
   });
   // res.send("sdfghjk")
 });
@@ -123,16 +133,17 @@ router.get("/product-category", function (req, res, next) {
 });
 
 router.get("/orders", (req, res) => {
-  res.render("admin/orders", { admin: true });
+  adminHelper.salesDaily().then((data) => {
+    console.log(data);
+    res.render("admin/orders", { admin: true });
+  });
 });
 
 // router.get("/add-product", function (req, res, next) {
 //   res.render("admin/add-product", { admin: true });
 // });
 
-
 // router.post("/add-product", (req, res) => {
-
 
 //   productHelper.addProduct(req.body, (insertedId) => {
 //     let image = req.files.Image;
@@ -144,6 +155,8 @@ router.get("/orders", (req, res) => {
 //     });
 //   });
 // });
+
+
 
 //Add category
 router.get("/product-category", function (req, res, next) {
@@ -158,18 +171,17 @@ let fileStorageEnginecategory = multer.diskStorage({
     cb(null, Date.now() + "--" + file.originalname);
   },
 });
-const uploads=multer({storage:fileStorageEnginecategory})
 
+const uploads = multer({ storage: fileStorageEnginecategory });
 
-router.post("/product-category",uploads.array('Image',4),(req, res) => {
+router.post("/product-category", uploads.array("Image", 4), (req, res) => {
   var filenames = req.files.map(function (file) {
     return file.filename;
-  })
+  });
 
-  req.body.image=filenames;
-
+  req.body.image = filenames;
   categoryHelper.addCategory(req.body).then(() => {
-    res.redirect('/admin/product-category')
+    res.redirect("/admin/product-category");
   });
 });
 
@@ -186,20 +198,20 @@ let fileStorageEngine = multer.diskStorage({
     cb(null, Date.now() + "--" + file.originalname);
   },
 });
-const upload=multer({storage:fileStorageEngine})
 
-
-router.post("/add-product",upload.array('Image'),(req, res) => {
+const upload = multer({ storage: fileStorageEngine });
+router.post("/add-product", upload.array("Image"), (req, res) => {
   var filenames = req.files.map(function (file) {
     return file.filename;
-  })
-
-  req.body.image=filenames;
-
+  });
+  req.body.image = filenames;
   productHelper.addProduct(req.body).then(() => {
-    res.redirect('/admin/add-product')
+    res.redirect("/admin/add-product");
   });
 });
+
+
+
 
 
 
@@ -218,9 +230,6 @@ let fileStorageEngines = multer.diskStorage({
   },
 });
 
-
-
-
 // router.post("/edit-product", uploaded.array('Image'),(req, res) => {
 //   var filenames = req.files.map(function (file) {
 //     return file.filename;
@@ -233,37 +242,32 @@ let fileStorageEngines = multer.diskStorage({
 //   });
 // });
 
+router.post("/edit-product/:id", upload.array("Image"), (req, res) => {
+  console.log(req.params);
+  let insertedId = req.params.id;
+  productHelper.updateProduct(req.params.id, req.body).then(() => {
+    res.redirect("/admin/view-product");
+    if (req.files?.Image) {
+      let image = req.files?.Image;
+      image.mv("./public/product-image/" + insertedId + ".jpg");
+    }
+  });
+});
 
+// Delete Product details
+router.get("/delete-product/:id", (req, res) => {
+  let proId = req.params.id;
+  productHelper.deleteProduct(proId).then((response) => {
+    res.redirect("/admin/view-product");
+  });
+});
 
-router.post("/edit-product/:id", upload.array('Image'), (req, res) => {
-    let insertedId = req.params.id;
-    productHelper.updateProduct(req.params.id, req.body).then(() => {
-        res.redirect("/admin/view-product");
-        if (req.files?.Image) {
-            let image = req.files?.Image;
-            image.mv("./public/product-image/" + insertedId + ".jpg");
-          }
-        });
-      });
-      
-      
-      
-      // Delete Product details
-      router.get("/delete-product/:id", (req, res) => {
-        let proId = req.params.id;
-        productHelper.deleteProduct(proId).then((response) => {
-          res.redirect("/admin/view-product");
-        });
-      });
-
-
-
-      //Add User
-      router.get("/add-user", verifyAdminLogin, function (req, res, next) {
-        res.render("admin/add-user", {
-          adminAddUserLoginError: req.session.adminAddUsrErr,
-          admin: true,
-        }); //adminloginpage:true
+//Add User
+router.get("/add-user", verifyAdminLogin, function (req, res, next) {
+  res.render("admin/add-user", {
+    adminAddUserLoginError: req.session.adminAddUsrErr,
+    admin: true,
+  }); //adminloginpage:true
   req.session.adminAddUsrErr = false;
 });
 
@@ -347,11 +351,87 @@ router.get("/unblock/:id", (req, res) => {
   });
 });
 
-
-router.get("/order-summary",function (req, res) {
+router.get("/order-summary", function (req, res) {
   res.render("admin/order-summary", { admin: true });
 });
 
+router.get("/cancel/:id", (req, res) => {
+  adminHelper.cancelOrder(req.params.id).then(() => {
+    res.redirect("/admin/admin-dash");
+  });
+});
 
+router.get("/shipp/:id", (req, res) => {
+  adminHelper.shippOrder(req.params.id).then(() => {
+    res.redirect("/admin/admin-dash");
+  });
+});
+
+router.get("/delivered/:id", (req, res) => {
+  adminHelper.deliverOrder(req.params.id).then(() => {
+    res.redirect("/admin/admin-dash");
+  });
+});
+
+//post changeStatus
+router.post("/changeStatus/:id", async (req, res) => {
+  console.log(req.body.changeStatus + "     order id is     " + req.params.id);
+
+  await adminHelper
+    .updateStatus(req.body.changeStatus, req.params.id)
+    .then(() => {
+      res.redirect("admin/admin-dash");
+    });
+});
+
+router.get("/", verifyAdminLogin, async function (req, res, next) {
+  let totalOrders = await adminHelper.allOrders();
+  totalOrders = totalOrders.length;
+  let user = await userHelper.getAllUsers();
+  user = user.length;
+  let products = await productHelper.getAllProduct();
+  products = products.length;
+  let cod = await adminHelper.codTotal();
+  let paypal = await adminHelper.paypalTotal();
+  let rasor = await adminHelper.rasorpayTotal();
+  let sales = cod + paypal + rasor;
+  console.log("printing cod   " + cod);
+  res.render("admin/adminhome", {
+    totalOrders,
+    user,
+    products,
+    cod,
+    rasor,
+    paypal,
+    sales,
+  });
+});
+
+//   router.get('/index', verifyLog, async function (req, res, next) {
+// 	var cod = await adminHelper.getcodtotal()
+// 	var razorpay = await adminHelper.getrazorpaytotal()
+// 	var paypal = await adminHelper.getpaypaltotal()
+// 	var totalsale = await adminHelper.gettotalsale()
+// 	var sales = await adminHelper.getSales()
+// 	// console.log(sales);
+// 	adminHelper.getpaymentmethod().then((paymentMethod) => {
+// 	  res.render('admin/index', { admin_link: true, admin_header: true, paymentMethod, cod, paypal, razorpay, totalsale, sales })
+// 	})
+//   });
+
+router.get("/coupon", (req, res) => {
+	adminHelper.getCoupons().then((coupons) => {
+		res.render("admin/coupon", { admin: true , coupons});
+	})
+});
+
+router.post("/coupon", (req, res) => {
+  req.body.users = [];
+  adminHelper.addCoupon(req.body).then((response) => {
+    console.log(response);
+
+    res.redirect("/admin/coupon");
+  });
+});
 
 module.exports = router;

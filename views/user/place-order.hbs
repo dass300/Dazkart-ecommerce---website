@@ -125,11 +125,21 @@
 
 
         </form>
+        <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-12 mt-3">
+            <div class="theme-box">
+                <h4>Apply coupon code here</h4>
+                <p>Enter your coupon code</p>
+                <form id="discount-coupon" action="/check-coupon" method="POST">
+                    <input type="text" name="coupon"/>
+                    <button type="submit" class="btn btn-default right-cart">Apply code</button>
+                </form>
+            </div>
+        </div>
+        </div>
 
       </div>
     </section>
-
-
 
     <script>
       $("#checkout-form").submit((e) => {

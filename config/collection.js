@@ -6,4 +6,6 @@ module.exports={
     CATEGORY_COLLECTION:'category',
     ORDER_COLLECTION:'ORDER',
     ADDRESS_COLLECTION:'address',
+    WALLET_COLLECTION:'wallet',
+    COUPON_COLLECTION:'coupon',
 }

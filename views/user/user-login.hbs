@@ -5,9 +5,11 @@
         <div class=" mt-5 pl-5 "> 
             <h2 class="text-center">User Login</h2>
             <form action=" /user-login" method="post">
+
             {{#if loginErr}}
             <p class="error">{{loginErr}} </p>
             {{/if}}
+            
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                     <input type="email" id="form2Example1" name="Email" class="form-control" />

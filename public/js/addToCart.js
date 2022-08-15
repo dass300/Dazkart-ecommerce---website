@@ -4,11 +4,15 @@ function addToCart(proId){
         method:'get',
         success:(response)=>{
             if(response.status){
-                let count= $('#cart-count').html()
-                count=parseInt(count)+1
-                $("#cart-count").html(count)
+                // let count= $('#cart-count').html()
+                let count= document.getElementById('cart-count').value
+                count=parseInt(count) + 1
+                console.log(count);
+                document.getElementById('cart-count').value = count
+                document.getElementById('cart-counts').innerHTML = count
+                // $("#cart-count").html(count)
             }
-            alert('Are you sure want to add this product to your cart?')
+            // alert('Are you sure want to add this product to your cart?')
         }
     })
 }
