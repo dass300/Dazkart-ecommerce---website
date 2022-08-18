@@ -108,8 +108,7 @@
                                     <div class="cc-pr">{{this.product.Price}}</div>
                                 </td>
                                 <td class="cart-product-delivery">
-                                    <div class="cc-pr">Free
-                                        shipping</div>
+                                    <div class="cc-pr">Free shipping</div>
                                 </td>
                                 {{!-- <td class="cart-product-sub-total">
                                     <div class="cc-pr">$75</div>
@@ -140,52 +139,15 @@
             
 
             <div class="ms-auto col-md-4 col-sm-4 col-xs-12">
-                {{!-- <div class="shiptax">
-                    <h3>Estimate Shipping and Tax</h3>
-                    <p class="form_caption">Enter your destination to get a shipping
-                        estimate.</p>
-                    <div class="country-form">
-                        <form>
-                            <label>Country*</label>
-                            <br />
-                            <select>
-                                <option value="Australia">Australia</option>
-                                <option value="Austria">Austria</option>
-                                <option value="Argentina">Argentina</option>
-                                <option value="Canada">Canada</option>
-                                <option value="USA" selected="">USA</option>
-                            </select>
-                        </form>
-                    </div>
-
-                    <div class="state-form">
-                        <form>
-                            <label>State/Province</label>
-                            <br />
-                            <select>
-                                <option value="Alabama">Please select region,state or province</option>
-                                <option value="Alabama">Alabama</option>
-                                <option value="Illinois">Illinois</option>
-                                <option value="Kansas">Kansas</option>
-                            </select>
-                        </form>
-                    </div>
-                    <div class="zip-form">
-                        <form>
-                            <label>Zip/Postal Code</label>
-                            <br />
-                            <input type="text" />
-                        </form>
-                    </div>
-                    <button type="button" class="btn btn-default add-cart">Get a quote</button>
-                </div> --}}
+               
             </div>
 
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="checkout">
-                    <p>Subtotal<span>{{this.product.Price}}</span>
-                    </p>
-                    <h4>Grandtotal<span>{{totalValue}}</span></h4>
+                    {{!-- <p>Subtotal<span>{{this.product.Price}}</span> </p> --}}
+                     {{!-- <h3 class="line2">Shipping<span class="mcolor">Free shipping</span></h3> --}}
+                    <h4>Grandtotal<span id="total">{{totalValue}}</span></h4>
+
 
                     {{!-- <button action="/place-order"  type="button" class="btn btn-default">Proceed to checkout</button --}}
 

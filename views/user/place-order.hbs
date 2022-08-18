@@ -5,19 +5,35 @@
 
     {{!-- <section>
       <div class="container mt-5"> --}}
-        <form id="checkout-form">
+        <form id="checkout-form" >
           <div class="row">
 
           <h2>Choose Address</h2>
           
           <div class="col-md-12 col-sm-12 col-xs-12">
+
             <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
+						{{#each savedAddress}}
+            <label class="radio-inline">
+                <input  name="address" type="radio" name="inlineRadioOptions" id="inlineRadio1" value={{this.address.address}},{{this.address.pincode}},{{this.address.town}}>{{this.address.address}},{{this.address.pincode}},{{this.address.town}}
+              </label>
+						{{!-- <p>{{this.address.address}}</p>
+						<p>{{this.address.pincode}}</p>
+						<p>{{this.address.town}}</p> --}}
+            
+						{{/each}}
+					</div>
+
+            {{!-- <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
+
               <label class="radio-inline">
                 <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> E-199 kalka ji New Delhi infront
                 of Sanatan Dharam Mandir New Delhi 110019
               </label>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
+
+            </div> --}}
+            
+            {{!-- <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
               <label class="radio-inline">
                 <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> E-199 kalka ji New Delhi infront
                 of Sanatan Dharam Mandir New Delhi 110019
@@ -30,7 +46,7 @@
                 <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> E-199 kalka ji New Delhi infront
                 of Sanatan Dharam Mandir New Delhi 110019
               </label>
-            </div>
+            </div> --}}
           
           </div>
 
@@ -217,7 +233,7 @@
 
 
             } else {
-              alert("Payment failed")
+              {{!-- alert("Payment failed") --}}
             }
           }
         })

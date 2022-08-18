@@ -38,135 +38,44 @@
     <div class="wish-area section-padding">
         <div class="container">
             <div class="row">
+
+               {{#each product}}
+
                 <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="product-single">
-                        <a href="#"><img src="images/wish1.png" alt="#">
+                    <div class="latest-single">
+                        <a href="/select-product/{{this._id}}"><img src="/product-image/{{this.image.[0]}}" alt="">
                         </a>
                         <div class="tag new">
                             <span>new</span>
                         </div>
                         <div class="hot-wid-rating">
-                            <h4><a href="single-product.html">Black office chair</a></h4>
+                            <h4><a href="single-product.html">{{this.Name}}</a></h4>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-
+                            <i class="fa fa-star-half-o"></i>
                             <div class="product-wid-price">
-                                <ins>$220.00</ins>
-                            </div>
+                            <ins>Rs{{this.Price}}</ins>
+                            <button onclick="addToCart('{{this._id}}' )" class="btn btn-primary" >Add to cart</button>
+                            </div>                           
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="product-single">
-                        <a href="#"><img src="images/wish2.png" alt="#">
-                        </a>
-                        
-                        <div class="hot-wid-rating">
-                            <h4><a href="single-product.html">Living room sofa</a></h4>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+                                    {{/each}}
 
-                            <div class="product-wid-price">
-                                <ins>$200.00</ins>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="product-single">
-                        <a href="#"><img src="images/wish3.png" alt="#">
-                        </a>
-                        <div class="tag percent">
-                            <span>15%</span>
-                        </div>
-                        <div class="hot-wid-rating">
-                            <h4><a href="single-product.html">Trendy chair</a></h4>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+                
 
-                            <div class="product-wid-price">
-                                <ins>$150.00</ins>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="product-single">
-                        <a href="#"><img src="images/wish4.png" alt="#">
-                        </a>
-                        
-                        <div class="hot-wid-rating">
-                            <h4><a href="single-product.html">Modern chair</a></h4>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
 
-                            <div class="product-wid-price">
-                                <ins>$180.00</ins>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="product-single">
-                        <a href="#"><img src="images/wish5.png" alt="#">
-                        </a>
-                        <div class="tag percent">
-                            <span>10%</span>
-                        </div>
-                        <div class="hot-wid-rating">
-                            <h4><a href="single-product.html">Sofa beauty</a></h4>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-
-                            <div class="product-wid-price">
-                                <ins>$250.00</ins>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="product-single">
-                        <a href="#"><img src="images/wish6.png" alt="#">
-                        </a>
-                        <div class="tag new">
-                            <span>new</span>
-                        </div>
-                        <div class="hot-wid-rating">
-                            <h4><a href="single-product.html">Milky sofa</a></h4>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-
-                            <div class="product-wid-price">
-                                <ins>$110.00</ins>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
+
                     <div class="wish-button">
                         <button type="button" class="btn btn-default add-cart">Add all to the cart</button>
                         <button type="button" class="btn btn-default clear-list">Clear the list</button>
                     </div>
+                    
                 </div>
             </div>
         </div>

@@ -1,169 +1,172 @@
-<section class=" container mt-5 mb-5 d-flex justify-content-center"  style="background-color:rgb(231, 214, 27);" >
-    <div class=" col-md-6 m-auto">
-
-
-        <div class=" mt-5 pl-5 "> 
-            <h2 class="text-center">User Login</h2>
-            <form action=" /user-login" method="post">
-
-            {{#if loginErr}}
-            <p class="error">{{loginErr}} </p>
-            {{/if}}
-            
-                <!-- Email input -->
-                <div class="form-outline mb-4">
-                    <input type="email" id="form2Example1" name="Email" class="form-control" />
-                    <label class="form-label" for="form2Example1">Email address</label>
-                </div>
-
-                <!-- Password input -->
-                <div class="form-outline mb-4">
-                    <input type="password" id="form2Example2" name="Password" class="form-control" />
-                    <label class="form-label" for="form2Example2">Password</label>
-                </div>
-
-                <!-- 2 column grid layout for inline styling -->
-                <div class="row mb-4">
-                    <div class="col d-flex justify-content-center">
-                        <!-- Checkbox -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                            <label class="form-check-label" for="form2Example31"> Remember me </label>
-                        </div>
-                    </div>
-
-                     <div class="col">
-                        <!-- Simple link -->
-                        <a href=" /user-signup">Create new account</a>
-                    </div>
-
-
-                    {{!-- <div class="col">
-                        <!-- Simple link -->
-                        <a href="#!">Forgot password?</a>
-                    </div> --}}
-                </div>
-
-                <!-- Submit button -->
-                <button type="submit" class="btn btn-primary float-right">Login</button>
-                {{!-- <button type="submit" value="Login" class="btn btn-primary"> --}}
-
-
-        </div>
-        </form>
-    </div>
-    </div>
-</section>
-
-{{!-- <script>
-    $("#submit-form").submit((e)=>{
-        e.preventDefault()
-        $.ajax({
-            url:"https://script.google.com/macros/s/AKfycbz8LvGzSAit7eF7x5Bjm_s9AOsM1grn4YEV1PW6cEVc55jI3nhy/exec",
-            
-            data:$("#submit-form").serialize(),
-            method:"post",
-            success:function (response){
-                alert("Form submitted successfully")
-                window.location.reload()
-                //window.location.href="https://google.com"
-            },
-            error:function (err){
-                alert("Something Error")
-
-            }
-        })
-    })
-</script> --}}
-
-{{!-- <script>
-
-var nameError = document.getElementById('name-error');
-var emailError = document.getElementById('email-error');
-var passwordError = document.getElementById('password-error');
-
-
-
-
-
-function validateName(){
-  var name = document.getElementById('contact-name').value;
-
-  if(name.length == 0){
-    nameError.innerHTML = 'Name is required';
-    return false;
-  }
-  
-
-   if(!name.match(/^[A-Za-z]+ [A-Za-z]+$/)){
-     nameError.innerHTML = 'write full name';
-     return false;
-
-   }
-   nameError.innerHTML = 'valid';
-   nameError.style.color="seagreen";
-   return true;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Design by foolishdeveloper.com -->
+    <title>Glassmorphism login Form Tutorial in html css</title>
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    <style media="screen">
+      *,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
-
-
-function validateEmail(){
-  var email = document.getElementById('contact-email').value;
-
-  if(email.length == 0){
-    emailError.innerHTML = 'Email is required';
-    return false;
-  }
-
-
-  if(!email.match(/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/)){
-        emailError.innerHTML = 'Email invalid'
-        return false;
-
-   }
-
-
-   
-   emailError.innerHTML = 'valid';
-   emailError.style.color="seagreen";
-
-   return true;
-}
-
-function validatePassword(){
-  var password = document.getElementById('contact-password').value;
-
-  if(password.length == 0){
-    passwordError.innerHTML = 'Password is required';
-    return false;
-  }
-
-  if(password.length <= 6){
-    passwordError.innerHTML = 'Please fill the Password';
-    return false;
-  }
-
-   passwordError.innerHTML = 'valid';
-   passwordError.style.color="seagreen";
-   return true;
-
-
-}
-
-function validateForm(){
-  if(!validateName() || !validateEmail() || !validatePassword()){
-    submitError.style.display = 'block';
-    submitError.innerHTML = 'Please fix error to submit';
+body{
     
-    setTimeout(function(){submitError.style.display='none';}, 3000);
-    return false;
+    
 
-  submitError.innerHTML = 'valid';
-  submitError.style.color="seagreen";
-   return true;
+    background-color: #f89e18e4;
 
-  }
-
-  
+}
+.background{
+    width: 430px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+}
+.background .shape{
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+}
+.shape:first-child{
+    background: linear-gradient(
+        #1845ad,
+        #23a2f6
+    );
+    left: -80px;
+    top: -80px;
+}
+.shape:last-child{
+    background: linear-gradient(
+        to right,
+        #ff512f,
+        #f09819
+    );
+    right: -30px;
+    bottom: -80px;
+}
+form{
+    height: 520px;
+    width: 400px;
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+}
+form *{
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+form h3{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
 }
 
-</script> --}}
+label{
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+input{
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+::placeholder{
+    color: #e5e5e5;
+}
+button{
+    margin-top: 50px;
+    width: 100%;
+    background-color: #ffffff;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.social{
+  margin-top: 30px;
+  display: flex;
+}
+.social div{
+  background: red;
+  width: 150px;
+  border-radius: 3px;
+  padding: 5px 10px 10px 5px;
+  background-color: rgba(255,255,255,0.27);
+  color: #eaf0fb;
+  text-align: center;
+}
+.social div:hover{
+  background-color: rgba(255,255,255,0.47);
+}
+.social .fb{
+  margin-left: 25px;
+}
+.social i{
+  margin-right: 4px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <form action=" /user-login" method="post">
+        {{!-- <h3>DazKart</h3> --}}
+        <h3>Login Here</h3>
+
+        {{!-- <label for="Email address">Email address</label>
+        <input type="email" name="Email" placeholder="Email address" id="Email address"> --}}
+
+        <label class="form-label" for="Email address">Email address</label>
+        <input type="Email" id="Email address" name="Email" class="form-control" />
+
+        <label class="form-label" for="Password">Password</label>
+        <input type="Password" id="Password" name="Password" class="form-control" />
+
+
+
+        <button  type="submit" class="btn btn-primary">Log In</button>
+         <div class="social">
+          <div class="col">
+                        <!-- Simple link -->
+                        <a class="btn btn-grey" href=" /user-signup">Create new account</a>
+                    </div>
+          
+          {{!-- <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div> --}}
+    </form>
+</body>
+</html>

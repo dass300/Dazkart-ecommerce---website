@@ -211,6 +211,7 @@ data-endspeed="1000"
                                 </div>
                                 {{!-- <a href="/add-to-cart/{{this._id}}" class="btn btn-primary">Add to cart</a> --}}
                                 <button onclick="addToCart('{{this._id}}')" class="btn btn-primary">Add to cart</button>
+                                 <a href="" onclick="addToWishlist('{{this._id}}')"><i class="fa fa-heart-o fa-2x"></i></a>
                             </div>
                         </div>
                                         {{/each}} 
@@ -338,6 +339,7 @@ data-endspeed="1000"
                                                 <ins>Rs.{{this.Price}}</ins>
                                             </div>          
                                             <button onclick="addToCart('{{this._id}}')" class="btn btn-primary" >Add to cart</button>
+                                             <a href="/wishlist"><i class="fa fa-heart-o fa-2x"></i></a>
                                             </div>
                                         </div>
 
@@ -468,9 +470,10 @@ data-endspeed="1000"
                     <div class="latest-single">
                         <a href="/select-product/{{this._id}}"><img src="/product-image/{{this.image.[0]}}" alt="">
                         </a>
-                        <div class="tag new">
+                        {{!-- <div class="tag new">
                             <span>new</span>
-                        </div>
+                        </div> --}}
+
                         <div class="hot-wid-rating">
                             <h4><a href="single-product.html">{{this.Name}}</a></h4>
                             <i class="fa fa-star"></i>
@@ -480,9 +483,12 @@ data-endspeed="1000"
                             <i class="fa fa-star-half-o"></i>
                             <div class="product-wid-price">
                             <ins>Rs{{this.Price}}</ins>
-                            <button onclick="addToCart('{{this._id}}' )" class="btn btn-primary" >Add to cart</button>
-                            </div>                           
+                            </div>
+                            <button onclick="addToCart('{{this._id}}')" class="btn btn-primary">Add to cart</button>
+
+                                    <a href="/wishlist"><i class="fa fa-heart-o fa-2x"></i></a>
                         </div>
+
                     </div>
                 </div>
                                     {{/each}}

@@ -5,7 +5,7 @@ var objectId = require("mongodb").ObjectId;
 const { response } = require("../app");
 
 const accountSid = 'ACfedc8fa3b05bdd9560e1c41bf1bba388'; 
-const authToken = '67d07a762244a7d74e7e5a84b8ba08a0'; 
+const authToken = 'e53a9bf7920eb81fb691cd028ebb31bd'; 
 const client = require('twilio')(accountSid, authToken);
 
 const Razorpay = require("razorpay");
@@ -19,6 +19,7 @@ var instance = new Razorpay({
 
 var paypal = require("paypal-rest-sdk");
 const { timeStamp } = require("console");
+const { resolve } = require("path");
 
 paypal.configure({
     mode: "sandbox", //sandbox or live
@@ -85,12 +86,14 @@ module.exports = {
 
     doLogin: (userData) => {
         return new Promise(async (resolve, reject) => {
+            console.log('printng from user helper');
             let loginStatus = false;
             let response = {};
             let user = await db
                 .get()
                 .collection(collection.USER_COLLECTION)
-                .findOne({ Email: userData.Email });
+                .findOne({ email: userData.Email });
+                console.log('user id is  '+ user);
             if (user) {
                 bcrypt.compare(userData.Password, user.Password).then((status) => {
                     if (status) {
@@ -101,9 +104,7 @@ module.exports = {
                         resolve({ status: false });
                     }
                 });
-            } else {
-                resolve({ status: false });
-            }
+            } 
         });
     },
 
@@ -413,9 +414,10 @@ module.exports = {
             let date = new Date();
             let orderObj = {
                 deliveryDetails: {
-                    mobile: order.mobile,
+                    // mobile: order.mobile,
                     address: order.address,
                     pincode: order.pincode,
+                    town: order.town,
                 },
                 userId: objectId(order.userId),
                 paymentMethod: order["payment-method"],
@@ -708,5 +710,87 @@ module.exports = {
                 }
             })
         })
-    }
-};
+    },
+    getUserDeliveryAddress:()=>{
+
+        // return new Promise ((resolve,reject)=>{
+        //     db.get().collection(collection.ADDRESS_COLLECTION).find().toArray().then((response)=>{
+        //         console.log(response);
+        //         resolve(response)
+        //     })
+        // })
+
+        return new Promise (async(resolve,reject)=>{
+           let data = await db.get().collection(collection.ADDRESS_COLLECTION).aggregate([
+
+            {
+                $unwind:'$address'
+            }
+
+            ]).toArray()
+            console.log(data);
+            console.log(data[0]);
+            resolve(data)
+        })
+    },
+    addToWishlist: (proId, userId) => {
+        
+                let wishlistObj = {
+                    user: objectId(userId),
+                    product: [proObj],
+                };
+                db.get()
+                    .collection(collection.WISHLIST_COLLECTION)
+                    .insertOne(wishlistObj)
+                    .then((response) => {
+                        resolve(response);
+                    });
+            
+                },
+                getOrderProducts:(orderId)=>{
+
+      
+                    return new Promise(async(resolve, reject)=>{
+                      let orderItems= await db.get().collection(collection.ORDER_COLLECTION).aggregate([
+                        {
+                          $match: {_id:ObjectId(orderId)}
+                        },
+                        {
+                          $unwind:'$products'
+                        },{
+                          $project:{
+                            item:'$products.item',
+                            quantity:'$products.quantity'
+                          }
+                        },{
+                          $lookup:{
+                            from:collection.PRODUCT_COLLECTION,
+                            localField:'item',
+                            foreignField:'_id',
+                            as:'product'
+                          }
+                        },
+              
+              
+              
+              
+              
+                      {
+                        $project:{
+                          item:1,quantity:1,product:{$arrayElemAt:['$product',0]}
+                        }
+                      }
+              
+              
+                      ]).toArray()
+                      // resolve(cartItems);
+                      console.log('printng get order producta resolve user helper');
+                      console.log(orderItems);
+                      resolve(orderItems)
+                    })
+              
+              
+              
+              
+                  }
+}

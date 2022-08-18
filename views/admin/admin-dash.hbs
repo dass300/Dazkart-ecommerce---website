@@ -223,7 +223,7 @@
 
 
 								<td>
-
+							{{#if status}}
 									<div class="ms-auto">
 										<div class="btn-group">
 											<button type="button" class="btn btn-primary">Action</button>
@@ -241,6 +241,7 @@
 											</div>
 										</div>
 									</div>
+									{{/if}}
 
 									
 								</td>
@@ -300,8 +301,8 @@
                                                         <th>No</th>
                                                         <th>Date</th>
                                                         <th>Order ID</th>
-                                                        <th>User</th>
-                                                        <th>Product</th>
+                                                        {{!-- <th>User</th> --}}
+                                                        {{!-- <th>Product</th> --}}
                                                         <th>Payment</th>
                                                         <th>Amount</th>
                                                         <th>Status</th>
@@ -314,8 +315,8 @@
                                                         <td>{{inc @index}}</td>
                                                         <td>{{this.date}}</td>
                                                         <td>{{this._id}}</td>
-                                                        <td>{{this.usr}}</td>
-                                                        <td>{{this.product}}</td>
+                                                        {{!-- <td>{{this.user}}</td> --}}
+                                                        {{!-- <td>{{this.product}}</td> --}}
                                                         <td>{{this.paymentMethod}}</td>
                                                         <td>{{this.totalAmount}}</td>
                                                         <td>{{this.status}}</td>

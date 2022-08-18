@@ -211,6 +211,11 @@ color:#F89D18;
 text-align:left;
 }
 
+.fa-heart-o:before {
+  content: "\f08a";
+  margin-left: 12px;
+}
+
 .header-right ul li.dropdown.dropdown-small a.dropdown-toggle span.value {
   font-family: 'latoregular';
   font-size: 13px;
