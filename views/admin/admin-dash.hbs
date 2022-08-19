@@ -188,9 +188,7 @@
 				</div>
 				<hr>
 				<div class="">
-					<table class="table">
-
-
+                    <table id="example2" class="table table-hover display  pb-50">
 						<thead>
 							<tr>
 								<th>No</th>
@@ -223,9 +221,11 @@
 
 
 								<td>
-							{{#if status}}
+							{{!-- {{#if status}} --}}
 									<div class="ms-auto">
 										<div class="btn-group">
+											{{#if_eq this.status "Delivered"}}
+											{{else}}
 											<button type="button" class="btn btn-primary">Action</button>
 											<button type="button"
 												class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
@@ -239,9 +239,10 @@
 													href="/admin/delivered/{{this._id}}">Delivered</a>
 												<a class="dropdown-item" href="/admin/cancel/{{this._id}}">Cancel</a>
 											</div>
+											{{/if_eq}}
 										</div>
 									</div>
-									{{/if}}
+									{{!-- {{/if}} --}}
 
 									
 								</td>

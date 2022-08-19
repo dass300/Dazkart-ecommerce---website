@@ -108,7 +108,7 @@
               <div class="headline">
 
                 {{!-- <h4 class="line2">Shipping<span class="mcolor">You are eligible for Free shipping</span></h4> --}}
-                <h3>Total Amount : Rs{{total}}</h3>
+                <h3>Total Amount : Rs <span id="total-amount">{{total}}</span></h3>
                 <hr>
                 <div class="payment">
                   <p>Payment Method</p>
@@ -156,6 +156,22 @@
 
       </div>
     </section>
+
+    <script>
+      $("#discount-coupon").submit((e) => {
+        e.preventDefault()
+        $.ajax({
+          url: '/check-coupon',
+          method: 'post',
+          data: $('#discount-coupon').serialize(),
+          success: (response) => {
+            if(response.total){
+              document.getElementById('total-amount').innerHTML = response.total
+            }
+          }
+        })
+      })
+    </script>
 
     <script>
       $("#checkout-form").submit((e) => {

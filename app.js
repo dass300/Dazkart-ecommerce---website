@@ -14,6 +14,14 @@ var userRouter = require('./routes/user');
 
 var hbs=require('express-handlebars')
 var app = express();
+var handlebar=hbs.create({});
+
+handlebar.handlebars.registerHelper('if_eq', function(a, b, opts) {
+  if(a == b) // Or === depending on your needs
+      return opts.fn(this);
+  else
+      return opts.inverse(this);
+});
 // var fileUpload =require('express-fileupload')
 
 // view engine setup
