@@ -1,42 +1,119 @@
-
-
-
-        <section>
-        <div class="container">
-    <table class="table mt-5" >
-        <thead>
-            <tr>
-                <th scope="col" >Item</th>
-                <th scope="col" >Title</th>
-                <th scope="col" >Quantity</th>
-                <th scope="col" >Price</th>
-            </tr>
-            
-        </thead>
-        <tbody>
-                    {{#each product}}
-
-        <tr>
-                    
-
-            <td><img style="width: 70px;height:70px"  src="/product-image/{{product.image.[0]}}" alt=""></td>
-            <td>{{this.product.Name}}</td>
-            <td>{{this.quantity}}</td>
-            <td>Rs {{this.product.Price}}</td>
-            
-            
-        </tr>
-                    {{/each }}
-
-    </tbody>
-
-</table>
-<hr>
-    <div>
-        <h3 class="float-right mr-5 mt-4 ">Total:Rs/-<span id="total">{{orderPrice.totalAmount}}</span></h3><br>
-        
-        <a href="/" class="btn btn-success mt-3" style="width:50%;"><b>Shop Again</b></a>
+<!-- BREADCRUMBS -->
+<div class="title-breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="bred-title">
+                    <h3>View ordered Products</h3>
+                </div>
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a>
+                    </li>
+                    <li><a href="cart-page.html">Shoping cart</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
     </div>
 </div>
+<!-- BREADCRUMBS:END -->
+
+<!-- SHOPING-CART-AREA   -->
+<div class="shoping-cart section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="headline">
+                    <h2>View Ordered Products</h2>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="cart-product item">Product</th>
+                                <th class="cart-product-name item">Product Name</th>
+                                <th class="cart-qty item">Quantity</th>
+                                <th class="cart-unit item">Unit price</th>
+                                {{!-- <th class="cart-delivery item">Delivery info</th> --}}
+                                
+                            </tr>
+                        </thead>
+                        <!-- /thead -->
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <div class="shopping-cart-btn">
+                                        <a href="/"><button type="button"
+                                                class="btn btn-default left-cart">Continue Shopping</a></button>
+                                     
+                                    </div>
+                                    <!-- /.shopping-cart-btn -->
+                                </td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+
+                            {{#each product}}
+
+                            <tr>
+                                <td class="cart-image">
+                                    <a href="#" class="entry-thumbnail">
+                                        <img style="width: 70px;height:70px" src="/product-image/{{product.image.[0]}}"
+                                            alt="" />
+                                    </a>
+                                </td>
+                                <td class="cart-product-name-info">
+                                    <div class="cc-tr-inner">
+                                        <h4 class="cart-product-description"><a href="#">{{this.product.Name}}</a></h4>
+                                    </div>
+                                </td>
+
+                                <td class="cart-product-price">
+                                    <div class="cc-pr">{{this.quantity}}</div>
+                                </td>
+                                <td class="cart-product-price">
+                                    <div class="cc-pr">{{this.product.Price}}</div>
+                                </td>
+                                {{!-- <td class="cart-product-delivery">
+                                    <div class="cc-pr">Free shipping</div>
+                                </td> --}}
+                            </tr>
+
+                            {{/each}}
+
+                        </tbody>
+                        <!-- /tbody -->
+                    </table>
+                    <!-- /table -->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</section>
+<!-- SHOPING-CART-AREA:END   -->
+<!-- SHOPING-CART-BOTTOM-AREA   -->
+<div class="shoping-cart-bottom-area">
+    <div class="container">
+        <div class="row">
+            
+
+            <div class="ms-auto col-md-4 col-sm-4 col-xs-12">
+               
+            </div>
+
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="checkout">
+                    
+                    <h4>Grandtotal<span id="total">{{orderPrice.totalAmount}}</span></h4>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

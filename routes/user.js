@@ -27,8 +27,8 @@ const verifyLogin = (req, res, next) => {
 
 
 //verify login
-try {
-	router.get("/", async function (req, res, next) {
+router.get("/", async function (req, res, next) {
+		try {
 		let user = req.session.user;
 		let cartCount = null;
 		if (req.session.user) {
@@ -64,31 +64,31 @@ try {
 				});
 			});
 		}
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 
 
 //signup
 
-try {
-	router.get("/user-signup", (req, res) => {
+router.get("/user-signup", (req, res) => {
+		try {
 		if (req.session.loggedIn) {
 			res.redirect("/");
 		} else {
 			res.render("user/user-signup");
 		}
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 
 
-try {
-	router.post("/user-signup", (req, res) => {
+router.post("/user-signup", (req, res) => {
+		try {
 		userHelper.doSignup(req.body).then((response) => {
 			req.session.user = response;
 			req.session.userloggedIn = true;
@@ -101,15 +101,15 @@ try {
 		});
 
 		// res.redirect('user/user-signup')
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 
 
-try {
-	router.post("/otp-verify", (req, res) => {
+router.post("/otp-verify", (req, res) => {
+		try {
 		userHelper.signupOtp(req.body, user).then((response) => {
 			req.session.loggedIn = true;
 			req.session.user = response;
@@ -117,14 +117,14 @@ try {
 		});
 
 		// res.redirect('user/user-signup')
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
-try {
 
-	router.post("/otp-verify", (req, res) => {
+router.post("/otp-verify", (req, res) => {
+		try {
 		userHelper.signupOtp(req.body, user).then((response) => {
 			req.session.loggedIn = true;
 			req.session.user = response;
@@ -132,28 +132,28 @@ try {
 		});
 
 		// res.redirect('user/user-signup')
-	});
-} catch (err) {
-	res.render("user/404");
-}
-
+	} catch (err) {
+		res.render("user/404");
+	}
+});
+	
 //login
-try {
 
-	router.get("/user-login", (req, res) => {
+router.get("/user-login", (req, res) => {
+		try {
 		if (req.session.userloggedIn) {
 			res.redirect("/");
 		} else res.render("user/user-login", { loginErr: req.session.userloginErr });
 		req.session.userloginErr = false;
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 
-try {
 
-	router.post("/user-login", (req, res) => {
+router.post("/user-login", (req, res) => {
+		try {
 		userHelper.doLogin(req.body).then((response) => {
 			if (response.status) {
 				console.log('redirecting to home page');
@@ -167,47 +167,47 @@ try {
 				res.redirect("/user-login");
 			}
 		});
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 //logout
 
-try {
 
-	router.get("/user-logout", (req, res) => {
+router.get("/user-logout", (req, res) => {
+		try {
 		// req.session.destroy()
 		req.session.user = null;
 		req.session.userLoggedIn = false;
 		res.redirect("/");
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 
 
 //home one
 
-try {
 
-	router.get("/home-one", function (req, res, next) {
+router.get("/home-one", function (req, res, next) {
+		try {
 		res.redirect("/");
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 //select product
-try {
-	router.get("/select-product/:id", async (req, res, next) => {
+router.get("/select-product/:id", async (req, res, next) => {
+		try {
 		let product = await productHelper.getProductDetails(req.params.id);
 		res.render("user/select-product", { product, user: true, });
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 //wishlist
 // router.get("/wishlist/:id", async (req, res, next) => {
@@ -215,30 +215,30 @@ try {
 // 	res.render("user/wishlist", { product, user, user: true, user_log: req.session.user });
 // });
 
-try {
-	router.get("/add-to-wishlist/:id", (req, res) => {
+router.get("/add-to-wishlist/:id", (req, res) => {
+		try {
 		userHelper.addToWishlist(req.params.id, req.session.user._id).then((wishlistObj) => {
 			res.json({ status: true });
 			// res.redirect('/')
 		});
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
-try {
-	router.get("/wishlist", (req, res) => {
+router.get("/wishlist", (req, res) => {
+		try {
 		res.render("user/wishlist", { user: true, user_log: req.session.user });
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 
 //user cart
 
-try {
-	router.get("/cart", verifyLogin, async (req, res) => {
+router.get("/cart", verifyLogin, async (req, res) => {
+		try {
 		let product = await userHelper.getCartProducts(req.session.user._id);
 		let user = req.session.user;
 		let totalValue = 0;
@@ -266,57 +266,57 @@ try {
 			});
 			// res.render('user/cart',{product,totalValue,user:req.session.user,user:true})
 		}
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 
 
 // add to cart
-try {
 
-	router.get("/add-to-cart/:id", (req, res) => {
+router.get("/add-to-cart/:id", (req, res) => {
+		try {
 		userHelper.addToCart(req.params.id, req.session.user._id).then(() => {
 			res.json({ status: true });
 			// res.redirect('/')
 		});
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 
-try {
 
-	router.post("/change-product-quantity", (req, res) => {
+router.post("/change-product-quantity", (req, res) => {
+		try {
 		userHelper.changeProductQuantity(req.body).then(async (response) => {
 			response.total = await userHelper.getTotalAmount(req.body.user);
 			res.json(response);
 		});
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 //remove product
-try {
 
-	router.post("/remove-product", (req, res) => {
+router.post("/remove-product", (req, res) => {
+		try {
 		userHelper.removeCartProduct(req.body).then(async (response) => {
 			// response.total=await userHelper.getTotalAmount(req.body.user)
 
 			res.json(response);
 		});
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 //place order
-try {
 
-	router.get("/place-order", verifyLogin, async function (req, res) {
+router.get("/place-order", verifyLogin, async function (req, res) {
+		try {
 		let total = await userHelper.getTotalAmount(req.session.user._id);
 		userHelper.getUserDeliveryAddress().then((savedAddress) => {
 			if (req.session.Total) {
@@ -326,15 +326,15 @@ try {
 
 			res.render("user/place-order", { user: true, total, user: req.session.user, savedAddress });
 		})
-	});
+		
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
-} catch (err) {
-	res.render("user/404");
-}
 
-try {
-
-	router.post("/place-order", async (req, res) => {
+router.post("/place-order", async (req, res) => {
+		try {
 		console.log("jjjjjt");
 		console.log(req.body);
 
@@ -366,16 +366,16 @@ try {
 				});
 			}
 		});
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 // paypal sucess
 
-try {
 
-	router.get("/success", (req, res) => {
+router.get("/success", (req, res) => {
+		try {
 		const payerId = req.query.PayerID;
 		const paymentId = req.query.paymentId;
 
@@ -399,43 +399,39 @@ try {
 				console.log(payment);
 			}
 		});
-	});
-
-} catch (err) {
-	res.render("user/404");
-}
+		
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 //order success
-try {
 
-	router.get("/order-success", (req, res) => {
+router.get("/order-success", (req, res) => {
+		try {
 		res.render("user/order-success", { user: true, user: req.session.user });
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 //orders
-try {
 
-	router.get("/order", async (req, res) => {
+router.get("/order", async (req, res) => {
+		try {
 		let order = await userHelper.getUserOrder(req.session.user._id);
 		res.render("user/order", { user: true, user: req.session.user, order });
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
-// router.get("/view-order-product/:id",async(req,res)=>{
-//   let product=await userHelper.getOrderProduct(req.params.id)
-//   res.render('user/view-order-product',{user:true,user:req.session.user,product})
-// })
 
 //view-order-product
 
-try {
 
-	router.get("/view-product/:id", async (req, res) => {
+router.get("/view-product/:id", async (req, res) => {
+		try {
 		console.log(req.params.id);
 		let product = await productHelper.getOrderProducts(req.params.id);
 		console.log('product');
@@ -450,15 +446,15 @@ try {
 			user: req.session.user,
 			order,orderPrice
 		});
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 
-try {
 
-	router.post("/verify-payment", (req, res) => {
+router.post("/verify-payment", (req, res) => {
+		try {
 		userHelper
 			.verifyPayment(req.body)
 			.then(() => {
@@ -470,87 +466,87 @@ try {
 			.catch((err) => {
 				res.json({ status: false, errMsg: "" });
 			});
+		} catch (err) {
+			res.render("user/404");
+		}
 	});
-} catch (err) {
-	res.render("user/404");
-}
 
 
-try {
-
+	
 	router.get("/404", (req, res) => {
+		try {
 		res.render("user/404");
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 
-try {
 
-	router.get("/modal", (req, res) => {
+router.get("/modal", (req, res) => {
+		try {
 		res.render("user/modal");
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 //user profile
-try {
 
-	router.get("/user-profile", function (req, res, next) {
+router.get("/user-profile", function (req, res, next) {
+		try {
 		userHelper.getUserDeliveryAddress().then((savedAddress) => {
 			res.render("user/user-profile", { user: true, user_log: req.session.user, savedAddress });
 		})
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 
-try {
-	router.get("/userdeliveryaddress", (req, res) => {
+router.get("/userdeliveryaddress", (req, res) => {
+		try {
 		console.log("test");
 		userHelper.getUserDeliveryAddress().then((savedAddress) => {
 			console.log('savedAddress');
 			console.log(savedAddress);
 			res.render("user/userdeliveryaddress", { user: true, user_log: req.session.user, savedAddress })
 		})
-	})
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+})
 
 
-try {
-	router.post("/userdeliveryaddress", (req, res) => {
+router.post("/userdeliveryaddress", (req, res) => {
+		try {
 		console.log(req.body);
 		userHelper.userDeliveryAddress(req.body, req.session.user._id).then(() => {
 			res.redirect("/user-profile");
 		});
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 // router.get('/cancelOrder/:id',verifyLogin, (req, res) => {
 //   userHelper.cancelOrder(req.params.id,req.session.user._id)
 //   res.redirect('/order')
 // })
-try {
 
-	router.get("/cancelOrder/:id", (req, res) => {
+router.get("/cancelOrder/:id", (req, res) => {
+		try {
 		userHelper.cancelOrder(req.params.id, req.session.user._id);
 		res.redirect("/order");
-	});
-} catch (err) {
-	res.render("user/404");
-}
+	} catch (err) {
+		res.render("user/404");
+	}
+});
 
 //update Password
-try {
-	let passwordchange = true;
-	router.post("/updatePassword", verifyLogin, async (req, res) => {
+let passwordchange = true;
+router.post("/updatePassword", verifyLogin, async (req, res) => {
+		try {
 		await userHelper
 			.updatePassword(req.body, req.session.user._id)
 			.then((passwordchange1) => {
@@ -563,10 +559,10 @@ try {
 					res.redirect("/userEditPassword");
 				}
 			});
+		} catch (err) {
+			res.render("user/404");
+		}
 	});
-} catch (err) {
-	res.render("user/404");
-}
 
 
 

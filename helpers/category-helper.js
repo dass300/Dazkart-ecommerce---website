@@ -2,7 +2,8 @@ var db=require('../config/connection')
 var collection=require('../config/collection');
 const { response } = require('express');
 var objectId=require('mongodb').ObjectId
- module.exports={
+
+module.exports={
     addCategory:(category)=>{
         return new Promise(async(resolve,reject)=>{
         db.get().collection(collection.CATEGORY_COLLECTION).insertOne(category).then((data)=>{

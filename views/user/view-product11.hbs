@@ -1,0 +1,68 @@
+
+
+
+        <section>
+        <div class="container">
+    <table class="table mt-5" >
+        <thead>
+            <tr>
+                <th scope="col" >Item</th>
+                <th scope="col" >Title</th>
+                <th scope="col" >Quantity</th>
+                <th scope="col" >Price</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+                    {{#each product}}
+
+        <tr>
+                    
+
+            <td><img style="width: 70px;height:70px"  src="/product-image/{{product.image.[0]}}" alt=""></td>
+            <td>{{this.product.Name}}</td>
+            <td>{{this.quantity}}</td>
+            <td>Rs {{this.product.Price}}</td>
+            
+            
+        </tr>
+                    {{/each }}
+
+    </tbody>
+
+</table>
+<hr>
+ {{!-- <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="checkout">
+
+                    <h4 class="float-right mr-5 mt-4" >Grandtotal<span id="total">{{orderPrice.totalAmount}}</span></h4>
+                    <a href=""><button type="button" class="btn btn-default left-cart">Shop Again</button></a>
+
+                </div>
+            </div> --}}
+
+                <div class="">
+                    <div class="">
+
+                        <h4 class="float-right mr-5 mt-4">Grandtotal<span id="total">{{orderPrice.totalAmount}}</span></h4>
+                        <a href="/"><button type="button" class="btn btn-default left-cart">Shop Again</button></a>
+
+                    </div>
+                </div>
+
+
+    {{!-- <div>
+        <h4 class="float-right mr-5 mt-4" >Grandtotal<span id="total">{{orderPrice.totalAmount}}</span></h4>
+      <button><a href="/place-order" class="btn btn-default right-cart mt-3" style=""><b></b></a></button>  
+      <a href=""><button type="button" class="btn btn-default left-cart">Shop Again</button></a>
+    </div> --}}
+
+    {{!-- <div>
+        <h3 class="float-right mr-5 mt-4 ">Total:Rs/-<span id="total">{{orderPrice.totalAmount}}</span></h3><br>
+      <button><a href="/place-order" class="btn btn-default right-cart mt-3" style=""><b></b></a></button>  
+      <a href=""><button type="button" class="btn btn-default left-cart">Shop Again</button></a>
+    </div> --}}
+
+</div>
+</div>
+</section>

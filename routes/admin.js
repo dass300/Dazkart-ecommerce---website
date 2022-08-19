@@ -29,54 +29,54 @@ const verifyAdminLogin = (req, res, next) => {
 //   res.redirect('/admin/admin-dash',{'loginErr':req.session.loginErr})
 // });
 
-try{
-  router.get("/", verifyAdminLogin, (req, res) => {
+router.get("/", verifyAdminLogin, (req, res) => {
+    try{
     res.redirect("/admin/admin-login");
   
     // res.redirect('/')
     req.session.loginErr = false;
-  });
-}catch(err) {
-	res.render("user/404");
-  }
-
-
-  try{
-    router.get("/admin-signup", (req, res, next) => {
-      res.render("admin/admin-signup");
-      // res.send("sdfghjk   ")
-    });
   }catch(err) {
     res.render("user/404");
+  }
+});
+
+
+router.get("/admin-signup", (req, res, next) => {
+      try{
+      res.render("admin/admin-signup");
+      // res.send("sdfghjk   ")
+    }catch(err) {
+      res.render("user/404");
     }
+  });
 
 
-    try{
-      router.post("/admin-signup", (req, res) => {
+  router.post("/admin-signup", (req, res) => {
+        try{
         adminHelper.doAdminSignup(req.body).then(() => {
           res.redirect("/admin/admin-login");
         });
-      });
-    }catch(err) {
-      res.render("user/404");
+      }catch(err) {
+        res.render("user/404");
       }
+    });
 
 //Admin - login
 
-try{
-  router.get("/admin-login", (req, res) => {
+router.get("/admin-login", (req, res) => {
+    try{
     if (req.session.admin) {
       res.render("admin/admin-login");
     }
     // res.send("sdfghjk   ")
-  });
-}catch(err) {
-	res.render("user/404");
+  }catch(err) {
+    res.render("user/404");
   }
+});
 
-  try{
 
-    router.post("/admin-login", (req, res) => {
+router.post("/admin-login", (req, res) => {
+      try{
       adminHelper.doAdminLogin(req.body).then((response) => {
         if (response.status) {
           req.session.adminloggedIn = true;
@@ -87,32 +87,32 @@ try{
           res.redirect("/admin/admin-login");
         }
       });
-    });
-  }catch(err) {
-    res.render("user/404");
+    }catch(err) {
+      res.render("user/404");
     }
+  });
 
 //Admin - logout
 
 
-try{
 
-  router.get("/admin-logout", (req, res) => {
+router.get("/admin-logout", (req, res) => {
+    try{
     // req.session.destroy()
     req.session.adminloggedIn = null;
     req.session.admin = null;
     res.redirect("/admin/admin-dash");
-  });
-}catch(err) {
-	res.render("user/404");
+  }catch(err) {
+    res.render("user/404");
   }
+});
 
 //Admin - dash
 
 
-try{
 
-  router.get("/admin-dash", verifyAdminLogin, function (req, res, next) {
+router.get("/admin-dash", verifyAdminLogin, function (req, res, next) {
+    try{
     adminHelper.getAllOrders().then(async (order) => {
       let usr = await adminHelper.getUserDetails();
       let codTotal = await adminHelper.codTotal();
@@ -130,115 +130,100 @@ try{
         rasorpayTotal,
       });
     });
-  });
-}catch(err) {
-	res.render("user/404");
+  }catch(err) {
+    res.render("user/404");
   }
+});
 
 // router.get("/admin-dash", (req, res) => {
 //   res.render("admin/admin-dash", { admin: true });
 // });
 
 
-try{
 
-  router.get("/products", (req, res) => {
+router.get("/products", (req, res) => {
+    try{
     productHelper.getAllProducts().then((response) => {
       product = response.product;
       res.render("admin/products", { admin: true, product });
     });
-  });
-}catch(err) {
-	res.render("user/404");
+  }catch(err) {
+    res.render("user/404");
   }
+});
 
 
-  try{
 
-    router.get("/view-product", function (req, res, next) {
+router.get("/view-product", function (req, res, next) {
+      try{
       productHelper.getAllProducts().then((response) => {
         product = response.product;
         res.render("admin/view-product", { admin: true, product });
       });
       // res.send("sdfghjk")
-    });
-  }catch(err) {
-    res.render("user/404");
-    }
-
-
-
-    try{
-
-      router.get("/product-details", (req, res) => {
-        res.render("admin/product-details", { admin: true });
-      });
     }catch(err) {
       res.render("user/404");
+    }
+  });
+
+
+
+  
+  router.get("/product-details", (req, res) => {
+        try{
+        res.render("admin/product-details", { admin: true });
+      }catch(err) {
+        res.render("user/404");
       }
+    });
 
 //Add product details
-try{
 
-  router.get("/add-new-products", function (req, res, next) {
+router.get("/add-new-products", function (req, res, next) {
+    try{
     res.render("admin/add-new-products", { admin: true });
-  });
-}catch(err) {
-	res.render("user/404");
-  }
-
-
-  try{
-
-    router.get("/product-category", function (req, res, next) {
-      res.render("admin/product-category", { admin: true });
-    });
   }catch(err) {
     res.render("user/404");
+  }
+});
+
+
+
+router.get("/product-category", function (req, res, next) {
+      try{
+      res.render("admin/product-category", { admin: true });
+    }catch(err) {
+      res.render("user/404");
     }
+  });
 
 
 
-    try{
-
-      router.get("/orders", (req, res) => {
+  
+  router.get("/orders", (req, res) => {
+        try{
         adminHelper.salesDaily().then((data) => {
           console.log(data);
           res.render("admin/orders", { admin: true });
         });
-      });
-    }catch(err) {
-      res.render("user/404");
+      }catch(err) {
+        res.render("user/404");
       }
+    });
 
-// router.get("/add-product", function (req, res, next) {
-//   res.render("admin/add-product", { admin: true });
-// });
 
-// router.post("/add-product", (req, res) => {
-
-//   productHelper.addProduct(req.body, (insertedId) => {
-//     let image = req.files.Image;
-//     image.mv("./public/product-image/" + insertedId + ".jpg", (err, done) => {
-//       if (!err) {
-//         res.render("admin/add-product");
-//       } else {
-//       }
-//     });
-//   });
-// });
 
 
 
 //Add category
 
-try{
-  router.get("/product-category", function (req, res, next) {
+router.get("/product-category", function (req, res, next) {
+    try{
     res.render("admin/product-category", { admin: true });
-  });
-}catch(err) {
-	res.render("user/404");
+  }catch(err) {
+    res.render("user/404");
   }
+});
 
 
   
@@ -253,9 +238,9 @@ let fileStorageEnginecategory = multer.diskStorage({
 
 const uploads = multer({ storage: fileStorageEnginecategory });
 
-try{
 
-  router.post("/product-category", uploads.array("Image", 4), (req, res) => {
+router.post("/product-category", uploads.array("Image", 4), (req, res) => {
+    try{
     var filenames = req.files.map(function (file) {
       return file.filename;
     });
@@ -264,20 +249,20 @@ try{
     categoryHelper.addCategory(req.body).then(() => {
       res.redirect("/admin/product-category");
     });
-  });
-}catch(err) {
-	res.render("user/404");
+  }catch(err) {
+    res.render("user/404");
   }
+});
 
 //Add product
-try{
 
-  router.get("/add-product", function (req, res, next) {
+router.get("/add-product", function (req, res, next) {
+    try{
     res.render("admin/add-product", { admin: true });
-  });
-}catch(err) {
-	res.render("user/404");
+  }catch(err) {
+    res.render("user/404");
   }
+});
 
 
  
@@ -313,19 +298,19 @@ try{
 
 
 // edit Product details
-try{
 
-  router.get("/edit-product/:id", verifyAdminLogin, async (req, res) => {
+router.get("/edit-product/:id", verifyAdminLogin, async (req, res) => {
+    try{
     let product = await productHelper.getProductDetails(req.params.id);
     res.render("admin/edit-product", { product, admin: true });
-  });
-}catch(err) {
-	res.render("user/404");
+  }catch(err) {
+    res.render("user/404");
   }
+});
 
 
-  try{
 
+try{
     let fileStorageEngines = multer.diskStorage({
       destination: (req, file, cb) => {
         cb(null, "./public/product-image");
@@ -338,67 +323,57 @@ try{
     res.render("user/404");
     }
 
-// router.post("/edit-product", uploaded.array('Image'),(req, res) => {
-//   var filenames = req.files.map(function (file) {
-//     return file.filename;
-//   })
 
-//   req.body.image=filenames;
 
-//   productHelper.updateProduct(req.params.id,req.body).then(() => {
-//     res.redirect('/admin/edit-product')
-//   });
+
+    
+//     router.post("/edit-product/:id", upload.array("Image"), (req, res) => {
+//     try{
+//     console.log(req.params);
+//     let insertedId = req.params.id;
+//     productHelper.updateProduct(req.params.id, req.body).then(() => {
+//       res.redirect("/admin/view-product");
+//       if (req.files?.Image) {
+//         let image = req.files?.Image;
+//         image.mv("./public/product-image/" + insertedId + ".jpg");
+//       }
+//     });
+//   }catch(err) {
+//     res.render("user/404");
+//   }
 // });
 
-
-try{
-
-  router.post("/edit-product/:id", upload.array("Image"), (req, res) => {
-    console.log(req.params);
-    let insertedId = req.params.id;
-    productHelper.updateProduct(req.params.id, req.body).then(() => {
-      res.redirect("/admin/view-product");
-      if (req.files?.Image) {
-        let image = req.files?.Image;
-        image.mv("./public/product-image/" + insertedId + ".jpg");
-      }
-    });
-  });
-}catch(err) {
-	res.render("user/404");
-  }
-
 // Delete Product details
-try{
 
-  router.get("/delete-product/:id", (req, res) => {
+router.get("/delete-product/:id", (req, res) => {
+    try{
     let proId = req.params.id;
     productHelper.deleteProduct(proId).then((response) => {
       res.redirect("/admin/view-product");
     });
-  });
-}catch(err) {
-	res.render("user/404");
+  }catch(err) {
+    res.render("user/404");
   }
+});
 
 //Add User
-try{
 
-  router.get("/add-user", verifyAdminLogin, function (req, res, next) {
+router.get("/add-user", verifyAdminLogin, function (req, res, next) {
+    try{
     res.render("admin/add-user", {
       adminAddUserLoginError: req.session.adminAddUsrErr,
       admin: true,
     }); //adminloginpage:true
     req.session.adminAddUsrErr = false;
-  });
-}catch(err) {
-	res.render("user/404");
+  }catch(err) {
+    res.render("user/404");
   }
+});
 
 
-  try{
 
-    router.post("/admin-add-user", (req, res) => {
+router.post("/admin-add-user", (req, res) => {
+      try{
       adminHelper.doAdminCheckEmail(req.body).then((response) => {
         if (response.status) {
           adminHelper.doAdminAddUser(req.body).then((response) => {
@@ -409,27 +384,27 @@ try{
           res.redirect("/admin/add-user");
         }
       });
-    });
-  }catch(err) {
-    res.render("user/404");
+    }catch(err) {
+      res.render("user/404");
     }
+  });
 
 //List users
-try{
 
-  router.get("/list-user", verifyAdminLogin, (req, res) => {
+router.get("/list-user", verifyAdminLogin, (req, res) => {
+    try{
     adminHelper.getAllUsers().then((listOfUsers) => {
       res.render("admin/list-user", { listOfUsers, admin: true });
     });
-  });
-}catch(err) {
-	res.render("user/404");
+  }catch(err) {
+    res.render("user/404");
   }
+});
 
 //Delete User
-try{
 
-  router.get("/delete-user/:id", (req, res) => {
+router.get("/delete-user/:id", (req, res) => {
+    try{
     let usrId = req.params.id;
   
     req.session.loggedIn = null;
@@ -437,24 +412,24 @@ try{
     adminHelper.deleteUser(usrId).then((response) => {
       res.redirect("/admin/list-user");
     });
-  });
-}catch(err) {
-	res.render("user/404");
+  }catch(err) {
+    res.render("user/404");
   }
+});
 
 //Edit User
-try{
 
-  router.get("/edit-user/:id", verifyAdminLogin, async (req, res) => {
+router.get("/edit-user/:id", verifyAdminLogin, async (req, res) => {
+    try{
     let usr = await adminHelper.getUserDetails(req.params.id);
     res.render("admin/edit-user", { usr, admin: true });
-  });
-}catch(err) {
-	res.render("user/404");
+  }catch(err) {
+    res.render("user/404");
   }
-  try{
+});
 
-    router.post("/edit-user/:id", async (req, res) => {
+router.post("/edit-user/:id", async (req, res) => {
+      try{
       // let id=req.params.id
       if (req.body.Name == "" || req.body.Email == "") {
         let res_edituser = "Enter Name or Email";
@@ -468,27 +443,27 @@ try{
           res.redirect("/admin/list-user");
         });
       }
-    });
-  }catch(err) {
-    res.render("user/404");
+    }catch(err) {
+      res.render("user/404");
     }
+  });
 
-try{
-
+  
   router.get("/user-manage", function (req, res, next) {
+    try{
     adminHelper.getAllUsers().then((listOfUsers) => {
       res.render("admin/user-manage", { admin: true, listOfUsers });
     });
-  });
-}catch(err) {
-	res.render("user/404");
+  }catch(err) {
+    res.render("user/404");
   }
+});
 
 // --------------blocking of user---------------
 
-try{
 
-  router.get("/block/:id", (req, res) => {
+router.get("/block/:id", (req, res) => {
+    try{
     let usrId = req.params.id;
   
     adminHelper.blockUser(usrId).then(() => {
@@ -497,74 +472,74 @@ try{
   
       res.redirect("/admin/user-manage");
     });
-  });
-}catch(err) {
-	res.render("user/404");
+  }catch(err) {
+    res.render("user/404");
   }
+});
 
 // -------------------unblocking of user----------------
 
-try{
 
-  router.get("/unblock/:id", (req, res) => {
+router.get("/unblock/:id", (req, res) => {
+    try{
     let usrId = req.params.id;
     adminHelper.unblocklUser(usrId).then(() => {
       res.redirect("/admin/user-manage");
     });
-  });
-}catch(err) {
-	res.render("user/404");
-  }
-
-
-  try{
-
-    router.get("/order-summary", function (req, res) {
-      res.render("admin/order-summary", { admin: true });
-    });
   }catch(err) {
     res.render("user/404");
+  }
+});
+
+
+
+router.get("/order-summary", function (req, res) {
+      try{
+      res.render("admin/order-summary", { admin: true });
+    }catch(err) {
+      res.render("user/404");
     }
+  });
 
 
-    try{
-
-      router.get("/cancel/:id", (req, res) => {
+  
+  router.get("/cancel/:id", (req, res) => {
+        try{
         adminHelper.cancelOrder(req.params.id).then(() => {
           res.redirect("/admin/admin-dash");
         });
-      });
-    }catch(err) {
-      res.render("user/404");
+      }catch(err) {
+        res.render("user/404");
       }
+    });
 
 
-      try{
-
-        router.get("/shipp/:id", (req, res) => {
+    
+    router.get("/shipp/:id", (req, res) => {
+          try{
           adminHelper.shippOrder(req.params.id).then(() => {
             res.redirect("/admin/admin-dash");
           });
-        });
-      }catch(err) {
-        res.render("user/404");
+        }catch(err) {
+          res.render("user/404");
         }
+      });
 
 
-        try{
-
-          router.get("/delivered/:id", (req, res) => {
+      
+      router.get("/delivered/:id", (req, res) => {
+            try{
             adminHelper.deliverOrder(req.params.id).then(() => {
               res.redirect("/admin/admin-dash");
             });
-          });
-        }catch(err) {
-          res.render("user/404");
+          }catch(err) {
+            res.render("user/404");
           }
-
+        });
+          
 //post changeStatus
-try{
-  router.post("/changeStatus/:id", async (req, res) => {
+router.post("/changeStatus/:id", async (req, res) => {
+    try{
     console.log(req.body.changeStatus + "     order id is     " + req.params.id);
   
     await adminHelper
@@ -572,15 +547,15 @@ try{
       .then(() => {
         res.redirect("admin/admin-dash");
       });
+    }catch(err) {
+      res.render("user/404");
+    }
   });
-}catch(err) {
-	res.render("user/404");
-  }
 
 
-try{
-
+  
   router.get("/", verifyAdminLogin, async function (req, res, next) {
+    try{
     let totalOrders = await adminHelper.allOrders();
     totalOrders = totalOrders.length;
     let user = await userHelper.getAllUsers();
@@ -601,46 +576,64 @@ try{
       paypal,
       sales,
     });
-  });
-}catch(err) {
-	res.render("user/404");
+  }catch(err) {
+    res.render("user/404");
   }
+});
 
-//   router.get('/index', verifyLog, async function (req, res, next) {
-// 	var cod = await adminHelper.getcodtotal()
-// 	var razorpay = await adminHelper.getrazorpaytotal()
-// 	var paypal = await adminHelper.getpaypaltotal()
-// 	var totalsale = await adminHelper.gettotalsale()
-// 	var sales = await adminHelper.getSales()
-// 	// console.log(sales);
-// 	adminHelper.getpaymentmethod().then((paymentMethod) => {
-// 	  res.render('admin/index', { admin_link: true, admin_header: true, paymentMethod, cod, paypal, razorpay, totalsale, sales })
-// 	})
-//   });
 
-try{
 
-  router.get("/coupon", (req, res) => {
+
+router.get("/coupon", (req, res) => {
+    try{
     adminHelper.getCoupons().then((coupons) => {
       res.render("admin/coupon", { admin: true , coupons});
     })
-  });
-}catch(err) {
-	res.render("user/404");
+  }catch(err) {
+    res.render("user/404");
   }
+});
 
-  try{
 
-    router.post("/coupon", (req, res) => {
+
+  
+  router.post("/coupon", (req, res) => {
+
+      try{
+
       req.body.users = [];
+
       adminHelper.addCoupon(req.body).then((response) => {
+
         console.log(response);
     
         res.redirect("/admin/coupon");
       });
-    });
-  }catch(err) {
-    res.render("user/404");
+
+    }catch(err) {
+
+      res.render("user/404");
     }
+
+  });
+
+
+    
+    router.get("/banner-management", function (req, res, next) {
+
+        try{
+
+        res.render("admin/banner-management", { admin: true });
+
+      }catch(err) {
+
+        res.render("user/404");
+
+      }
+
+    });
+
+  
+
 
 module.exports = router;

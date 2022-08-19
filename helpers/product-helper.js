@@ -89,5 +89,30 @@ module.exports = {
                     resolve()
                 })
         })
-    }
+    },
+    getAllBanner:()=>{
+       
+        return new Promise(async(resolve,reject)=>{
+          
+      let banner =await db.get().collection(collection.BANNER_COLLECTION).aggregate([
+         {
+           $lookup:
+           {
+             from:collection.BRAND_COLLECTION,
+             localField:'Brand',
+             foreignField:'_id',
+             as:'brand'
+           }
+         },
+         {
+           $unwind:'$brand'
+         }
+      ]).toArray()
+           
+      console.log('Bannerrrrrrrrrr');
+      console.log(banner);
+         
+           resolve(banner)
+        })
+     }
 }

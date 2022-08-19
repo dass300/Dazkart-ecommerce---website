@@ -14,7 +14,7 @@
 						let loginStatus = false
 						let response = {}
 						let admin = await db.get().collection(collection.ADMIN_COLLECTION).findOne({ Email: adminData.Email })
-						bcrypt.compare(adminData.Password, admin.Password).then((status) => {
+						bcrypt.compare(adminData.Password,admin.Password).then((status) => {
 							if (status) {
 								response.adminIn = admin;
 
