@@ -1,0 +1,167 @@
+{{!-- <div class="row">
+    <div class="col-md-6 m-auto">
+        <div class=" mt-5 pl-5">
+            <h2 class="text-center">Create new account</h2>
+            <form action="/admin/admin-signup" method="POST">
+                <div class="form-group">
+                    <label for="">Name</label>
+                    <input type="text" class="form-control" name="Name" placeholder="Enter Name">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Email address</label>
+                    <input type="email" class="form-control" name="Email" placeholder="Enter email">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Password</label>
+                    <input type="password" class="form-control" name="Password" placeholder="Password">
+
+                </div>
+                <a href="/admin/admin-login">Already have account ?</a>
+                <button type="submit" class="btn btn-primary float-right">Signup</button>
+            </form>
+        </div>
+
+    </div>
+
+</div> --}}
+
+
+
+
+<div class="row">
+    <div class="col-md-6 m-auto">
+        <div class=" mt-5 pl-5">
+            <h2 class="text-center">Create new Admin account</h2>
+
+            <form id="submit-form" action="/admin/admin-signup" method="POST">
+                
+                <div class="form-group">
+
+                    <label for="">Name</label>
+                    <input type="text" class="form-control"  name="name" id="contact-name" onkeyup="validateName()" placeholder="Enter Name" />
+                    <span id="name-error" class=" font-weight-bold" style="color:red"></span>
+                    {{!-- <input type="text" class="form-control" name="Name" placeholder="Enter Name"> --}}
+                </div>
+
+                <div class="form-group">
+                    <label for="">Email address</label>
+                    <input type="email" name="email" id="contact-email" onkeyup="validateEmail()"  placeholder="Email id" class="form-control">
+                    <span id="email-error" style="color:red" class=" font-weight-bold"></span>
+                    {{!-- <input type="email" class="form-control" name="Email" placeholder="Enter email"> --}}
+                </div>
+
+                <div class="form-group">
+                    <label for="">Password</label>
+                     <input type="password" name="Password" id="contact-password" onkeyup="validatePassword()"  placeholder="Password" class="form-control">
+                     <span id="password-error" style="color:red" class=" font-weight-bold"></span>
+                    {{!-- <input type="password" class="form-control" name="Password" placeholder="Password"> --}}
+
+                </div>
+                <a href=" /admin/admin-login">Already have account ?</a>
+
+                <button type="submit"  onclick="return validateForm()" class="btn btn-primary float-right mb-4">Create</button>
+                
+                 <span id="submit-error" style="color:red" class=" font-weight-bold" ></span> 
+                {{!-- <button type="sumbit" class="btn btn-primary float-right">Signup</button> --}}
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+var nameError = document.getElementById('name-error');
+var emailError = document.getElementById('email-error');
+var passwordError = document.getElementById('password-error');
+var submitError = document.getElementById('submit-error');
+
+
+
+
+
+function validateName(){
+  var name = document.getElementById('contact-name').value;
+
+  if(name.length == 0){
+    nameError.innerHTML = 'Name is required';
+    return false;
+  }
+  
+
+   if(!name.match(/^[A-Za-z]+ [A-Za-z]+$/)){
+
+     nameError.innerHTML = 'write full name';
+     return false;
+
+   }
+   nameError.innerHTML = 'valid';
+   nameError.style.color="seagreen";
+   return true;
+}
+
+
+function validateEmail(){
+  var email = document.getElementById('contact-email').value;
+
+  if(email.length == 0){
+    emailError.innerHTML = 'Email is required';
+    return false;
+  }
+
+
+  if(!email.match(/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/)){
+        emailError.innerHTML = 'Email invalid'
+        return false;
+
+   }
+
+
+   
+   emailError.innerHTML = 'valid';
+   emailError.style.color="seagreen";
+
+   return true;
+}
+
+function validatePassword(){
+  var password = document.getElementById('contact-password').value;
+
+  if(password.length == 0){
+    passwordError.innerHTML = 'Password is required';
+    return false;
+  }
+
+  if(password.length < 3){
+    passwordError.innerHTML = 'Min.3 characters';
+    return false;
+  }
+
+   passwordError.innerHTML = 'valid';
+   passwordError.style.color="seagreen";
+   return true;
+
+
+}
+
+function validateForm(){
+  if(!validateName() || !validateEmail() || !validatePassword()){
+    submitError.style.display = 'block';
+    submitError.innerHTML = 'Please fix error to submit';
+    
+    setTimeout(function(){submitError.style.display='none';}, 3000);
+    return false;
+
+  submitError.innerHTML = 'valid';
+  submitError.style.color="seagreen";
+   return true;
+
+  }
+
+  
+}
+
+</script>

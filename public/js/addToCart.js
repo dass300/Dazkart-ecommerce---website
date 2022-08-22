@@ -13,6 +13,8 @@ function addToCart(proId){
                 // $("#cart-count").html(count)
             }
             // alert('Are you sure want to add this product to your cart?')
+            
+            swal("Good job!", "Product has been added in your cart", "success");
         }
     })
 }

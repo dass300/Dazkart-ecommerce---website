@@ -33,6 +33,7 @@ paypal.configure({
 module.exports = {
 
     doSignup: (userData) => {
+        console.log(userData.mobile);
         return new Promise(async (resolve, reject) => {
             let response = {}
             let phone = await db.get().collection(collection.USER_COLLECTION).findOne({ mobile: userData.mobile })
@@ -48,11 +49,14 @@ module.exports = {
                 userData.action = true
                 client.verify.services('VA47f3ff62b318d775d3b4b81c2449fa87')
                     .verifications.create({
-                        // to: `+91${signupData.mobile}`,
-                        to: '+918921653181',
+                       to: `+91${userData.mobile}`,
+                        //to: '+918921653181',
                         channel: 'sms',
                     })
-                    .then(verification => console.log(verification.status));
+                    .then(verification => console.log(verification.status))
+                    .catch((e)=>{
+                        console.log("here is the error in otp senting block",e);
+                    });
                 console.log('no same email');
                 resolve({ status: false, userData })
             }
@@ -60,17 +64,21 @@ module.exports = {
     },
 
 
-    signupOtp: (userData, userDetails) => {
+    signupOtp: (userData,userDetails) => {
+        console.log(userDetails,"user details is here");
         return new Promise((resolve, reject) => {
             let response = {}
             client.verify.services('VA47f3ff62b318d775d3b4b81c2449fa87')
                 .verificationChecks
+        
                 .create({
-                    to: `+918921653181`,
+                    //to: `+918921653181`,
+                    to: `+91${userDetails.mobile}`,
                     code: userData.otp
                 })
                 .then((verification_check) => {
                     console.log(verification_check.status);
+                    console.log("test");
                     if (verification_check.status == 'approved') {
                         db.get().collection(collection.USER_COLLECTION).insertOne(userDetails).then((data) => {
                             resolve(userDetails)
@@ -80,6 +88,8 @@ module.exports = {
                         console.log(response);
                         resolve(response)
                     }
+                }).catch((e)=>{
+                    console.log("here is the error",e);
                 })
         })
     },
@@ -299,34 +309,37 @@ module.exports = {
             resolve(total[0].total);
         });
     },
-    placeOrder: (order, product, total) => {
-        return new Promise((resolve, reject) => {
-            let status = order["payment-method"] === "COD" ? "placed" : "pending";
-            let orderObj = {
-                deliveryDetails: {
-                    mobile: order.Mobile,
-                    address: order.address,
-                    pincode: order.pincode,
-                },
-                userId: objectId(order.userId),
-                paymentMethod: order["payment-method"],
-                product: product,
-                totalAmount: total,
-                status: status,
-                date: new Date(),
-            };
 
-            db.get()
-                .collection(collection.ORDER_COLLECTION)
-                .insertOne(orderObj)
-                .then((response) => {
-                    db.get()
-                        .collection(collection.CART_COLLECTION)
-                        .remove({ user: objectId(order.userId) });
-                    resolve();
-                });
-        });
-    },
+    // placeOrder: (order, product, total) => {
+    //     return new Promise((resolve, reject) => {
+    //         let status = order["payment-method"] === "COD" ? "placed" : "pending";
+    //         let orderObj = {
+    //             deliveryDetails: {
+    //                 mobile: order.Mobile,
+    //                 address: order.address,
+    //                 pincode: order.pincode,
+    //             },
+    //             userId: objectId(order.userId),
+    //             paymentMethod: order["payment-method"],
+    //             product: product,
+    //             totalAmount: total,
+    //             status: status,
+    //             date: new Date(),
+    //         };
+
+    //         db.get()
+    //             .collection(collection.ORDER_COLLECTION)
+    //             .insertOne(orderObj)
+    //             .then((response) => {
+    //                 db.get()
+    //                     .collection(collection.CART_COLLECTION)
+    //                     .remove({ user: objectId(order.userId) });
+    //                 resolve();
+    //             });
+    //     });
+
+    // },
+    
     getCartProductsList: (userId) => {
         return new Promise(async (resolve, reject) => {
             let cart = await db
@@ -402,10 +415,23 @@ module.exports = {
                 ])
                 .toArray();
             console.log("hhhhhh");
-            console.log(total[0].total);
-            resolve(total[0].total);
+            if(total.length==0){
+                console.log('total is null');
+                total.push({total:0})
+                console.log(total);
+                let nullTotal=total[0].total
+                resolve({nullTotal,status:false});
+            }else{
+                
+                console.log('total is not null');
+  let cartTotal=total[0].total
+                resolve({cartTotal,status:true});
+
+                console.log(total[0].total);
+            }
         });
     },
+
     placeOrder: (order, product, total) => {
         return new Promise((resolve, reject) => {
             console.log(order, product, total);
@@ -439,6 +465,8 @@ module.exports = {
                     resolve(response.insertedId);
                 });
         });
+
+
     },
     getCartProductList: (userId) => {
         console.log(userId);
@@ -701,11 +729,12 @@ module.exports = {
                         responses.status = false
                         resolve(responses)
                     } else {
-                        await db.get().collection(collection.COUPON_COLLECTION).updateOne({ _id: response._id }, {
-                            $push: { users: userId }
-                        })
+                        // await db.get().collection(collection.COUPON_COLLECTION).updateOne({ _id: response._id }, {
+                        //     //$push: { users: userId }
+                        // })
                         let discountAmount = total * response.discount / 100;
                         responses.totalAmount = total - discountAmount
+                        response.Actual =total
                         responses.status = true
                         console.log(responses);
                         resolve(responses)

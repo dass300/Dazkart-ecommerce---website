@@ -319,7 +319,7 @@
 					return new Promise(async (resolve, reject) => {
 
 						let order = await db.get().collection(collection.ORDER_COLLECTION).find().toArray()
-						console.log(order);
+						// console.log(order);
 						resolve(order)
 					})
 
@@ -335,13 +335,7 @@
 
 							},
 
-							// {
-							// 	$project:
-							// 	{
-							// 		date: 1, totalAmount: 1, item: '$product.item', quantity: '$product.quantity'
-							// 	}
-							// },
-
+						
 							{
 								$lookup:
 								{

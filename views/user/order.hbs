@@ -3,6 +3,7 @@
         <div class="row-mt-4">
             <a href="/admin/add-"></a>
         </div>
+        
 <table class="table-mt-5 table ">
     <thead>
         <tr>
@@ -27,17 +28,36 @@
             <td>{{this.deliveryDetails.address}}<p>{{this.deliveryDetails.pincode}}</p><p>{{this.deliveryDetails.mobile}}</p></td>
             {{!-- <td>{{this.deliveryDetails.pincode}} </td> --}}
             {{!-- <td>{{this.deliveryDetails.mobile}} </td> --}}
-            <td>{{this.totalAmount}} </td> 
+            <td>{{this.totalAmount.cartTotal}} </td> 
             <td>{{this.paymentMethod}} </td>
             <td>{{this.status}}</td>
 
+        
+
+            {{#if_eq this.status "cancelled" }}	
+            <td>
+                <a href="/view-product/{{this._id}}" class="btn btn-primary disabled">View Products</a>
+            </td>
+            <td>
+            <a href="/cancelOrder/{{this._id}}" class="w-100 btn btn-danger disabled">Cancel Order</a>
+            </td>
+            {{else}}
+            {{#if_eq this.status "Delivered"}}
+    <td>
+                <a href="/view-product/{{this._id}}" class="btn btn-primary disabled">View Products</a>
+            </td>
+            <td>
+            <a href="/cancelOrder/{{this._id}}" class="w-100 btn btn-danger disabled">Cancel Order</a>
+            </td>
+            {{else}}
             <td>
                 <a href="/view-product/{{this._id}}" class="btn btn-primary">View Products</a>
             </td>
             <td>
             <a href="/cancelOrder/{{this._id}}" class="w-100 btn btn-danger">Cancel Order</a>
-
             </td>
+            {{/if_eq}}
+            {{/if_eq}}
         </tr>
         {{/each}}
 

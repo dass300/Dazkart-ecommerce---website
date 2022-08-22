@@ -53,7 +53,6 @@ router.get("/", async function (req, res, next) {
 				product = response.product;
 				women = response.women;
 				men = response.men;
-
 				res.render("user/home-one", {
 					product,
 					women,
@@ -87,6 +86,7 @@ router.get("/user-signup", (req, res) => {
 
 
 
+let user;
 router.post("/user-signup", (req, res) => {
 		try {
 		userHelper.doSignup(req.body).then((response) => {
@@ -110,6 +110,7 @@ router.post("/user-signup", (req, res) => {
 
 router.post("/otp-verify", (req, res) => {
 		try {
+		console.log(user)
 		userHelper.signupOtp(req.body, user).then((response) => {
 			req.session.loggedIn = true;
 			req.session.user = response;
@@ -123,9 +124,11 @@ router.post("/otp-verify", (req, res) => {
 });
 
 
+
+
 router.post("/otp-verify", (req, res) => {
 		try {
-		userHelper.signupOtp(req.body, user).then((response) => {
+		userHelper.signupOtp(req.body,user).then((response) => {
 			req.session.loggedIn = true;
 			req.session.user = response;
 			res.redirect("/");
@@ -133,11 +136,14 @@ router.post("/otp-verify", (req, res) => {
 
 		// res.redirect('user/user-signup')
 	} catch (err) {
+		console.log('otp blocks breals here',err);
 		res.render("user/404");
 	}
 });
 	
 //login
+
+
 
 router.get("/user-login", (req, res) => {
 		try {
@@ -199,8 +205,10 @@ router.get("/home-one", function (req, res, next) {
 	}
 });
 
+
+
 //select product
-router.get("/select-product/:id", async (req, res, next) => {
+router.get("/select-product/:id",verifyLogin, async (req, res, next) => {
 		try {
 		let product = await productHelper.getProductDetails(req.params.id);
 		res.render("user/select-product", { product, user: true, });
@@ -209,15 +217,18 @@ router.get("/select-product/:id", async (req, res, next) => {
 	}
 });
 
+
+
 //wishlist
 // router.get("/wishlist/:id", async (req, res, next) => {
 // 	let product = await productHelper.getProductDetails(req.params.id);
 // 	res.render("user/wishlist", { product, user, user: true, user_log: req.session.user });
 // });
 
-router.get("/add-to-wishlist/:id", (req, res) => {
+
+router.get("/add-to-wishlist/:id",verifyLogin, (req, res) => {
 		try {
-		userHelper.addToWishlist(req.params.id, req.session.user._id).then((wishlistObj) => {
+		userHelper.addToWishlist(req.params.id,req.session.user._id).then((wishlistObj) => {
 			res.json({ status: true });
 			// res.redirect('/')
 		});
@@ -226,7 +237,9 @@ router.get("/add-to-wishlist/:id", (req, res) => {
 	}
 });
 
-router.get("/wishlist", (req, res) => {
+
+
+router.get("/wishlist",verifyLogin, (req, res) => {
 		try {
 		res.render("user/wishlist", { user: true, user_log: req.session.user });
 	} catch (err) {
@@ -237,7 +250,7 @@ router.get("/wishlist", (req, res) => {
 
 //user cart
 
-router.get("/cart", verifyLogin, async (req, res) => {
+router.get("/cart",verifyLogin, async (req, res) => {
 		try {
 		let product = await userHelper.getCartProducts(req.session.user._id);
 		let user = req.session.user;
@@ -245,6 +258,7 @@ router.get("/cart", verifyLogin, async (req, res) => {
 		if (product.length >= 1) {
 			user = req.session.user._id;
 			totalValue = await userHelper.getTotalAmount(req.session.user._id);
+			totalValue=totalValue.cartTotal
 			console.log("total:" + totalValue);
 			cartCount = await userHelper.getCartCount(req.session.user._id);
 			res.render("user/cart", {
@@ -253,11 +267,12 @@ router.get("/cart", verifyLogin, async (req, res) => {
 				user: true,
 				user,
 				user_log: req.session.user,
-				cartCount,
+				cartCount
 			});
 			// res.render('user/cart',{product,totalValue,user:true,user,user:req.session.user,cartCount})
 		} else {
 			let user = req.session.user._id;
+			totalValue=totalValue.nullTotal
 			res.render("user/cart", {
 				product,
 				totalValue,
@@ -275,7 +290,7 @@ router.get("/cart", verifyLogin, async (req, res) => {
 
 // add to cart
 
-router.get("/add-to-cart/:id", (req, res) => {
+router.get("/add-to-cart/:id",(req, res) => {
 		try {
 		userHelper.addToCart(req.params.id, req.session.user._id).then(() => {
 			res.json({ status: true });
@@ -318,13 +333,27 @@ router.post("/remove-product", (req, res) => {
 router.get("/place-order", verifyLogin, async function (req, res) {
 		try {
 		let total = await userHelper.getTotalAmount(req.session.user._id);
+		let product = await productHelper.getOrderProducts(req.params.id);
 		userHelper.getUserDeliveryAddress().then((savedAddress) => {
+		if(total.status){
+			
+			if (req.session.Total) {
+				total = Math.round(req.session.Total);
+			}
+			console.log(total,"here is your total");
+		    total=total.cartTotal
+
+			res.render("user/place-order", {user: true, total, user: req.session.user, savedAddress,product,cartItems:true});
+		}else{
 			if (req.session.Total) {
 				total = Math.round(req.session.Total);
 			}
 			console.log(req.session.user);
+			total=total.nullTotal
 
-			res.render("user/place-order", { user: true, total, user: req.session.user, savedAddress });
+			res.render("user/place-order", {user: true, total, user: req.session.user, savedAddress,product,cartItems:false});
+
+		}
 		})
 		
 	} catch (err) {
@@ -333,13 +362,16 @@ router.get("/place-order", verifyLogin, async function (req, res) {
 });
 
 
-router.post("/place-order", async (req, res) => {
+router.post("/place-order",verifyLogin, async (req, res) => {
 		try {
 		console.log("jjjjjt");
 		console.log(req.body);
 
 		let product = await userHelper.getCartProductList(req.body.userId);
 		let totalPrice = await userHelper.getTotalAmount(req.body.userId);
+		if(totalPrice.status){
+			
+		}
 		if (req.session.Total) {
 			totalPrice = Math.round(req.session.Total);
 
@@ -348,6 +380,9 @@ router.post("/place-order", async (req, res) => {
 		console.log(product, totalPrice);
 		userHelper.placeOrder(req.body, product, totalPrice).then((orderId) => {
 			if (req.body["payment-method"] === "COD") {
+				if(req.session.Total){
+					req.session.Total=null
+				}
 				res.json({ codSuccess: true });
 			} else if (req.body["payment-method"] === "RAZORPAY") {
 				let id = objectId(orderId);
@@ -439,6 +474,7 @@ router.get("/view-product/:id", async (req, res) => {
 		let order = await userHelper.getUserOrder(req.session.user._id);
 		let orderPrice =await userHelper.getViewOrder(req.params.id);
 		console.log(orderPrice);
+		console.table(orderPrice)
 
 		res.render("user/view-product", {
 			product,
@@ -566,21 +602,26 @@ router.post("/updatePassword", verifyLogin, async (req, res) => {
 
 
 
-router.post("/check-coupon", async (req, res) => {
+router.post("/check-coupon",verifyLogin, async (req, res) => {
 	try {
 		console.log('req.bodyyyy')
 		console.log(req.body)
 		let total = await userHelper.getTotalAmount(req.session.user._id);
+		
 
-		userHelper.checkCoupon(req.body, total, req.session.user._id).then((response) => {
+		userHelper.checkCoupon(req.body, total.cartTotal, req.session.user._id).then((response) => {
 			console.log('responseeeeeeeeee')
 			console.log(response)
 			if (response.status) {
 				req.session.Total = response.totalAmount
 				Math.round(response.totalAmount)
 				response.totalAmount = Math.round(response.totalAmount);
+				response.discount=total.cartTotal-response.totalAmount
+				console.log(total,"have a nice total");
+				response.actual=total.cartTotal
 
-				res.json({total: response.totalAmount})
+				console.log(response);
+				res.json(response)
 			} else {
 				res.redirect('/place-order')
 			}
@@ -590,7 +631,10 @@ router.post("/check-coupon", async (req, res) => {
 	}
 });
 
+router.get('/otp-verify',(req, res) => {
 
+  res.render('user/otp-verify')
+})
 
 
 module.exports = router;

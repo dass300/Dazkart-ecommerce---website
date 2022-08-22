@@ -1,165 +1,209 @@
-{{!-- <div class="row">
-    <div class="col-md-6 m-auto">
-        <div class=" mt-5 pl-5">
-            <h2 class="text-center">Create new account</h2>
-            <form action="/admin/admin-signup" method="POST">
-                <div class="form-group">
-                    <label for="">Name</label>
-                    <input type="text" class="form-control" name="Name" placeholder="Enter Name">
-                </div>
 
-                <div class="form-group">
-                    <label for="">Email address</label>
-                    <input type="email" class="form-control" name="Email" placeholder="Enter email">
-                </div>
+<style>
+    body {
+        background: #3a1f15;
+        font-family: 'Roboto', sans-serif;
+    }
 
-                <div class="form-group">
-                    <label for="">Password</label>
-                    <input type="password" class="form-control" name="Password" placeholder="Password">
+    .login-box {
+        margin-top: 75px;
+        height: auto;
+        background: #1A2226;
+        text-align: center;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
 
+    .login-key {
+        height: 100px;
+        font-size: 80px;
+        line-height: 100px;
+        background:
+            -webkit-linear-gradient(#27EF9F, #0DB8DE);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .login-title {
+        margin-top: 15px;
+        text-align: center;
+        font-size: 30px;
+        letter-spacing: 2px;
+        margin-top: 15px;
+        font-weight: bold;
+        color: #ECF0F5;
+    }
+
+    .login-form {
+        margin-top: 25px;
+        text-align: left;
+    }
+
+    input[type=text] {
+        background-color: #1A2226;
+        border:
+            none;
+        border-bottom: 2px solid #0DB8DE;
+        border-top: 0px;
+        border-radius: 0px;
+        font-weight: bold;
+        outline: 0;
+        margin-bottom: 20px;
+        padding-left: 0px;
+        color:
+            #ECF0F5;
+    }
+
+    input[type=password] {
+        background-color: #1A2226;
+        border: none;
+        border-bottom: 2px solid #0DB8DE;
+        border-top: 0px;
+        border-radius: 0px;
+        font-weight: bold;
+        outline: 0;
+        padding-left: 0px;
+        margin-bottom: 20px;
+        color:
+            #ECF0F5;
+    }
+
+    .form-group {
+        margin-bottom: 40px;
+        outline: 0px;
+    }
+
+    .form-control:focus {
+        border-color: inherit;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border-bottom: 2px solid #0DB8DE;
+        outline: 0;
+        background-color: #1A2226;
+        color: #ECF0F5;
+    }
+
+    input:focus {
+        outline: none;
+        box-shadow: 0 0 0;
+    }
+
+    label {
+        margin-bottom: 0px;
+    }
+
+    .form-control-label {
+        font-size: 10px;
+        color: #6C6C6C;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    .btn-outline-primary {
+        border-color: #0DB8DE;
+        color: #0DB8DE;
+        border-radius:
+            0px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        box-shadow: 0 1px 3px rgba(0, 0,
+                0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    .btn-outline-primary:hover {
+        background-color: #0DB8DE;
+        right: 0px;
+    }
+
+    .login-btm {
+        float: left;
+    }
+
+    .login-button {
+        padding-right: 0px;
+        text-align: right;
+        margin-bottom: 25px;
+    }
+
+    .login-text {
+        text-align: left;
+        padding-left: 0px;
+        color: #A2A4A4;
+    }
+
+    .loginbttm {
+        margin-left: 25px;
+        padding: 0px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-2"></div>
+        <div class="col-lg-6 col-md-8 login-box">
+
+            {{!-- <div class="col-lg-12 login-key"> --}}
+            <div class="">
+                {{!-- <i class="fa fa-key" aria-hidden="true"></i> --}}
+            </div>
+        
+
+            <div class="col-lg-12 login-title">
+                CREATE ADMIN
+            </div>
+
+            <div class="col-lg-12 login-form">
+                <div class="col-lg-12 login-form">
+
+                    <form id="submit-form" action="/admin/admin-signup" method="post">
+
+                        <div class="form-group">
+
+                            <label class="form-control-label"> NAME </label>
+                            <input type="text" name="name" id="contact-name" placeholder="Enter Name"
+                                class="form-control" i/>
+
+                        </div>
+                        <div class="form-group">
+
+                            <label class="form-control-label"> EMAIL </label>
+                            <input type="email" name="email" id="contact-email" placeholder="Enter Email"
+                                class="form-control" i/>
+
+                        </div>
+
+                        {{!-- <div class="form-group">
+
+                            <label class="form-control-label"> EMAIL</label>
+                            <input type="email" name="email" id="contact-email" placeholder="Email Id"
+                                class="form-control" i />
+
+                        </div> --}}
+
+                        <div class="form-group">
+
+                            <label class="form-control-label">PASSWORD</label>
+                            <input type="password" name="Password" id="contact-password" placeholder="Password"
+                                class="form-control" i />
+
+                        </div>
+
+                        <div class="col-lg-12 loginbttm">
+                            <div class="col-lg-6 login-btm login-text">
+                                <!-- Error Message -->
+                            </div>
+
+                            <div class="ml-3">
+                                <a href="/admin/admin-login">Already have account?</a>
+                            </div>
+
+                            <div class="col-lg-6 login-btm login-button">
+                                <button type="submit" class="btn btn-outline-primary">CREATE</button>
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
-                <a href="/admin/admin-login">Already have account ?</a>
-                <button type="submit" class="btn btn-primary float-right">Signup</button>
-            </form>
+            </div>
+            <div class="col-lg-3 col-md-2"></div>
         </div>
-
     </div>
-
-</div> --}}
-
-
-
-
-<div class="row">
-    <div class="col-md-6 m-auto">
-        <div class=" mt-5 pl-5">
-            <h2 class="text-center">Create new Admin account</h2>
-
-            <form id="submit-form" action="/admin/admin-signup" method="POST">
-                
-                <div class="form-group">
-
-                    <label for="">Name</label>
-                    <input type="text" class="form-control"  name="name" id="contact-name" onkeyup="validateName()" placeholder="Enter Name" />
-                    <span id="name-error" class=" font-weight-bold" style="color:red"></span>
-                    {{!-- <input type="text" class="form-control" name="Name" placeholder="Enter Name"> --}}
-                </div>
-
-                <div class="form-group">
-                    <label for="">Email address</label>
-                    <input type="email" name="email" id="contact-email" onkeyup="validateEmail()"  placeholder="Email id" class="form-control">
-                    <span id="email-error" style="color:red" class=" font-weight-bold"></span>
-                    {{!-- <input type="email" class="form-control" name="Email" placeholder="Enter email"> --}}
-                </div>
-
-                <div class="form-group">
-                    <label for="">Password</label>
-                     <input type="password" name="Password" id="contact-password" onkeyup="validatePassword()"  placeholder="Password" class="form-control">
-                     <span id="password-error" style="color:red" class=" font-weight-bold"></span>
-                    {{!-- <input type="password" class="form-control" name="Password" placeholder="Password"> --}}
-
-                </div>
-                <a href=" /admin/admin-login">Already have account ?</a>
-                <button type="submit"  onclick="return validateForm()" class="btn btn-primary float-right mb-4">Create</button>
-                 <span id="submit-error" style="color:red" class=" font-weight-bold" ></span> 
-                {{!-- <button type="sumbit" class="btn btn-primary float-right">Signup</button> --}}
-            </form>
-        </div>
-
-    </div>
-
-</div>
-
-<script>
-
-var nameError = document.getElementById('name-error');
-var emailError = document.getElementById('email-error');
-var passwordError = document.getElementById('password-error');
-var submitError = document.getElementById('submit-error');
-
-
-
-
-
-function validateName(){
-  var name = document.getElementById('contact-name').value;
-
-  if(name.length == 0){
-    nameError.innerHTML = 'Name is required';
-    return false;
-  }
-  
-
-   if(!name.match(/^[A-Za-z]+ [A-Za-z]+$/)){
-
-     nameError.innerHTML = 'write full name';
-     return false;
-
-   }
-   nameError.innerHTML = 'valid';
-   nameError.style.color="seagreen";
-   return true;
-}
-
-
-function validateEmail(){
-  var email = document.getElementById('contact-email').value;
-
-  if(email.length == 0){
-    emailError.innerHTML = 'Email is required';
-    return false;
-  }
-
-
-  if(!email.match(/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/)){
-        emailError.innerHTML = 'Email invalid'
-        return false;
-
-   }
-
-
-   
-   emailError.innerHTML = 'valid';
-   emailError.style.color="seagreen";
-
-   return true;
-}
-
-function validatePassword(){
-  var password = document.getElementById('contact-password').value;
-
-  if(password.length == 0){
-    passwordError.innerHTML = 'Password is required';
-    return false;
-  }
-
-  if(password.length < 3){
-    passwordError.innerHTML = 'Min.3 characters';
-    return false;
-  }
-
-   passwordError.innerHTML = 'valid';
-   passwordError.style.color="seagreen";
-   return true;
-
-
-}
-
-function validateForm(){
-  if(!validateName() || !validateEmail() || !validatePassword()){
-    submitError.style.display = 'block';
-    submitError.innerHTML = 'Please fix error to submit';
-    
-    setTimeout(function(){submitError.style.display='none';}, 3000);
-    return false;
-
-  submitError.innerHTML = 'valid';
-  submitError.style.color="seagreen";
-   return true;
-
-  }
-
-  
-}
-
-</script>

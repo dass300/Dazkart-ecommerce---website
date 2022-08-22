@@ -179,9 +179,9 @@ data-endspeed="1000"
                                 {{#each men}}
 
                         <div class="men-single">
-                            <a href="/select-product/{{this._id}}"><img src="/product-image/{{this.image.[0]}}" alt="">
+                            <a href="/select-product/{{this._id}}"><img src="/product-image/{{this.image.[0]}}" alt=""></a>
 
-                            </a>
+                           
 
                             <div class="hot-wid-rating">
                                 <h4><a href="#" name="Name">{{this.Name}}</a></h4>
@@ -193,9 +193,17 @@ data-endspeed="1000"
                                 <div class="product-wid-price mt-3">
                                     <ins>Rs.{{this.Price}}</ins>
                                 </div>
-                                {{!-- <a href="/add-to-cart/{{this._id}}" class="btn btn-primary">Add to cart</a> --}}
+                            
+                                    {{!-- {{#if user}}
                                 <button onclick="addToCart('{{this._id}}')" class="btn btn-primary">Add to cart</button>
-                                 <a href="" onclick="addToWishlist('{{this._id}}')"><i class="fa fa-heart-o fa-2x"></i></a>
+                                    {{else}}
+                                <button href="/user-login" class="btn btn-primary">Add to cart</button>
+                                    {{/if}} --}}
+
+                                <button onclick="addToCart('{{this._id}}')" class="btn btn-primary">Add to cart</button>
+                            
+                                <a href="/wishlist" onclick="addToWishlist('{{this._id}}')"><i class="fa fa-heart-o fa-2x"></i></a>
+
                             </div>
                         </div>
                                         {{/each}} 
@@ -347,15 +355,15 @@ data-endspeed="1000"
                                         <i class="fa fa-quote-left"></i>
                                     </div>
                                     <div class="content">
-                                        <p> Till the one day when the lady met this fellow and they knew it was much more than a hunch. These Happy Days are yours and mine Happy Days. Its mission to explore strange new worlds to seek out new man has gone before.</p>
+                                        <p> Dazkart no:1,Shopping site i have ever seen.There is no other place for buying quality products.Awesome service,Super fast delivery speed.One and only Dazkart.</p>
                                     </div>
                                     <div class="client">
                                         <div class="image">
-                                            <img src="/img/customer.png" alt="#">
+                                            <img src="/img/tt-1.png" alt="#">
                                         </div>
                                         <div class="c_text_inner">
-											<h4>Micheal Clerk</h4>
-											<h5>Customer Sydney</h5>
+											<h4>Mr.Praveen</h4>
+											<h5>Flutter community,Netherlands</h5>
 										</div>
                                     </div>
                                 </div>
@@ -364,15 +372,15 @@ data-endspeed="1000"
                                         <i class="fa fa-quote-left"></i>
                                     </div>
                                     <div class="content">
-                                        <p> Till the one day when the lady met this fellow and they knew it was much more than a hunch. These Happy Days are yours and mine Happy Days. Its mission to explore strange new worlds to seek out new man has gone before.</p>
+                                        <p>  Very Nice E-commerce website provideing topnoach products and excellent service in an affordable budget.</p>
                                     </div>
                                     <div class="client">
                                         <div class="image">
-                                            <img src="/img/customer.png" alt="#">
+                                            <img src="/img/tt-3.png" alt="#">
                                         </div>
                                         <div class="c_text_inner">
-											<h4>Micheal Clerk</h4>
-											<h5>Customer Sydney</h5>
+											<h4>Mr.Akhil</h4>
+											<h5>CEO,Star-PYn,san Francisco</h5>
 										</div>
                                     </div>
                                 </div>
@@ -381,15 +389,15 @@ data-endspeed="1000"
                                         <i class="fa fa-quote-left"></i>
                                     </div>
                                     <div class="content">
-                                        <p> Till the one day when the lady met this fellow and they knew it was much more than a hunch. These Happy Days are yours and mine Happy Days. Its mission to explore strange new worlds to seek out new man has gone before.</p>
+                                        <p> Only providing Excllent product and awesome quality.Unbelivable price.</p>
                                     </div>
                                     <div class="client">
                                         <div class="image">
-                                            <img src="/img/customer.png" alt="#">
+                                            <img src="/img/tt-2.png" alt="#">
                                         </div>
                                         <div class="c_text_inner">
-											<h4>Micheal Clerk</h4>
-											<h5>Customer Sydney</h5>
+											<h4>Shiek Jazzim Kalid</h4>
+											<h5>Qatar</h5>
 										</div>
                                     </div>
                                 </div>

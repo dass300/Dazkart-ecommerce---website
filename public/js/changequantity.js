@@ -15,6 +15,7 @@ function changeQuantity(cartId,proId,userId,count){
         success:(response)=>{
             if(response.removeProduct){
                 // alert('Product Removed from Cart')
+                
                 location.reload()
 
             }else{
@@ -24,6 +25,8 @@ function changeQuantity(cartId,proId,userId,count){
         }
     })
 }
+
+
 
 
 function removeProduct(cartId,proId,userId) {
@@ -39,7 +42,10 @@ function removeProduct(cartId,proId,userId) {
         method: 'post',
         success: (response) => {
             if (response.removeProduct) {
-                alert("Product removed from cart")
+                // alert("Product removed from cart")
+                swal("", "Your Prdouct has been deleted!", "");
+                
+                  
                 location.reload()
             } else {
             }

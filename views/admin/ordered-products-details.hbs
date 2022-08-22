@@ -1,0 +1,177 @@
+<div class="card mt-5 ">
+        <div class="card-header py-3">
+       
+          <div class="row g-3 align-items-center">
+            <div class="col-12 col-lg-4 col-md-6 me-auto">
+              <h5 class="mb-1">{{data.[0].date}}</h5>
+              <p class="mb-0"><span>Order Id :</span>{{data.[0]._id}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="row row-cols-1 row-cols-xl-2 row-cols-xxl-3">
+            <div class="col">
+              <div class="card border shadow-none radius-10">
+                <div class="card-body">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="icon-box bg-light-primary border-0">
+                      <i class="bi bi-person text-primary"></i>
+                    </div>
+                    <div class="info">
+                      <h6 class="mb-2">Customer</h6>
+                      <p class="mb-1">{{data.[0].user.Name}}</p>
+                      <p class="mb-1">{{data.[0].user.Email}}</p>
+                      <p class="mb-1">{{data.[0].user.Phone}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card border shadow-none radius-10">
+                <div class="card-body">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="icon-box bg-light-success border-0">
+                      <i class="bi bi-truck text-success"></i>
+                    </div>
+                    <div class="info">
+                      <h6 class="mb-2">Order info</h6>
+                      <p class="mb-1"><strong>Shipping</strong> : Red Express</p>
+                      <p class="mb-1"><strong>Pay Method</strong><span>:</span>{{data.[0].paymentMethod}}</p>
+                      <p class="mb-1"><strong>Status  :</strong>{{data.[0].status}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col">
+              <div class="card border shadow-none radius-10">
+                <div class="card-body">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="icon-box bg-light-danger border-0">
+                      <i class="bi bi-geo-alt text-danger"></i>
+                    </div>
+                    <div class="info">
+                      <h6 class="mb-2">Deliver to</h6>
+                      {{!-- <p class="mb-1"><strong>City</strong> : Sydney, Australia</p> --}}
+                      <p class="mb-1"><strong>Address</strong> : {{data.[0].address.addressDetail.Housename}}, <br>{{data.[0].address.addressDetail.Streetname}}, <span>{{data.[0].address.addressDetail.State}}</span></p>
+                      <p class="mb-1"><strong>Pincode</strong> :{{data.[0].address.addressDetail.Pin}}</p>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end row-->
+
+          <div class="row">
+            <div class="col-12 col-lg-8">
+              <div class="card border shadow-none radius-10">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="" class="table align-middle mb-0">
+                      <thead class="table-light">
+                        <tr>
+                          <th>Product</th>
+                          <th>Unit Price</th>
+                          <th>Quantity</th>
+                          <th>Total</th>
+                          <th>Discount</th>
+                          
+                        </tr>
+                       
+                      </thead>
+                      <tbody>
+                           {{#each data}}
+                        <tr>
+                       
+
+                          <td>
+                            <div class="orderlist">
+                              <a class="d-flex align-items-center gap-2" href="">
+                                <div class="product-box">
+                                  <img src="/product-image/{{this.productlist.Image.[0]}}" alt="">
+                                </div>
+                                <div>
+                                  <P class="mb-0 product-title"></P>
+                                </div>
+                              </a>
+                            </div>
+                          </td>
+                          <td>{{this.productlist.Price}}</td>
+                          <td>{{this.quantity}}</td>
+                          <td>{{this.actualPrice}}</td>
+                          <td>{{this.discount}}</td>
+                          
+                        
+
+                        </tr>
+                          {{/each}}
+                        <td class="float-end">Grand Total:{{data.[0].totalAmount}}</td>
+
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <div class="col-12 col-lg-4">
+              <div class="card border shadow-none bg-light radius-10">
+                <div class="card-body">
+                  <div class="d-flex align-items-center mb-4">
+                    <div>
+                      <h5 class="mb-0">Order Summary</h5>
+                    </div>
+                    <div class="ms-auto">
+                      <button type="button" class="btn alert-success radius-30 px-4">{{data.[0].status}}</button>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center mb-3">
+                    <div>
+                      <p class="mb-0">Grand Total</p>
+                    </div>
+                    <div class="ms-auto">
+                      <h5 class="mb-0">{{data.[0].totalAmount}}</h5>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center mb-3">
+                    <div>
+                      <p class="mb-0">Discount</p>
+                    </div>
+                    <div class="ms-auto">
+                      <h5 class="mb-0">{{data.[0].discount}}</h5>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center mb-3">
+                    <div>
+                      <p class="mb-0">Shipping Price</p>
+                    </div>
+                    <div class="ms-auto">
+                      <h5 class="mb-0">0.00</h5>
+                    </div>
+                  </div>
+                  
+                  
+                  
+                </div>
+              </div>
+
+              
+
+
+            </div>
+          </div>
+          <!--end row-->
+
+        </div>
+      </div>

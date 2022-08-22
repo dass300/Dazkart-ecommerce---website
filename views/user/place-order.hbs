@@ -1,161 +1,229 @@
-<section class="check-contact section-padding">
-  <div class="container">
 
-
-
-    {{!-- <section>
-      <div class="container mt-5"> --}}
-        <form id="checkout-form" >
-          <div class="row">
-
-          <h2>Choose Address</h2>
-          
-          <div class="col-md-12 col-sm-12 col-xs-12">
-
-            <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
-						{{#each savedAddress}}
-            <label class="radio-inline">
-                <input  name="address" type="radio" name="inlineRadioOptions" id="inlineRadio1" value={{this.address.address}},{{this.address.pincode}},{{this.address.town}}>{{this.address.address}},{{this.address.pincode}},{{this.address.town}}
-              </label>
-						{{!-- <p>{{this.address.address}}</p>
-						<p>{{this.address.pincode}}</p>
-						<p>{{this.address.town}}</p> --}}
-            
-						{{/each}}
-					</div>
-
-            {{!-- <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
-
-              <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> E-199 kalka ji New Delhi infront
-                of Sanatan Dharam Mandir New Delhi 110019
-              </label>
-
-            </div> --}}
-            
-            {{!-- <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
-              <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> E-199 kalka ji New Delhi infront
-                of Sanatan Dharam Mandir New Delhi 110019
-              </label>
-            </div>
-          
-          
-            <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
-              <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> E-199 kalka ji New Delhi infront
-                of Sanatan Dharam Mandir New Delhi 110019
-              </label>
-            </div> --}}
-          
-          </div>
-
-
-
-
-        
-
-            <div class="col-md-6">
-              <h2>Enter Deliver Details</h2><br>
-
-              <div>
-
-                <label for="">Address</label>
-                <input class="form-control" type="text" id="address" name="address" />
-
-                <label for="">Pincode</label>
-                <input class="form-control" type="text" id="pincode" name="pincode" />
-
-                <label for="">Town</label>
-                <input class="form-control" type="text" id="town" name="town" />
-                <input type="text" name="userId" id="" value="{{user._id}}" hidden>
-
-              </div>
-              <div class="bill-text">
-                <input type="checkbox" name="vehicle" value="Bike"> Ship Items To The Above Billing Address<br>
-                {{!-- <a></a><input type="checkbox" href="/user-profile">Create new Address</a><br> --}}
-                <a href="/user-profile">Create new Address</a>
-
-
-                </label>
-              </div>
-            </div>
-
-               {{!-- <div class="col-md-6">
-                    <div class="headline">
-
-                        <h2>Order summary</h2>
-                    </div>
-                    {{!-- <div class="summary">
-                        <h2>Products<span>Total</span></h2> --}}
-
-
-                        
-                    {{!-- {{#each product}}
-                        <p>{{this.product.Name}}<span>{{this.product.Price}}</span>
-                        </p>
-                {{/each }} --}}
-
-                        {{!-- <h3 class="line">Cart subtotal<span>$155</span></h3> --}}
-                        {{!-- <h3 class="line2">Shipping<span class="mcolor">Free shipping</span></h3>
-                        <h3>Order Total Price<span>Rs{{total}} </span></h3>
-
-                    </div>
-                </div> --}}
-
-
-            <div class="col-md-5 col-sm-5 col-xs-12">
-              <div class="headline">
-
-                {{!-- <h4 class="line2">Shipping<span class="mcolor">You are eligible for Free shipping</span></h4> --}}
-                <h3>Total Amount : Rs <span id="total-amount">{{total}}</span></h3>
-                <hr>
-                <div class="payment">
-                  <p>Payment Method</p>
-                  <label class="radio-inline" for="">
-                    <input type="radio" name="payment-method" value="COD" checked>COD
-                  </label>
-
-                  <label class="radio-inline mt-2" for="">
-                    <input type="radio" name="payment-method" value="RAZORPAY">RazorPay
-                  </label>
-
-                  <label class="radio-inline mt-2" for="">
-                    <input type="radio" name="payment-method" value="PAYPAL">Paypal
-                  </label>
-                  <button class="btn btn-primary float-right " type="submit">Checkout</button>
-
-
-
-
-                </div>
-
-              </div>
-
-
-            </div>
-
-          </div>
-
-
-
-
-        </form>
+    {{#if cartItems}}
+    
+		<section class="check-contact section-padding">
+      <div class="container">
         <div class="row">
-          <div class="col-md-4 col-sm-4 col-xs-12 mt-3">
-            <div class="theme-box">
-                <h4>Apply coupon code here</h4>
-                <p>Enter your coupon code</p>
-                <form id="discount-coupon" action="/check-coupon" method="POST">
-                    <input type="text" name="coupon"/>
-                    <button type="submit" class="btn btn-default right-cart">Apply code</button>
-                </form>
+    
+    
+    
+          {{!-- <section>
+            <div class="container mt-5"> --}}
+              <form id="checkout-form">
+                <div class="row">
+    
+                  <h2>Choose Address</h2>
+    
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+    
+                    <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
+                      {{#each savedAddress}}
+                      <label class="radio-inline">
+                        <input name="address" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                          value={{this.address.address}},{{this.address.pincode}},{{this.address.town}}>{{this.address.address}},{{this.address.pincode}},{{this.address.town}}
+                      </label>
+                      {{!-- <p>{{this.address.address}}</p>
+                      <p>{{this.address.pincode}}</p>
+                      <p>{{this.address.town}}</p> --}}
+    
+                      {{/each}}
+                    </div>
+    
+                    {{!-- <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
+    
+                      <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> E-199 kalka ji New
+                        Delhi infront
+                        of Sanatan Dharam Mandir New Delhi 110019
+                      </label>
+    
+                    </div> --}}
+    
+                    {{!-- <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
+                      <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> E-199 kalka ji New
+                        Delhi infront
+                        of Sanatan Dharam Mandir New Delhi 110019
+                      </label>
+                    </div>
+    
+    
+                    <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
+                      <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> E-199 kalka ji New
+                        Delhi infront
+                        of Sanatan Dharam Mandir New Delhi 110019
+                      </label>
+                    </div> --}}
+    
+                  </div>
+    
+    
+    
+    
+    
+    
+                  <div class="col-md-6">
+                    <h2>Enter Deliver Details</h2><br>
+    
+                    <div>
+    
+                      <label for="">Address</label>
+                      <input class="form-control" type="text" id="address" name="address" />
+    
+                      <label for="">Pincode</label>
+                      <input class="form-control" type="text" id="pincode" name="pincode" />
+    
+                      <label for="">Town</label>
+                      <input class="form-control" type="text" id="town" name="town" />
+                      <input type="text" name="userId" id="" value="{{user._id}}" hidden>
+    
+                    </div>
+                    <div class="bill-text">
+                      <input type="checkbox" name="vehicle" value="Bike"> Ship Items To The Above Billing Address<br>
+                      {{!-- <a></a><input type="checkbox" href="/user-profile">Create new Address</a><br> --}}
+                      <a href="/user-profile">Create new Address</a>
+    
+    
+                      </label>
+                    </div>
+                  </div>
+    
+                  <div class="col-md-5 col-sm-5 col-xs-12">
+												<div class="">
+													<h2>Order summary</h2>
+												</div>
+                    <div class="summary">
+
+                      <h2>Products<span>Total</span></h2>
+                       {{#each product}}
+
+                      <p>{{this.product.Name}}<span>{{this.product.Price}}</span></p>
+                      
+                       {{/each}}
+
+                       <p>Actual Amount : Rs <span id="actual-amount">{{total}}</span></p>
+                       <p >Coupon Discount : Rs <span id="off-amount">0</span></p>
+                       
+                      </p>
+                      <h3 class="line2">Shipping<span class="mcolor">Free shipping</span></h3>
+                      <h5>Payable Price<span  id="total-amount">{{total}}</span></h5>
+
+                    </div>
+                  </div>
+    
+    
+                  {{!-- <div class="col-md-5 col-sm-5 col-xs-12">
+                    <div class="">
+
+										
+                     
+                     
+                      <hr>
+                      <div class="payment">
+                        <p>Payment Method</p>
+
+												 <label class="radio-inline mt-2" for="">
+                          <input type="radio" name="payment-method" value="PAYPAL">Paypal
+                        </label>
+
+                        <label class="radio-inline" for="">
+                          <input type="radio" name="payment-method" value="COD" checked>COD
+                        </label>
+    
+                        <label class="radio-inline mt-2" for="">
+                          <input type="radio" name="payment-method" value="RAZORPAY">RazorPay
+                        </label>
+    
+                       
+                        <button class="btn btn-primary float-right " type="submit">Checkout</button>
+    
+    
+    
+    
+                      </div>
+                    </div> --}}
+
+
+															<div class="col-md-5 col-sm-5 col-xs-12">
+																						<div class="">
+																							<h2>Payment Method</h2>
+																						</div>
+																<div class="summary">
+
+
+																	 <div class="payment">
+                        <p>Payment Method</p>
+
+												 <label class="radio-inline mt-2" for="">
+                          <input type="radio" name="payment-method" value="PAYPAL">Paypal
+                        </label>
+
+                        <label class="radio-inline" for="">
+                          <input type="radio" name="payment-method" value="COD" checked>COD
+                        </label>
+    
+                        <label class="radio-inline mt-2" for="">
+                          <input type="radio" name="payment-method" value="RAZORPAY">RazorPay
+                        </label>
+    
+                       
+                        <button class="btn btn-primary float-right " type="submit">Checkout</button>
+
+
+
+
+
+
+																	 </div>
+                    						</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+                  </div>
+    
+                </div>
+    
+    
+    
+    
+              </form>
+              <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12 mt-3">
+                  <div class="theme-box">
+                    <h4>Apply coupon code here</h4>
+                    <p>Enter your coupon code</p>
+                    <form id="discount-coupon" action="/check-coupon" method="POST">
+                      <input type="text" name="coupon" />
+                      <button type="submit" class="btn btn-default right-cart">Apply code</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+    
             </div>
         </div>
-        </div>
-
-      </div>
     </section>
+		{{else}}
+<div class=" d-flex justify-content-center p-5">
+	<h1>SORRY,YOUR CART IS EMPTY!!!</h1>
+</div>
+		{{/if}}
 
     <script>
       $("#discount-coupon").submit((e) => {
@@ -165,8 +233,11 @@
           method: 'post',
           data: $('#discount-coupon').serialize(),
           success: (response) => {
-            if(response.total){
-              document.getElementById('total-amount').innerHTML = response.total
+            console.log(response)
+            if(response.actual){
+              document.getElementById('total-amount').innerHTML = response.totalAmount
+              document.getElementById('off-amount').innerHTML = response.discount
+              document.getElementById('actual-amount').innerHTML = response.actual
             }
           }
         })

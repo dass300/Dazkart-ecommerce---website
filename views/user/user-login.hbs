@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Design by foolishdeveloper.com -->
-    <title>Glassmorphism login Form Tutorial in html css</title>
  
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -21,11 +19,13 @@ body{
     
 
     background-color: #f89e18e4;
+    height: 100vh;
 
 }
+
 .background{
     width: 430px;
-    height: 520px;
+    height: 100vh;
     position: absolute;
     transform: translate(-50%,-50%);
     left: 50%;
@@ -55,7 +55,7 @@ body{
     bottom: -80px;
 }
 form{
-    height: 520px;
+    height: auto;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
@@ -84,7 +84,7 @@ form h3{
 
 label{
     display: block;
-    margin-top: 30px;
+    margin-top: 5px;
     font-size: 16px;
     font-weight: 500;
 }
@@ -145,28 +145,127 @@ button{
     </div>
 
     <form action=" /user-login" method="post">
-        <h3>DazKart</h3>
-        {{!-- <h2>Login Page</h2> --}}
 
-        {{!-- <label for="Email address">Email address</label>
-        <input type="email" name="Email" placeholder="Email address" id="Email address"> --}}
+<div class="d-flex justify-content-around">
+  <div>
+        {{!-- <p><img src="/img/D- fav-01.png" href="/"  alt="dazkart.shop" width="50px" height="auto"></p> --}}
+        <p><a href="/"><img src="/img/D- fav-01.png"alt="" width="50px" height="auto"></a></p>
+
+  </div>
+  <div>
+
+        <a href="/"><h3 >DazKart Login</h3></a>
+  </div>
+</div>
+
+        {{!-- <h3><a href="/"><img src="/img/D- fav-01.png"alt="dazkart.shop" width="50px" height="auto"></a>DazKart Login</h3> --}}
+        
+       
 
         <label class="form-label" for="Email address">Email address</label>
-        <input type="Email" id="Email address" name="Email" class="form-control" />
+
+        {{!-- <input type="Email" id="Email address" name="Email" class="form-control" /> --}}
+
+        <input type="email" name="Email" id="contact-email" onkeyup="validateEmail()" placeholder="Email id" class="form-control">
+      <span id="email-error" style="color:red" class=" font-weight-bold"></span>
 
         <label class="form-label" for="Password">Password</label>
-        <input type="Password" id="Password" name="Password" class="form-control" />
+
+        {{!-- <input type="Password" id="Password" name="Password" class="form-control" /> --}}
+
+       
+      <input type="password" name="Password" id="contact-password"  onkeyup="validatePassword()" placeholder="Password"
+        class="form-control">
+      <span id="password-error" style="color:red" class=" font-weight-bold"></span>
 
 
 
-        <button  type="submit" class="btn btn-primary">Log In</button>
-         <div class="social">
-          <div class="col">
-                        <!-- Simple link -->
-                        <a class="btn btn-grey" href=" /user-signup">Create new account</a>
-                    </div>
+        <button  type="submit" onclick="return validateForm()" class="btn btn-primary">Log In</button>
+         <span id="submit-error" style="color:red" class=" font-weight-bold"></span>
+         
+        <div class="social">
+            <div class="col">
+                {{!-- <a class="btn" href=" /user-signup">Create new account</a> --}}
+                {{!-- <a href="/user-signup" class="btn btn-default" role="button">Create New Account</a> --}}
+                <a href="/user-signup" class="btn btn-default">Create New Account</a>
+
+            </div>
           
-          {{!-- <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div> --}}
+          
     </form>
+
+<script>
+
+  var emailError = document.getElementById('email-error');
+  var passwordError = document.getElementById('password-error');
+  var submitError = document.getElementById('submit-error');
+
+
+  function validateEmail() {
+    var email = document.getElementById('contact-email').value;
+
+    if (email.length == 0) {
+      emailError.innerHTML = 'Email is required';
+      return false;
+    }
+
+
+    if (!email.match(/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/)) {
+      emailError.innerHTML = 'Email invalid'
+      return false;
+
+    }
+
+    emailError.innerHTML = 'Valid';
+    emailError.style.color = "seagreen";
+
+    return true;
+  }
+
+
+  function validatePassword() {
+    var password = document.getElementById('contact-password').value;
+
+    if (password.length == 0) {
+      passwordError.innerHTML = 'Password is required';
+      return false;
+    }
+
+    if (password.length < 3) {
+      passwordError.innerHTML = 'Min.3 characters';
+      return false;
+    }
+
+    passwordError.innerHTML = 'Valid';
+    passwordError.style.color = "seagreen";
+    return true;
+
+
+  }
+
+
+
+  function validateForm() {
+
+    if ( !validateEmail() || !validatePassword()) {
+      submitError.style.display = 'block';
+      submitError.innerHTML = 'Please Enter the details';
+
+      setTimeout(function () { submitError.style.display = 'none'; }, 3000);
+      return false;
+
+      submitError.innerHTML = 'Valid';
+      submitError.style.color = "seagreen";
+      return true;
+
+    }
+
+
+  }
+
+</script>
+
 </body>
 </html>
+
+

@@ -30,53 +30,45 @@ const verifyAdminLogin = (req, res, next) => {
 // });
 
 router.get("/", verifyAdminLogin, (req, res) => {
-    try{
+    
     res.redirect("/admin/admin-login");
   
     // res.redirect('/')
     req.session.loginErr = false;
-  }catch(err) {
-    res.render("user/404");
-  }
+  
 });
 
 
 router.get("/admin-signup", (req, res, next) => {
-      try{
+     
       res.render("admin/admin-signup");
       // res.send("sdfghjk   ")
-    }catch(err) {
-      res.render("user/404");
-    }
+    
   });
 
 
   router.post("/admin-signup", (req, res) => {
-        try{
+        
         adminHelper.doAdminSignup(req.body).then(() => {
-          res.redirect("/admin/admin-login");
+          res.redirect(" /admin/admin-login");
         });
-      }catch(err) {
-        res.render("user/404");
-      }
+      
     });
 
 //Admin - login
 
 router.get("/admin-login", (req, res) => {
-    try{
+    
     if (req.session.admin) {
       res.render("admin/admin-login");
     }
     // res.send("sdfghjk   ")
-  }catch(err) {
-    res.render("user/404");
-  }
+  
 });
 
 
 router.post("/admin-login", (req, res) => {
-      try{
+      
       adminHelper.doAdminLogin(req.body).then((response) => {
         if (response.status) {
           req.session.adminloggedIn = true;
@@ -87,9 +79,7 @@ router.post("/admin-login", (req, res) => {
           res.redirect("/admin/admin-login");
         }
       });
-    }catch(err) {
-      res.render("user/404");
-    }
+   
   });
 
 //Admin - logout
@@ -112,15 +102,15 @@ router.get("/admin-logout", (req, res) => {
 
 
 router.get("/admin-dash", verifyAdminLogin, function (req, res, next) {
-    try{
+   
     adminHelper.getAllOrders().then(async (order) => {
       let usr = await adminHelper.getUserDetails();
       let codTotal = await adminHelper.codTotal();
       let paypalTotal = await adminHelper.paypalTotal();
       let rasorpayTotal = await adminHelper.rasorpayTotal();
-      console.log(codTotal);
-      console.log(paypalTotal);
-      console.log(rasorpayTotal);
+      // console.log(codTotal);
+      // console.log(paypalTotal);
+      // console.log(rasorpayTotal);
       res.render("admin/admin-dash", {
         order,
         usr,
@@ -130,9 +120,7 @@ router.get("/admin-dash", verifyAdminLogin, function (req, res, next) {
         rasorpayTotal,
       });
     });
-  }catch(err) {
-    res.render("user/404");
-  }
+  
 });
 
 // router.get("/admin-dash", (req, res) => {
@@ -203,7 +191,7 @@ router.get("/product-category", function (req, res, next) {
   router.get("/orders", (req, res) => {
         try{
         adminHelper.salesDaily().then((data) => {
-          console.log(data);
+          // console.log(data);
           res.render("admin/orders", { admin: true });
         });
       }catch(err) {
@@ -540,7 +528,7 @@ router.get("/order-summary", function (req, res) {
 //post changeStatus
 router.post("/changeStatus/:id", async (req, res) => {
     try{
-    console.log(req.body.changeStatus + "     order id is     " + req.params.id);
+    // console.log(req.body.changeStatus + "     order id is     " + req.params.id);
   
     await adminHelper
       .updateStatus(req.body.changeStatus, req.params.id)
@@ -566,7 +554,7 @@ router.post("/changeStatus/:id", async (req, res) => {
     let paypal = await adminHelper.paypalTotal();
     let rasor = await adminHelper.rasorpayTotal();
     let sales = cod + paypal + rasor;
-    console.log("printing cod   " + cod);
+    // console.log("printing cod   " + cod);
     res.render("admin/adminhome", {
       totalOrders,
       user,
@@ -605,7 +593,7 @@ router.get("/coupon", (req, res) => {
 
       adminHelper.addCoupon(req.body).then((response) => {
 
-        console.log(response);
+        // console.log(response);
     
         res.redirect("/admin/coupon");
       });

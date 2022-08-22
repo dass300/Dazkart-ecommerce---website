@@ -1,0 +1,28 @@
+<section class="row" style="background-color:rgb(255, 255, 255);" >
+    <div class=" col-md-6 m-auto">
+        <div class=" mt-5 pl-5 "> 
+            <h2 class="text-center">OTP varification</h2>
+            
+            <form action=" /otp-verify" method="post">
+            {{#if loginErr}}
+            <p class="error">{{loginErr}} </p>
+            {{/if}}
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <h2>Please enter your OTP varification code</code></h2>
+                </div>
+
+                <!-- otp input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form2Example2">OTP</label>
+                    <input type="otp" id="form2Example2" name="otp" class="form-control"/>
+                </div>
+                <!-- Submit button -->
+                <button  type="submit" class="btn btn-primary float-right">verify</button>
+        </div>
+        </form>
+
+    </div>
+    </div>
+</section>
+

@@ -7,7 +7,7 @@
 					<div class="col-md-6 col-sm-5">
 						<div class="user-menu">
 							<ul class="list-unstyled list-inline">
-								<li class="dropdown dropdown-small">
+								{{!-- <li class="dropdown dropdown-small">
 									<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="value">English </span> </a>
 									<ul class="dropdown-menu">
 										<li><a href="#">English</a>
@@ -17,10 +17,10 @@
 										<li><a href="#">German</a>
 										</li>
 									</ul>
-								</li>
+								</li> --}}
 
-								<li class="dropdown dropdown-small">
-									<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="value">USD </span></a>
+								{{!-- <li class="dropdown dropdown-small">
+									<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="value">INR </span></a>
 									<ul class="dropdown-menu">
 										<li><a href="#">USD</a>
 										</li>
@@ -29,7 +29,7 @@
 										<li><a href="#">GBP</a>
 										</li>
 									</ul>
-								</li>
+								</li> --}}
 								<li>Welcome to DAZKART</li>
 						</ul>
 						</div>
@@ -40,7 +40,6 @@
 								<li class="dropdown dropdown-small">
 
 									{{#if user}}
-
 				<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><img class="account" src="/img/account.png" alt="#"><span class="value">{{user.Name}}</span></a>
 									
 												{{else}}
@@ -53,8 +52,7 @@
 										</li>
 										<li><a href="/order">Orders</a>
 										</li>
-										<li><a href="/view-product/{{this._id}}">View Products</a>
-										</li>
+										{{!-- <li><a href="/view-product/{{this._id}}">View Products</a></li> --}}
 										
 										
 									</ul>
@@ -62,9 +60,9 @@
 								</li>
 								<li><a href="/wishlist"><i class="fa fa-heart-o"></i> Wishlist</a>
 								</li>
-								<li>
+								{{!-- <li>
 									<a href="/place-order"><img src="/img/check.png" alt="#"> Checkout</a>
-								</li>
+								</li> --}}
 
 								<ul class="dropdown-menu account-menu">
 										<li><a href="">My account</a>
@@ -105,14 +103,16 @@
 				<div class="row">
 					<div class="col-sm-4 col-md-4 col-xs-12">
 						<div class="logo">
-							<a href="/home-one"><img src="/img/logo.png" alt="">
+							{{!-- <a href="/home-one"><img src="/img/logo.png" alt=""> --}}
+							<a href="/home-one"><img src="/img/logo6.png" alt="">
 							</a>
 						</div>
 					</div>
 
 					<div class="col-sm-8 col-md-8 col-xs-12">
 						
-								<div class="search-area">
+						{{!-- <div class="search-area"> --}}
+						<div class="">
 
 							{{!-- <form>
 								<div class="control-group">
@@ -144,7 +144,7 @@
 
 						</div>
 						
-						<div class="logo_right">
+						<div class="float-end logo_right">
 							<span><i class="fa fa-phone"></i></span>
 							<a href="tel:+112345689">CALL US FREE
 								<br/>+918921653181</a>
@@ -161,10 +161,12 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3 col-sm-3 col-xs-12">
-						<div class="categories">
+						{{!-- <div class="categories"> --}}
+						<div class="">
 							<ul id="nav">
-								<li>Categories <i class="fa fa-bars"></i>
-									{{!-- <ul>
+
+								{{!-- <li>Categories <i class="fa fa-bars"></i>
+									<ul>
 										<li><a href="#"><i class="fa fa-male"></i> Fashion</a> </li>
 										<li><a href="#"><i class="fa fa-clock-o"></i> Watches<i class="fa fa-angle-right icon-right"></i></a>
 										</li>
@@ -184,44 +186,47 @@
 										</li>
 										<li class="last-li"><a href="#">View all categories</a>
 										</li>
-									</ul> --}}
-								</li>
+									</ul>
+								</li> --}}
 							</ul>
 						</div>
 					</div>
+					
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<nav class="main-menu">
+							
 							<ul id="navigation">
-								<li class="active"><a href="#">Home <i class="fa fa-caret-down"></i></a>
-									{{!-- <ul class="drop_nav">
+								{{!-- <li class="active"><a href="/">Home <i class="fa fa-caret-down"></i></a>
+									<ul class="drop_nav">
 										<li><a href="/home-one">Home two</a></li>
 										<li><a href="#">Home three</a></li>
-									</ul> --}}
-								</li>
-								<li><a href="#">Pages <i class="fa fa-caret-down"></i></a>
-									<ul class="drop_nav">
-										{{!-- <li><a href="blog.html">Blog</a></li>
-										<li><a href="checkout.html">Checkout</a></li>
-										<li><a href="product-list.html">Product list</a></li> --}}
-										{{!-- <li><a href="profile.html">Profile</a></li> --}}
-										{{!-- <li><a href="search-result.html">Search result</a></li> --}}
-										{{!-- <li><a href="/select-product">Single product</a></li> --}}
-										<li><a href="/wishlist">wishlist</a></li>
-										<li><a href="/404">404</a></li>
-										{{!-- <li><a href="/modal">modal</a></li> --}}
 									</ul>
+								</li> --}}
+
+								{{!-- <li><a href="#">Pages <i class="fa fa-caret-down"></i></a>
+									<ul class="drop_nav">
+										 <li><a href="blog.html">Blog</a></li>
+										<li><a href="checkout.html">Checkout</a></li>
+										<li><a href="product-list.html">Product list</a></li>
+										<li><a href="profile.html">Profile</a></li>
+										<li><a href="search-result.html">Search result</a></li>
+										<li><a href="/select-product">Single product</a></li>
+										<li><a href="/wishlist">wishlist</a></li>
+										<li><a href="/otp-verify">Otp-verify</a></li> 
+										<li><a href="/modal">modal</a></li> 
+									</ul>
+								</li> --}}
+								{{!-- <li><a href="#">About Us</a>
 								</li>
-								<li><a href="#">About Us</a>
+								<li><a href="/">Men</a>
 								</li>
-								<li><a href="#">Men</a>
-								</li>
-								<li><a href="#">Women</a>
+								<li><a href="/">Women</a>
 								</li>
 								<li><a href="#">Contacts</a>
-								</li>
+								</li> --}}
 							</ul>
 						</nav>
-						
+
 						<!-- Mobile Navigation -->
 						<div class="only-for-mobile">
 							<div class="col-xs-12">
@@ -230,7 +235,7 @@
 								</ul>
 
 								<!-- MOBILE MENU -->
-								<div class="mobi-menu">
+								{{!-- <div class="mobi-menu">
 									<div id='cssmenu'>
 										<ul>
 											<li class='has-sub'>
@@ -267,10 +272,11 @@
 											</li>
 										</ul>
 									</div>
-								</div>
+								</div> --}}
 							</div>
 						</div>
 					</div>
+
 					<div class="col-md-3 col-sm-3 col-xs-12">
 						<div class="menu_right">
 							<a href="/cart"><i class="fa fa-shopping-cart"></i>My Cart</a>

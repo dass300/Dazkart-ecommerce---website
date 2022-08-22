@@ -1,265 +1,311 @@
+<style>
+  {{!-- @import "compass/css3";
 
-  <style>
-    @import "compass/css3";
+  $button: rgba(148, 186, 101, 0.7); --}}
 
-$button: rgba(148,186,101,0.7);
 
-body {
 
-  background: #757574;
-  font-family: sans-serif;
-  font-size: 10px
-}
-form {
-    background: #f89e18e4;
+  body{
 
-  padding: 4em 4em 2em;
-  max-width: 400px;
-  margin: 50px auto 0;
-  box-shadow: 0 0 1em #222;
-  border-radius: 2px;
-  h2 {
-    margin:0 0 50px 0;
-    padding:10px;
-    text-align:center;
-    font-size:30px;
-    color:darken(#e5e5e5, 50%);
-    border-bottom:solid 1px #e5e5e5;
-  }
-  p {
-    margin: 0 0 3em 0;
-    position: relative;
-  }
-  input {
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    outline: none;
-    margin:0;
-  }
-  input[type="text"],
-  input[type="password"] {
-    background: #fff;
-    border: 1px solid #dbdbdb;
-    font-size: 1.6em;
-    padding: .8em .5em;
-    border-radius: 2px;
-  }
-  input[type="text"]:focus,
-  input[type="password"]:focus {
-    background: #fff
-  }
-  span {
-    display:block;
-    background: #F9A5A5;
-    padding: 2px 5px;
-    color: #666;
-  }
-  input[type="submit"] {
-    background: $button;
-    box-shadow: 0 3px 0 0 darken($button, 10%);
-    border-radius: 2px;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    display: block;
-    font-size: 2em;
-    line-height: 1.6em;
-    margin: 2em 0 0;
-    outline: none;
-    padding: .8em 0;
-    text-shadow: 0 1px #68B25B;
-  }
-  input[type="submit"]:hover {
-    background: rgba(148,175,101,1);`
-    text-shadow:0 1px 3px darken($button, 30%);
-  }
-  input[type="submit"]:hover {
     
-  }
-  label{
-    position: absolute;
-    left: 8px;
-    top: 12px;
-    color: #999;
+    background-color:#ca0099e4;
+    font-family: sans-serif;
+    font-size: 12px;
+
     font-size: 16px;
-    display: inline-block;
-    padding: 4px 10px;
-    font-weight: 400;
-    background-color: rgba(255,255,255,0);
-    @include transition(color .3s, top .3s, background-color .8s);
-    &.floatLabel{
-      top: -11px;
-      background-color: rgba(255,255,255,0.8);
-      font-size: 14px;
+    color: rgb(15, 0, 0);
+    letter-spacing: 1.8px;
+    
+    overflow-x: hidden;
+    font-family: Roboto, sans-serif;
+
+  }
+
+
+  form {
+    background: #f89e18e4;
+   
+    padding: 4em 4em 2em;
+    max-width: 500px;
+    margin: 50px auto 0;
+    box-shadow: 0 0 1em #222;
+    border-radius: 30px;
+
+    h2 {
+      margin: 0 0 50px 0;
+      padding: 10px;
+      text-align: center;
+      font-size: 30px;
+      color: darken(#e5e5e5, 50%);
+      border-bottom: solid 1px #e5e5e5;
     }
-	}
-  
-}
-  </style>
+
+    p {
+      margin: 0 0 3em 0;
+      position: relative;
+    }
+
+    input {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      outline: none;
+      margin: 0;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      background: #fff;
+      border: 1px solid #dbdbdb;
+      font-size: 1.6em;
+      padding: .8em .5em;
+      border-radius: 2px;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      background: #fff
+    }
+
+    span {
+      display: block;
+      background: #F9A5A5;
+      padding: 2px 5px;
+      color: #666;
+    }
+
+    input[type="submit"] {
+      background: $button;
+      box-shadow: 0 3px 0 0 darken($button, 10%);
+      border-radius: 2px;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      display: block;
+      font-size: 2em;
+      line-height: 1.8em;
+      margin: 2em 0 0;
+      outline: none;
+      padding: .8em 0;
+      text-shadow: 0 1px #68B25B;
+    }
+
+    input[type="submit"]:hover {
+      background: rgba(148, 175, 101, 1);
+      ` text-shadow: 0 1px 3px darken($button, 30%);
+    }
+
+    input[type="submit"]:hover {}
+
+    label {
+      position: absolute;
+      left: 8px;
+      top: 12px;
+      color: #999;
+      font-size: 16px;
+      display: inline-block;
+      padding: 4px 10px;
+      font-weight: 400;
+      background-color: rgba(255, 255, 255, 0);
+      @include transition(color .3s, top .3s, background-color .8s);
+
+      &.floatLabel {
+        top: -11px;
+        background-color: rgba(255, 255, 255, 0.8);
+        font-size: 14px;
+      }
+    }
+
+  }
+</style>
 </head>
+
 <body>
-  
-    <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
+
+  <div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+
+  <form id="submit-form" action=" /user-signup" method="POST">
+
+    <div class="form-group">
+<div class="mb-4">
+  <h2 class="text-center ">Create New Account</h2>
+</div>
+
+      <label for="">Name</label>
+      <input type="text" class="form-control" name="Name" id="contact-name" onkeyup="validateName()"
+        placeholder="Enter Name" />
+        
+      <span id="name-error" class=" font-weight-bold" style="color:red"></span>
+      
     </div>
 
-     <h2 class="text-center mt-4">Create New Account</h2>
-            <form id="submit-form" action=" /user-signup" method="POST">
-                
-                <div class="form-group">
+    <div class="form-group">
 
-                    <label for="">Name</label>
-                    <input type="text" class="form-control"  name="Name" id="contact-name" onkeyup="validateName()" placeholder="Enter Name" />
-                    <span id="name-error" class=" font-weight-bold" style="color:red"></span>
-                    {{!-- <input type="text" class="form-control" name="Name" placeholder="Enter Name"> --}}
-                </div>
+      <label for="">Email address</label>
+      <input type="email" name="email" id="contact-email" onkeyup="validateEmail()" placeholder="Email id"
+        class="form-control">
+        
+      <span id="email-error" style="color:red" class=" font-weight-bold"></span>
 
-                <div class="form-group">
-                    <label for="">Email address</label>
-                    <input type="email" name="email" id="contact-email" onkeyup="validateEmail()"  placeholder="Email id" class="form-control">
-                    <span id="email-error" style="color:red" class=" font-weight-bold"></span>
-                    {{!-- <input type="email" class="form-control" name="Email" placeholder="Enter email"> --}}
-                </div>
+      
+    </div>
 
-                <div class="form-group">
-                    <label for="">Password</label>
-                     <input type="password" name="Password" id="contact-password" onkeyup="validatePassword()"  placeholder="Password" class="form-control">
-                     <span id="password-error" style="color:red" class=" font-weight-bold"></span>
-                    {{!-- <input type="password" class="form-control" name="Password" placeholder="Password"> --}}
+    <div class="form-group">
 
-                </div>
-                 <div class="form-group">
-                    <label for="">Mobile Number</label>
-                     <input type="mobile" name="mobile" id="contact-mobile" onkeyup="validateMobile()"  placeholder="MobileNumber" class="form-control">
-                     <span id="mobile-error" style="color:red" class=" font-weight-bold"></span>
-                    {{!-- <input type="password" class="form-control" name="Password" placeholder="Password"> --}}
+      <label for="">Password</label>
+      
+      <input type="password" name="Password" id="contact-password" onkeyup="validatePassword()" placeholder="Password"
+        class="form-control">
+        
+      <span id="password-error" style="color:red" class=" font-weight-bold"></span>
+      
 
-                </div>
+    </div>
+    <div class="form-group">
+      <label for="">Mobile Number</label>
+      <input type="mobile" name="mobile" id="contact-mobile" onkeyup="validateMobile()" placeholder="MobileNumber"
+        class="form-control">
+        <div>
 
+      <span id="mobile-error" style="color:red" class=" font-weight-bold"></span>
+        </div>
+      {{!-- <input type="password" class="form-control" name="Password" placeholder="Password"> --}}
 
+    </div>
 
-                <a href="/user-login">Already have account ?</a>
-                <button type="submit"  onclick="return validateForm()" class="btn btn-primary float-right mt-4">Create</button>
-                 <span id="submit-error" style="color:red" class=" font-weight-bold" ></span> 
-                {{!-- <button type="sumbit" class="btn btn-primary float-right">Signup</button> --}}
-            </form>
+<div class="d-flex justify-content-between">
+    <div class="mt-4">
+    <a href="/user-login"class="mt-2" >Already have Account?</a>
+    </div>
+
+    <div class="mt-3">
+    <button type="submit" onclick="return validateForm()" class="btn btn-primary ">Create Account</button>
+    </div>
+</div>
+
+    <span id="submit-error" style="color:red" class=" font-weight-bold"></span>
+    {{!-- <button type="sumbit" class="btn btn-primary float-right">Signup</button> --}}
+  </form>
 
 </body>
+
 </html>
 
 <script>
 
-var nameError = document.getElementById('name-error');
-var emailError = document.getElementById('email-error');
-var passwordError = document.getElementById('password-error');
-var mobileError = document.getElementById('mobile-error');
+  var nameError = document.getElementById('name-error');
+  var emailError = document.getElementById('email-error');
+  var passwordError = document.getElementById('password-error');
+  var mobileError = document.getElementById('mobile-error');
 
-var submitError = document.getElementById('submit-error');
-
-
+  var submitError = document.getElementById('submit-error');
 
 
 
-function validateName(){
-  var name = document.getElementById('contact-name').value;
-
-  if(name.length == 0){
-    nameError.innerHTML = 'Name is required';
-    return false;
-  }
-  
-
-   if(!name.match(/^[A-Za-z]+ [A-Za-z]+$/)){
-     nameError.innerHTML = 'Please write valid name';
-     return false;
-
-   }
-   nameError.innerHTML = 'valid';
-   nameError.style.color="seagreen";
-   return true;
-}
 
 
-function validateEmail(){
-  var email = document.getElementById('contact-email').value;
+  function validateName() {
+    var name = document.getElementById('contact-name').value;
 
-  if(email.length == 0){
-    emailError.innerHTML = 'Email is required';
-    return false;
+    if (name.length == 0) {
+      nameError.innerHTML = 'Name is required';
+      return false;
+    }
+
+
+    if (!name.match(/^[A-Za-z]+ [A-Za-z]+$/)) {
+      nameError.innerHTML = 'Please write valid name';
+      return false;
+
+    }
+    nameError.innerHTML = 'Valid';
+    nameError.style.color = "seagreen";
+    return true;
   }
 
 
-  if(!email.match(/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/)){
-        emailError.innerHTML = 'Email invalid'
-        return false;
+  function validateEmail() {
+    var email = document.getElementById('contact-email').value;
 
-   }
+    if (email.length == 0) {
+      emailError.innerHTML = 'Email is required';
+      return false;
+    }
 
 
-   
-   emailError.innerHTML = 'valid';
-   emailError.style.color="seagreen";
+    if (!email.match(/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/)) {
+      emailError.innerHTML = 'Email invalid'
+      return false;
 
-   return true;
-}
+    }
 
-function validatePassword(){
-  var password = document.getElementById('contact-password').value;
 
-  if(password.length == 0){
-    passwordError.innerHTML = 'Password is required';
-    return false;
+
+    emailError.innerHTML = 'Valid';
+    emailError.style.color = "seagreen";
+
+    return true;
   }
 
-  if(password.length < 3){
-    passwordError.innerHTML = 'Min.3 characters';
-    return false;
-  }
+  function validatePassword() {
+    var password = document.getElementById('contact-password').value;
 
-   passwordError.innerHTML = 'valid';
-   passwordError.style.color="seagreen";
-   return true;
+    if (password.length == 0) {
+      passwordError.innerHTML = 'Password is required';
+      return false;
+    }
 
+    if (password.length < 3) {
+      passwordError.innerHTML = 'Min.3 characters';
+      return false;
+    }
 
-}
+    passwordError.innerHTML = 'Valid';
+    passwordError.style.color = "seagreen";
+    return true;
 
-function validateMobile(){
-  var mobile = document.getElementById('contact-mobile').value;
-
-  if(mobile.length == 0){
-    passwordError.innerHTML = 'Mobile number is required';
-    return false;
-  }
-
-  if(mobile.length < 10){
-    mobileError.innerHTML = 'Please Enter valid mobile number';
-    return false;
-  }
-
-   mobileError.innerHTML = 'valid';
-   mobileError.style.color="seagreen";
-   return true;
-
-
-}
-
-function validateForm(){
-  if(!validateName() || !validateEmail() || !validatePassword() || !validateMobile()){
-    submitError.style.display = 'block';
-    submitError.innerHTML = 'Please fix error to submit';
-    
-    setTimeout(function(){submitError.style.display='none';}, 3000);
-    return false;
-
-  submitError.innerHTML = 'valid';
-  submitError.style.color="seagreen";
-   return true;
 
   }
 
-  
-}
+  function validateMobile() {
+    var mobile = document.getElementById('contact-mobile').value;
+
+    if (mobile.length == 0) {
+      passwordError.innerHTML = 'Mobile number is required';
+      return false;
+    }
+
+    if (mobile.length < 10) {
+      mobileError.innerHTML = 'Please Enter valid mobile number';
+      return false;
+    }
+
+    mobileError.innerHTML = 'Valid';
+    mobileError.style.color = "seagreen";
+    return true;
+
+
+  }
+
+  function validateForm() {
+    if (!validateName() || !validateEmail() || !validatePassword() || !validateMobile()) {
+      submitError.style.display = 'block';
+      submitError.innerHTML = 'Please fix error to submit';
+
+      setTimeout(function () { submitError.style.display = 'none'; }, 3000);
+      return false;
+
+      submitError.innerHTML = 'Valid';
+      submitError.style.color = "seagreen";
+      return true;
+
+    }
+
+
+  }
 
 </script>
