@@ -263,10 +263,12 @@
 							{
 								$group: {
 									_id: null,
-									total: { $sum: {$toInt:'$totalAmount'} },
+									total: { $sum: {$toInt:'$totalAmount.cartTotal'} },
 								}
-							},
+							},	
 						]).toArray()
+						console.log('codtotal');
+						console.log(codtotal);
 						resolve(codtotal[0])
 					})
 				},
@@ -284,10 +286,12 @@
 							{
 								$group: {
 									_id: null,
-									total: { $sum: {$toInt:'$totalAmount'} },
+									total: { $sum: {$toInt:'$totalAmount.cartTotal'} },
 								}
 							},
 						]).toArray()
+						console.log('paypalTotal');
+						console.log(paypalTotal);
 						resolve(paypalTotal[0])
 					})
 				},
@@ -296,7 +300,6 @@
 				rasorpayTotal: () => {
 					return new Promise(async (resolve, reject) => {
 						var rasorpayTotal = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
-
 							{
 								$match: { paymentMethod: "RAZORPAY" }
 							},
@@ -306,10 +309,12 @@
 							{
 								$group: {
 									_id: null,
-									total: { $sum: {$toInt:'$totalAmount'} },
+									total: { $sum: {$toInt:'$totalAmount.cartTotal'} },
 								}
 							},
 						]).toArray()
+						console.log('rasorpayTotal');
+						console.log(rasorpayTotal);
 						resolve(rasorpayTotal[0])
 					})
 				},
@@ -395,5 +400,175 @@
 							resolve(response)
 						})
 					})
-				}
+				},
+			
+      getOrderSingleProducts: (orderId) => {
+    return new Promise(async (resolve, reject) => {
+
+      let orderItems = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
+
+        {
+          $match: { _id: objectId(orderId) }
+        },
+
+        {
+          $unwind: '$product'
+        },
+
+
+        {
+          $project:
+          {
+            item: '$product.item',
+            quantity: '$product.quantity',
+            userId:1,
+			paymentMethod:1,
+            totalAmount: 1,
+            deliveryDetails: 1,
+            date: 1,
+            status: 1
+
+          }
+        },
+
+        {
+          $lookup:
+          {
+            from: collection.PRODUCT_COLLECTION,
+
+            localField: 'item',
+            foreignField: '_id',
+            as: 'product'
+
+          }
+
+        },
+		{
+			$lookup:
+			{
+			  from: collection.USER_COLLECTION,
+			  localField:'userId',
+			  foreignField: '_id',
+			  as: 'user'
+  
 			}
+  
+		  },
+
+        // {
+        //   $lookup:
+        //   {
+        //     from: collection.BRAND_COLLECTION,
+        //     localField: 'product.Brand',
+        //     foreignField: '_id',
+        //     as: 'brand'
+        //   }
+        // },
+
+        // {
+        //   $unwind: '$brand'
+        // },
+        {
+          $lookup:
+          {
+            from: collection.ADDRESS_COLLECTION,
+            localField: 'deliveryDetails',
+            foreignField: '_id',
+            as: 'address'
+          }
+        },
+
+        {
+          $unwind: '$deliveryDetails.address'
+        },
+		
+
+        {
+          $project:
+          {
+            totalAmount: 1,
+           deliveryDetails:1,
+           date: 1,
+		   paymentMethod:1,
+            status: 1,
+			user:{$arrayElemAt:['$user.Name',0]},
+			//user:'$user',
+            //brand: '$brand.Brand',
+        item: 1, quantity: 1, product: { $arrayElemAt: ['$product', 0] },
+
+          }
+        },
+
+        {
+
+          $project:
+          {
+			quantity: 1,
+			user:1,
+            totalAmount: 1,
+            deliveryDetails: 1,
+            date: 1,
+            status: 1,
+			paymentMethod:1,
+            brand: 1,
+            item: 1, quantity: 1, product: 1,
+            discount: {
+              $cond: {
+                if: '$product.productoffer', then: '$product.productdiscount',
+                else: {
+                  $cond: { if: '$product.offer', then: '$product.categoryDiscount', else: 0 }
+                }
+              }
+            },
+
+            actualPrice: {
+              $cond: {
+                if: '$product.productoffer', then: '$product.productdiscountprice',
+                else: {
+                  $cond: { if: '$product.offer', then: '$product.discountPrice', else: '$product.Price' }
+                }
+              }
+            }
+          }
+
+        },
+
+
+
+        {
+
+          $project:
+          {
+
+            totalAmount: 1,
+            deliveryDetails: 1,
+user:1,
+paymentMethod:1,
+            status: 1,
+            brand: 1,
+            item: 1, quantity: 1, product: 1,
+            // discount: { $multiply: ['$quantity', '$discount'] },
+            // actualPrice: { $multiply: [{ $toInt: '$actualPrice' }, '$quantity'] },
+             tPrice: { $multiply: [{ $toInt: '$product.Price' }, '$quantity'] },
+
+            // date: {
+            //   $dateToString: {
+            //     date: '$date',
+            //     format: '%d-%m-%Y %H:%M:%S'
+            //   }
+            //}
+
+
+          }
+
+        }
+
+      ]).toArray()
+
+
+      console.log('singlleeeeeeeeee');
+      console.log(orderItems);
+      resolve(orderItems)
+    })
+  },
+}

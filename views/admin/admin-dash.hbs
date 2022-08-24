@@ -216,11 +216,15 @@
 								{{!-- <td>{{this.product}}</td> --}}
 								{{!-- <td>{{this.quantity}}</td> --}}
 								<td>{{this.paymentMethod}}</td>
+								{{#if this.totalAmount.cartTotal}}
+								<td>{{this.totalAmount.cartTotal}}</td>
+								{{else}}
 								<td>{{this.totalAmount}}</td>
+								{{/if}}
 								<td>{{this.status}}</td>
 
 
-								<td>
+								<td class="d-flex">
 							{{!-- {{#if status}} --}}
 									<div class="ms-auto">
 										<div class="btn-group">
@@ -242,6 +246,8 @@
 											{{/if_eq}}
 										</div>
 									</div>
+
+									<a class="btn btn-primary ms-3" href="/admin/pro-detail/{{this._id}}">Details</a>
 									{{!-- {{/if}} --}}
 
 									

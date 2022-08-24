@@ -10,4 +10,5 @@ module.exports={
     COUPON_COLLECTION:'coupon',
     WISHLIST_COLLECTION:'wishlist',
     BANNER_COLLECTION:'banner'
+    
 }

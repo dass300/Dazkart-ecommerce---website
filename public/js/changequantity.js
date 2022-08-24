@@ -20,7 +20,7 @@ function changeQuantity(cartId,proId,userId,count){
 
             }else{
                 document.getElementById(proId).innerHTML=quantity+count
-                document.getElementById('total').innerHTML=response.total
+                document.getElementById('total').innerHTML=response.total.cartTotal
             }
         }
     })
@@ -43,7 +43,7 @@ function removeProduct(cartId,proId,userId) {
         success: (response) => {
             if (response.removeProduct) {
                 // alert("Product removed from cart")
-                swal("", "Your Prdouct has been deleted!", "");
+                swal("Oops!", "Your Prduct has been deleted!", "error");
                 
                   
                 location.reload()

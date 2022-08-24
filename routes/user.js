@@ -219,33 +219,11 @@ router.get("/select-product/:id",verifyLogin, async (req, res, next) => {
 
 
 
-//wishlist
-// router.get("/wishlist/:id", async (req, res, next) => {
-// 	let product = await productHelper.getProductDetails(req.params.id);
-// 	res.render("user/wishlist", { product, user, user: true, user_log: req.session.user });
-// });
-
-
-router.get("/add-to-wishlist/:id",verifyLogin, (req, res) => {
-		try {
-		userHelper.addToWishlist(req.params.id,req.session.user._id).then((wishlistObj) => {
-			res.json({ status: true });
-			// res.redirect('/')
-		});
-	} catch (err) {
-		res.render("user/404");
-	}
-});
 
 
 
-router.get("/wishlist",verifyLogin, (req, res) => {
-		try {
-		res.render("user/wishlist", { user: true, user_log: req.session.user });
-	} catch (err) {
-		res.render("user/404");
-	}
-});
+
+
 
 
 //user cart
@@ -287,6 +265,11 @@ router.get("/cart",verifyLogin, async (req, res) => {
 });
 
 
+router.get("/wishlist",verifyLogin, async (req, res) => {
+		res.render('user/wishlist')
+});
+
+
 
 // add to cart
 
@@ -299,6 +282,18 @@ router.get("/add-to-cart/:id",(req, res) => {
 	} catch (err) {
 		res.render("user/404");
 	}
+});
+
+
+router.get("/add-to-wishlist/:id",(req, res) => {
+	try {
+	userHelper.addToWishlist(req.params.id, req.session.user._id).then(() => {
+		res.json({ status: true });
+		// res.redirect('/')
+	});
+} catch (err) {
+	res.render("user/404");
+}
 });
 
 
@@ -369,6 +364,8 @@ router.post("/place-order",verifyLogin, async (req, res) => {
 
 		let product = await userHelper.getCartProductList(req.body.userId);
 		let totalPrice = await userHelper.getTotalAmount(req.body.userId);
+		console.log('totalPrice');
+		console.log(totalPrice);
 		if(totalPrice.status){
 			
 		}
@@ -386,7 +383,7 @@ router.post("/place-order",verifyLogin, async (req, res) => {
 				res.json({ codSuccess: true });
 			} else if (req.body["payment-method"] === "RAZORPAY") {
 				let id = objectId(orderId);
-				userHelper.generateRazorPay(id, totalPrice).then((response) => {
+				userHelper.generateRazorPay(id, totalPrice.cartTotal).then((response) => {
 					console.log(id, totalPrice);
 					response.razorpay = true;
 					res.json(response);
@@ -395,7 +392,7 @@ router.post("/place-order",verifyLogin, async (req, res) => {
 				console.log("jhgdsc");
 				let id = objectId(orderId);
 				console.log(id, totalPrice);
-				userHelper.generatePaypal(id, totalPrice).then((response) => {
+				userHelper.generatePaypal(id, totalPrice.cartTotal).then((response) => {
 					console.log("das and das");
 					res.json(response);
 				});
@@ -411,6 +408,8 @@ router.post("/place-order",verifyLogin, async (req, res) => {
 
 router.get("/success", (req, res) => {
 		try {
+			userHelper.clearCart(req.session.user._id).then(()=>{
+			
 		const payerId = req.query.PayerID;
 		const paymentId = req.query.paymentId;
 
@@ -434,7 +433,7 @@ router.get("/success", (req, res) => {
 				console.log(payment);
 			}
 		});
-		
+	})
 	} catch (err) {
 		res.render("user/404");
 	}
@@ -444,7 +443,9 @@ router.get("/success", (req, res) => {
 
 router.get("/order-success", (req, res) => {
 		try {
-		res.render("user/order-success", { user: true, user: req.session.user });
+			userHelper.clearCart(req.session.user._id).then(()=>{
+				res.render("user/order-success", { user: true, user: req.session.user });
+			})
 	} catch (err) {
 		res.render("user/404");
 	}
@@ -473,8 +474,8 @@ router.get("/view-product/:id", async (req, res) => {
 		console.log(product);
 		let order = await userHelper.getUserOrder(req.session.user._id);
 		let orderPrice =await userHelper.getViewOrder(req.params.id);
+		console.log('orderPrice');
 		console.log(orderPrice);
-		console.table(orderPrice)
 
 		res.render("user/view-product", {
 			product,

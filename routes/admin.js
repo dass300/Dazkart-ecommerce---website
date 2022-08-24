@@ -50,7 +50,7 @@ router.get("/admin-signup", (req, res, next) => {
   router.post("/admin-signup", (req, res) => {
         
         adminHelper.doAdminSignup(req.body).then(() => {
-          res.redirect(" /admin/admin-login");
+          res.redirect("/admin/admin-login");
         });
       
     });
@@ -108,9 +108,7 @@ router.get("/admin-dash", verifyAdminLogin, function (req, res, next) {
       let codTotal = await adminHelper.codTotal();
       let paypalTotal = await adminHelper.paypalTotal();
       let rasorpayTotal = await adminHelper.rasorpayTotal();
-      // console.log(codTotal);
-      // console.log(paypalTotal);
-      // console.log(rasorpayTotal);
+      console.log(order);
       res.render("admin/admin-dash", {
         order,
         usr,
@@ -127,17 +125,20 @@ router.get("/admin-dash", verifyAdminLogin, function (req, res, next) {
 //   res.render("admin/admin-dash", { admin: true });
 // });
 
-
+router.get('/pro-detail/:id',async(req,res)=>{
+  console.log("parms");
+  console.log(req.params.id);
+orderItems =await adminHelper.getOrderSingleProducts(req.params.id)
+  res.render('admin/ordered-products-details',{ admin: true ,orderItems})
+})
 
 router.get("/products", (req, res) => {
-    try{
+    
     productHelper.getAllProducts().then((response) => {
       product = response.product;
       res.render("admin/products", { admin: true, product });
     });
-  }catch(err) {
-    res.render("user/404");
-  }
+  
 });
 
 

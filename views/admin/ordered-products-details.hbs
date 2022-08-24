@@ -1,3 +1,7 @@
+<div class="page-wrapper">
+	<div class="page-content">
+
+
 <div class="card mt-5 ">
         <div class="card-header py-3">
        
@@ -20,7 +24,7 @@
                     </div>
                     <div class="info">
                       <h6 class="mb-2">Customer</h6>
-                      <p class="mb-1">{{data.[0].user.Name}}</p>
+                      <p class="mb-1">{{orderItems.user}}</p>
                       <p class="mb-1">{{data.[0].user.Email}}</p>
                       <p class="mb-1">{{data.[0].user.Phone}}</p>
                     </div>
@@ -39,8 +43,8 @@
                     <div class="info">
                       <h6 class="mb-2">Order info</h6>
                       <p class="mb-1"><strong>Shipping</strong> : Red Express</p>
-                      <p class="mb-1"><strong>Pay Method</strong><span>:</span>{{data.[0].paymentMethod}}</p>
-                      <p class="mb-1"><strong>Status  :</strong>{{data.[0].status}}</p>
+                      <p class="mb-1"><strong>Pay Method</strong><span>:</span>{{orderItems.paymentMethod}},</p>
+                      <p class="mb-1"><strong>Status  :</strong>{{orderItems.status}}</p>
                     </div>
                   </div>
                 </div>
@@ -57,8 +61,8 @@
                     <div class="info">
                       <h6 class="mb-2">Deliver to</h6>
                       {{!-- <p class="mb-1"><strong>City</strong> : Sydney, Australia</p> --}}
-                      <p class="mb-1"><strong>Address</strong> : {{data.[0].address.addressDetail.Housename}}, <br>{{data.[0].address.addressDetail.Streetname}}, <span>{{data.[0].address.addressDetail.State}}</span></p>
-                      <p class="mb-1"><strong>Pincode</strong> :{{data.[0].address.addressDetail.Pin}}</p>
+                      <p class="mb-1"><strong>Address</strong> : {{orderItems.deliveryDetails.address}}, <br>{{orderItems.deliveryDetails.pincode}},<span>{{orderItems.deliveryDetails.town}},</span></p>
+                      {{!-- <p class="mb-1"><strong>Pincode</strong> :{{data.[0].address.addressDetail.Pin}}</p> --}}
 
 
                     </div>
@@ -81,13 +85,13 @@
                           <th>Unit Price</th>
                           <th>Quantity</th>
                           <th>Total</th>
-                          <th>Discount</th>
+                          {{!-- <th>Discount</th> --}}
                           
                         </tr>
                        
                       </thead>
                       <tbody>
-                           {{#each data}}
+                           {{#each orderItems}}
                         <tr>
                        
 
@@ -95,7 +99,7 @@
                             <div class="orderlist">
                               <a class="d-flex align-items-center gap-2" href="">
                                 <div class="product-box">
-                                  <img src="/product-image/{{this.productlist.Image.[0]}}" alt="">
+                                  <img style="width:50px;" src="/product-image/{{this.product.image.[0]}}" alt="">
                                 </div>
                                 <div>
                                   <P class="mb-0 product-title"></P>
@@ -103,10 +107,10 @@
                               </a>
                             </div>
                           </td>
-                          <td>{{this.productlist.Price}}</td>
+                          <td>{{this.product.Price}}</td>
                           <td>{{this.quantity}}</td>
-                          <td>{{this.actualPrice}}</td>
-                          <td>{{this.discount}}</td>
+                          <td>{{this.tPrice}}</td>
+                          {{!-- <td>{{this.}}</td> --}}
                           
                         
 
@@ -136,28 +140,28 @@
                       <button type="button" class="btn alert-success radius-30 px-4">{{data.[0].status}}</button>
                     </div>
                   </div>
-                  <div class="d-flex align-items-center mb-3">
+                  {{!-- <div class="d-flex align-items-center mb-3">
                     <div>
                       <p class="mb-0">Grand Total</p>
                     </div>
                     <div class="ms-auto">
                       <h5 class="mb-0">{{data.[0].totalAmount}}</h5>
                     </div>
-                  </div>
-                  <div class="d-flex align-items-center mb-3">
+                  </div> --}}
+                  {{!-- <div class="d-flex align-items-center mb-3">
                     <div>
                       <p class="mb-0">Discount</p>
                     </div>
                     <div class="ms-auto">
                       <h5 class="mb-0">{{data.[0].discount}}</h5>
                     </div>
-                  </div>
+                  </div> --}}
                   <div class="d-flex align-items-center mb-3">
                     <div>
                       <p class="mb-0">Shipping Price</p>
                     </div>
                     <div class="ms-auto">
-                      <h5 class="mb-0">0.00</h5>
+                      <h5 class="mb-0">{{orderItems.[0].totalAmount.cartTotal}}</h5>
                     </div>
                   </div>
                   
@@ -174,4 +178,6 @@
           <!--end row-->
 
         </div>
+      </div>
+      </div>
       </div>

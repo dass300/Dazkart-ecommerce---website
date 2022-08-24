@@ -9,7 +9,41 @@
     
           {{!-- <section>
             <div class="container mt-5"> --}}
-              <form id="checkout-form">
+              
+              
+    
+    
+    
+    
+    
+    
+                  <div class="col-md-6">
+                    <h2>Enter Deliver Details</h2><br>
+    
+                    <div>
+    
+                      <label for="">Address</label>
+                      <input class="form-control" type="text" id="address" name="address" />
+    
+                      <label for="">Pincode</label>
+                      <input class="form-control" type="text" id="pincode" name="pincode" />
+    
+                      <label for="">Town</label>
+                      <input class="form-control" type="text" id="town" name="town" />
+                      <input type="text" name="userId" id="" value="{{user._id}}" hidden>
+    
+                    </div>
+                    <div class="bill-text">
+                      <input type="checkbox" name="vehicle" value="Bike"> Ship Items To The Above Billing Address<br>
+                      {{!-- <a></a><input type="checkbox" href="/user-profile">Create new Address</a><br> --}}
+                      <a href="/user-profile">Create new Address</a>
+    
+    
+                      </label>
+                    </div>
+                  </div>
+
+                  <form id="checkout-form">
                 <div class="row">
     
                   <h2>Choose Address</h2>
@@ -56,37 +90,6 @@
                       </label>
                     </div> --}}
     
-                  </div>
-    
-    
-    
-    
-    
-    
-                  <div class="col-md-6">
-                    <h2>Enter Deliver Details</h2><br>
-    
-                    <div>
-    
-                      <label for="">Address</label>
-                      <input class="form-control" type="text" id="address" name="address" />
-    
-                      <label for="">Pincode</label>
-                      <input class="form-control" type="text" id="pincode" name="pincode" />
-    
-                      <label for="">Town</label>
-                      <input class="form-control" type="text" id="town" name="town" />
-                      <input type="text" name="userId" id="" value="{{user._id}}" hidden>
-    
-                    </div>
-                    <div class="bill-text">
-                      <input type="checkbox" name="vehicle" value="Bike"> Ship Items To The Above Billing Address<br>
-                      {{!-- <a></a><input type="checkbox" href="/user-profile">Create new Address</a><br> --}}
-                      <a href="/user-profile">Create new Address</a>
-    
-    
-                      </label>
-                    </div>
                   </div>
     
                   <div class="col-md-5 col-sm-5 col-xs-12">

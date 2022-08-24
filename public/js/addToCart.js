@@ -14,7 +14,7 @@ function addToCart(proId){
             }
             // alert('Are you sure want to add this product to your cart?')
             
-            swal("Good job!", "Product has been added in your cart", "success");
+            swal("", "Product has been added in your cart", "success");
         }
     })
 }
