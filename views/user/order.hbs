@@ -28,7 +28,11 @@
             <td>{{this.deliveryDetails.address}}<p>{{this.deliveryDetails.pincode}}</p><p>{{this.deliveryDetails.mobile}}</p></td>
             {{!-- <td>{{this.deliveryDetails.pincode}} </td> --}}
             {{!-- <td>{{this.deliveryDetails.mobile}} </td> --}}
+            {{#if this.totalAmount.cartTotal}}
             <td>{{this.totalAmount.cartTotal}} </td> 
+            {{else}}
+            <td>{{this.totalAmount}} </td> 
+            {{/if}}
             <td>{{this.paymentMethod}} </td>
             <td>{{this.status}}</td>
 

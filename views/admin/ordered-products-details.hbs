@@ -7,8 +7,8 @@
        
           <div class="row g-3 align-items-center">
             <div class="col-12 col-lg-4 col-md-6 me-auto">
-              <h5 class="mb-1">{{data.[0].date}}</h5>
-              <p class="mb-0"><span>Order Id :</span>{{data.[0]._id}}</p>
+              <h5 class="mb-1">{{product.[0].date}}</h5>
+              <p class="mb-0"><span>Order Id :</span>{{product.[0]._id}}</p>
             </div>
           </div>
         </div>
@@ -24,9 +24,9 @@
                     </div>
                     <div class="info">
                       <h6 class="mb-2">Customer</h6>
-                      <p class="mb-1">{{orderItems.user}}</p>
-                      <p class="mb-1">{{data.[0].user.Email}}</p>
-                      <p class="mb-1">{{data.[0].user.Phone}}</p>
+                      <p class="mb-1">{{product.[0].user}}</p>
+                      <p class="mb-1">{{product.[0].user.Email}}</p>
+                      <p class="mb-1">{{product.[0].user.Phone}}</p>
                     </div>
                   </div>
                 </div>
@@ -43,8 +43,8 @@
                     <div class="info">
                       <h6 class="mb-2">Order info</h6>
                       <p class="mb-1"><strong>Shipping</strong> : Red Express</p>
-                      <p class="mb-1"><strong>Pay Method</strong><span>:</span>{{orderItems.paymentMethod}},</p>
-                      <p class="mb-1"><strong>Status  :</strong>{{orderItems.status}}</p>
+                      <p class="mb-1"><strong>Pay Method</strong><span>:</span>{{product.[0].paymentMethod}},</p>
+                      <p class="mb-1"><strong>Status  :</strong>{{product.[0].status}}</p>
                     </div>
                   </div>
                 </div>
@@ -61,7 +61,7 @@
                     <div class="info">
                       <h6 class="mb-2">Deliver to</h6>
                       {{!-- <p class="mb-1"><strong>City</strong> : Sydney, Australia</p> --}}
-                      <p class="mb-1"><strong>Address</strong> : {{orderItems.deliveryDetails.address}}, <br>{{orderItems.deliveryDetails.pincode}},<span>{{orderItems.deliveryDetails.town}},</span></p>
+                      <p class="mb-1"><strong>Address</strong> : {{product.[0].Address.address}}</p>
                       {{!-- <p class="mb-1"><strong>Pincode</strong> :{{data.[0].address.addressDetail.Pin}}</p> --}}
 
 
@@ -91,7 +91,7 @@
                        
                       </thead>
                       <tbody>
-                           {{#each orderItems}}
+                           {{#each product}}
                         <tr>
                        
 
@@ -109,14 +109,18 @@
                           </td>
                           <td>{{this.product.Price}}</td>
                           <td>{{this.quantity}}</td>
-                          <td>{{this.tPrice}}</td>
-                          {{!-- <td>{{this.}}</td> --}}
+                          <td>{{this.total}}</td>
                           
                         
 
                         </tr>
                           {{/each}}
-                        <td class="float-end">Grand Total:{{data.[0].totalAmount}}</td>
+
+                          <div class="d-flex">
+
+                        <td >Grand Total:{{grandTotal.[0].total}}</td>
+                          </div>
+                          
 
                         
                       </tbody>
@@ -140,28 +144,28 @@
                       <button type="button" class="btn alert-success radius-30 px-4">{{data.[0].status}}</button>
                     </div>
                   </div>
-                  {{!-- <div class="d-flex align-items-center mb-3">
+                  <div class="d-flex align-items-center mb-3">
                     <div>
                       <p class="mb-0">Grand Total</p>
                     </div>
                     <div class="ms-auto">
-                      <h5 class="mb-0">{{data.[0].totalAmount}}</h5>
+                      <h5 class="mb-0">{{grandTotal.[0].total}}</h5>
                     </div>
-                  </div> --}}
-                  {{!-- <div class="d-flex align-items-center mb-3">
+                  </div>
+                  <div class="d-flex align-items-center mb-3">
                     <div>
                       <p class="mb-0">Discount</p>
                     </div>
                     <div class="ms-auto">
-                      <h5 class="mb-0">{{data.[0].discount}}</h5>
+                      <h5 class="mb-0">{{discount}}</h5>
                     </div>
-                  </div> --}}
+                  </div>
                   <div class="d-flex align-items-center mb-3">
                     <div>
                       <p class="mb-0">Shipping Price</p>
                     </div>
                     <div class="ms-auto">
-                      <h5 class="mb-0">{{orderItems.[0].totalAmount.cartTotal}}</h5>
+                      <h5 class="mb-0">{{product.[0].totalAmount}}</h5>
                     </div>
                   </div>
                   

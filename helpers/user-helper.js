@@ -132,9 +132,8 @@ module.exports = {
                 .collection(collection.CART_COLLECTION)
                 .findOne({ user: objectId(userId) });
             if (userCart) {
-                let proExist = userCart.product.findIndex(
-                    (product) => product.item === proId
-                );
+                let proExist = userCart.product.findIndex
+                    (product => product.item == proId)
                 if (proExist != -1) {
                     db.get()
                         .collection(collection.CART_COLLECTION)
@@ -373,6 +372,22 @@ module.exports = {
                             item: 1,
                             quantity: 1,
                             product: { $arrayElemAt: ["$product", 0] },
+                           
+                        },
+                    },
+
+                    {
+                        $project: {
+                            item: 1,
+                            quantity: 1,
+                            product:1,
+                            discount:{
+                                $cond:{if:'$product.Offer',then:'$product.discount',else:0}
+                            },
+                            price:{
+                                $cond:{if:'$product.Offer',then:'$product.discountprice',else:'$product.Price'}
+                            }
+                           
                         },
                     },
                     {
@@ -383,11 +398,23 @@ module.exports = {
                                     $multiply: ["$quantity", { $toInt: "$product.price" }],
                                 },
                             },
+                            discount: {
+                                $sum: {
+                                    $multiply: ["$quantity", { $toInt: "$discount" }],
+                                },
+                            },
+                            grandtotal: {
+                                $sum: {
+                                    $multiply: ["$quantity", { $toInt: "$price" }],
+                                },
+                            },
+                            
                         },
                     },
                 ])
                 .toArray();
-
+                console.log('errytugyihii');
+              console.log(total);
             resolve(total[0].total);
         });
     },
@@ -449,6 +476,7 @@ module.exports = {
     },
 
     getTotalAmount: (userId) => {
+        let response ={}
         return new Promise(async (resolve, reject) => {
             let total = await db
                 .get()
@@ -502,13 +530,18 @@ module.exports = {
                 total.push({ total: 0 });
                 console.log(total);
                 let nullTotal = total[0].total;
-                resolve({ nullTotal, status: false });
+                response.status=false
+                response.cartTotal=cartTotal;
+                console.log(response);
+                resolve(response);
             } else {
                 console.log("total is not null");
                 let cartTotal = total[0].total;
-                resolve({ cartTotal, status: true });
+                response.status=true
+                response.cartTotal=cartTotal
+                console.log(response);
+                resolve(response);
 
-                console.log(total[0].total);
             }
         });
     },
@@ -528,9 +561,12 @@ module.exports = {
                 },
                 userId: objectId(order.userId),
                 paymentMethod: order["payment-method"],
-                product: product,
+                product: product.product,
+                coupon:product.coupon,
+                coupOffer:product.coupOffer,
                 totalAmount: total,
                 status: status,
+                couponamount:order.couponamount,
 
                 date: date.toLocaleString(),
                 //date: new Date(),
@@ -562,7 +598,7 @@ module.exports = {
                 .findOne({ user: objectId(userId) });
             // response(cart.product)
             console.log(cart);
-            resolve(cart.product);
+            resolve(cart);
         });
     },
     getUserOrder: (userId) => {
@@ -821,11 +857,17 @@ module.exports = {
                             //     //$push: { users: userId }
                             // })
                             let discountAmount = (total * response.discount) / 100;
-                            responses.totalAmount = total - discountAmount;
-                            response.Actual = total;
-                            responses.status = true;
-                            console.log(responses);
-                            resolve(responses);
+                            db.get().collection(collection.CART_COLLECTION).updateOne({user:objectId(userId)},
+                            {$set:{coupon: coupon.coupon,coupOffer:discountAmount}}
+                            ).then(()=>{
+                                let discountAmount = (total * response.discount) / 100;
+                                responses.totalAmount = total - discountAmount;
+                                response.Actual = total;
+                                responses.status = true;
+                                console.log(responses);
+                                resolve(responses);
+                            })
+                            
                         }
                     } else {
                         responses.status = false;

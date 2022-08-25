@@ -82,6 +82,7 @@
 
                             {{/each}}
 
+
                         </tbody>
                         <!-- /tbody -->
                     </table>
@@ -102,10 +103,36 @@
                
             </div>
 
-            <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="col-md-5 col-sm-5 col-xs-12">
+                <div class="">
+                    <h2>Order Summary</h2>
+                </div>
+                <div class="summary">
+            
+                    <h2>Products<span>Total</span></h2>
+                    {{#each product}}
+            
+                    <p>{{this.product.Name}}<span>{{this.product.Price}}</span></p>
+            
+                    {{/each}}
+                    <hr>
+            
+                    <p>Actual Amount : Rs <span id="actual-amount">{{product.[0].product.Price}}</span></p>
+                    <p>Coupon Discount : Rs <span id="off-amount">{{discountAm}}</span></p>
+            
+                    </p>
+                    <h3 class="line2">Shipping<span class="mcolor">Free shipping </span></h3>
+                    <h5>Payable Price<span id="total-amount">{{orderPrice.totalAmount}}</span></h5>
+            
+                </div>
+            </div>
+
+            {{!-- <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="checkout">
                     
-                    <h4>Grandtotal<span id="total">{{orderPrice.totalAmount.cartTotal}}</span></h4>
+                    <h4>Subtotal<span id="total">{{product.[0].product.Price}}</span></h4>
+                    <h4>Discount<span id="">{{discountAm}}</span></h4>
+                    <h4>Grandtotal<span id="total">{{orderPrice.totalAmount}}</span></h4>
 
 
 
@@ -113,6 +140,7 @@
 
                 </div>
             </div>
+             --}}
         </div>
     </div>
 </div>

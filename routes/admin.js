@@ -4,6 +4,7 @@ var router = express.Router();
 var productHelper = require("../helpers/product-helper");
 var adminHelper = require("../helpers/admin-helper");
 var categoryHelper = require("../helpers/category-helper");
+var userHelper = require("../helpers/user-helper");
 
 // const { render } = require('../app');
 const { response } = require("express");
@@ -126,12 +127,12 @@ router.get("/admin-dash", verifyAdminLogin, function (req, res, next) {
 // });
 
 router.get('/pro-detail/:id',async(req,res)=>{
-  console.log("parms");
-  console.log(req.params.id);
-orderItems =await adminHelper.getOrderSingleProducts(req.params.id)
-  res.render('admin/ordered-products-details',{ admin: true ,orderItems})
+  let product = await adminHelper.getOrderProducts(req.params.id);
+	let grandTotal =await adminHelper.orderGrandTotal(req.params.id);
+  var discount =grandTotal[0].total - product[0].totalAmount
+  res.render('admin/ordered-products-details',{ admin: true,product,grandTotal,discount })
 })
-
+ 
 router.get("/products", (req, res) => {
     
     productHelper.getAllProducts().then((response) => {
@@ -159,7 +160,7 @@ router.get("/view-product", function (req, res, next) {
 
   
   router.get("/product-details", (req, res) => {
-        try{
+      try{
         res.render("admin/product-details", { admin: true });
       }catch(err) {
         res.render("user/404");

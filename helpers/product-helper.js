@@ -38,7 +38,7 @@ module.exports = {
             })
         })
     },
-    getOrderProducts: (orderId) => {
+        getOrderProducts: (orderId) => {
 
         return new Promise(async (resolve, reject) => {
             let orderItems = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
@@ -51,7 +51,8 @@ module.exports = {
                 {
                     $project: {
                         item: '$product.item',
-                        quantity: '$product.quantity'
+                        quantity: '$product.quantity',
+                        coupon:1,
                     }
                 },
                 {
@@ -64,13 +65,43 @@ module.exports = {
                 },
                 {
                     $project: {
-                        item: 1, quantity: 1, product: { $arrayElemAt: ['$product', 0] }
+                       coupon:1, item: 1, quantity: 1, product: { $arrayElemAt: ['$product', 0] }
                     }
-                }
+                },
+                //  {
+                //     $project:{
+                //         coupon:{
+                //             $cond:{if:{ $ne: [ "$coupon", null ] },then:"$coupon",
+                //             else:null,
+                        
+                //         }
+                //         }
+                //     }
+                // },
+                // {
+                //     $lookup: {
+                //         from: collection.COUPON_COLLECTION,
+                //         localField: 'coupon',
+                //         foreignField: 'couponname',
+                //         as: 'coupon'
+                //     }
+                // },
+                // {
+                //     $project:{
+                //         total:{
+                //             $cond:{if:"$coupon",then:
+                //             { $multiply: [{ $toInt: '$product.Price' }, '$quantity'] },
+                //             else:0,
+                        
+                //         }
+                //         }
+                //     }
+                // }
             ]).toArray()
             // resolve(cartItems);
             console.log('printng get order producta resolve user helper');
             console.log(orderItems);
+            console.log('Unda');
             resolve(orderItems)
         })
     },

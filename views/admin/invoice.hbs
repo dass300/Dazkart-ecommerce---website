@@ -1,0 +1,114 @@
+invoice 
+<div class="page-wrapper">
+	<div class="page-content">
+
+<div class="card d-flex ">
+  <div class="card-body">
+    <div class="container mb-5 mt-3">
+      <div class="row d-flex align-items-baseline">
+        {{!-- <div class="col-xl-9">
+          <p style="color: #7e8d9f;font-size: 20px;">Invoice &gt;&gt; <strong>ID: #123-123</strong></p>
+        </div> --}}
+      </div>
+      <div class="container">
+        <div class="col-md-12">
+          <div class="text-center">
+            <i class="far fa-building fa-4x ms-0" style="color:#8f8061 ;"></i>
+            <p class="pt-2"></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-8">
+            <ul class="list-unstyled">
+              <li class="text-muted">To: <span style="color:#8f8061 ;">{{login.Name}}</span></li>
+              <li class="text-muted">{{products.deliveryDetails.Housename}}</li>
+              <li class="text-muted">{{products.deliveryDetails.Streetname}}</li>
+              <li class="text-muted">{{products.deliveryDetails.State}}</li>
+              <li class="text-muted">{{products.deliveryDetails.Pin}}</li>
+              {{!-- <li class="text-muted">{{products.deliveryDetails.phone}}</li> --}}
+
+            </ul>
+          </div>
+          <div class="col-xl-4">
+            <p class="text-muted">Invoice</p> 
+            <ul class="list-unstyled">
+
+              {{!-- <li class="text-muted"><i class="fas fa-circle" style="color:#8f8061 ;"></i> <span
+                  class="fw-bold">ID:</span>#123-456</li> --}}
+
+              <li class="text-muted"><i class="fas fa-circle" style="color:#8f8061 ;"></i> <span
+                  class="fw-bold">Creation Date: </span>{{products.date}}</li>
+              <li class="text-muted"><i class="fas fa-circle" style="color:#8f8061;"></i> <span
+                  class="me-1 fw-bold">Status:</span><span class="badge bg-warning text-black fw-bold">
+                 {{products.status}} </span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row my-2 mx-1 justify-content-center">
+          <div class="col-md-2 mb-4 mb-md-0" >
+            <div class="
+                        
+                        bg-image
+                        ripple
+                        rounded-5
+                        mb-4
+                        overflow-hidden
+                        d-block
+                        " data-ripple-color="light" >
+              <img  src="/product-image/{{products.product.Image.[0]}}"
+                class="w-100 " height="100px" alt="Elegant shoes and shirt" style="margin-right:10px;" />
+              <a href="#!">
+                <div class="hover-overlay">
+                  <div class="mask" style="background-color: hsla(0, 0%, 98.4%, 0.2)"></div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-7 mb-4 mb-md-0">
+            <p class="fw-bold">{{products.brand}}</p>
+            <p class="fw-bold">{{products.product.Name}}</p>
+            
+            <p class="mb-1">
+              <span class="text-muted me-2">Size:</span><span>{{products.product.Size}}</span>
+            </p>
+           
+            <p>
+              <span class="text-muted me-2">Quantity:</span><span>{{products.quantity}}</span>
+            </p>
+          </div>
+          <div class="col-md-3 mb-4 mb-md-0">
+            <h5 class="mb-2">
+              <s class=" me-2  align-middle text-decoration-none">Unit Price</s><span class="align-middle">{{products.product.Price}}</span>
+            </h5>
+            <h5 class="mb-2">
+              <s class=" me-2  align-middle text-decoration-none">Subtotal</s><span class="align-middle">{{products.Price}}</span>
+            </h5>
+             <h5 class="mb-2">
+              <s class=" me-2  align-middle text-decoration-none">Discount</s><span class="align-middle">{{products.discount}}</span>
+            </h5>
+
+            {{!-- <p class="text-danger"><small>You save 25%</small></p> --}}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xl-8">
+            <p class="ms-3">Add additional notes and payment information</p>
+          </div>
+          <div class="col-xl-3">
+            {{!-- <ul class="list-unstyled">
+              <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span>$1050</li>
+              <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Shipping</span>$15</li>
+            </ul> --}}
+            <p class="text-black float-start"><span class="text-black me-3"> Total</span><span
+                style="font-size: 25px;">{{products.actualPrice}}</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+ </div>
+</div>

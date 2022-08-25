@@ -263,7 +263,7 @@
 							{
 								$group: {
 									_id: null,
-									total: { $sum: {$toInt:'$totalAmount.cartTotal'} },
+									total: { $sum: {$toInt:'$totalAmount'} },
 								}
 							},	
 						]).toArray()
@@ -286,7 +286,7 @@
 							{
 								$group: {
 									_id: null,
-									total: { $sum: {$toInt:'$totalAmount.cartTotal'} },
+									total: { $sum: {$toInt:'$totalAmount'} },
 								}
 							},
 						]).toArray()
@@ -309,7 +309,7 @@
 							{
 								$group: {
 									_id: null,
-									total: { $sum: {$toInt:'$totalAmount.cartTotal'} },
+									total: { $sum: {$toInt:'$totalAmount'} },
 								}
 							},
 						]).toArray()
@@ -571,4 +571,155 @@ paymentMethod:1,
       resolve(orderItems)
     })
   },
+  getOrderProducts: (orderId) => {
+	console.log('orderId');
+	console.log(orderId);
+	return new Promise(async (resolve, reject) => {
+		let orderItems = await db
+			.get()
+			.collection(collection.ORDER_COLLECTION)
+			.aggregate([
+				{
+					$match: { _id:objectId(orderId) },
+				},
+				{
+					$unwind: "$product",
+				},
+				{
+					$project: {
+						item: "$product.item",
+						quantity: "$product.quantity",
+						Address: "$deliveryDetails",
+						paymentMethod: "$paymentMethod",
+						status: "$status",
+						date: "$date",
+						id: "$_id",
+						userId:1,
+						totalAmount:1,
+					},
+				},
+				{
+					$lookup: {
+						from: collection.PRODUCT_COLLECTION,
+						localField: "item",
+						foreignField: "_id",
+						as: "product",
+					},
+				},
+				{
+					$lookup: {
+						from: collection.USER_COLLECTION,
+						localField: "userId",
+						foreignField: "_id",
+						as: "user",
+					},
+				},
+
+				{
+					$project: {
+						paymentMethod:1,
+						status:1,
+						date:1,
+						id:1,
+						totalAmount:1,
+						item: 1,
+						quantity: 1,
+						Address:1,
+						user: "$user.Name",
+						product: { $arrayElemAt: ["$product", 0] },
+					},
+				},
+				
+				{
+					$project:{
+						grand:1,
+						product:1,
+						paymentMethod:1,
+						status:1,
+						totalAmount:1,
+						date:1,
+						id:1,
+						item: 1,
+						quantity: 1,
+						Address:1,
+						user:1,
+						total: {
+							$sum: {
+								$multiply: ["$quantity", { $toInt: "$product.Price" }],
+							},
+						},
+					}
+				}
+			])
+			.toArray();
+		// resolve(cartItems);
+		console.log("printng get order producta resolve user helper");
+		console.log(orderItems);
+		resolve(orderItems);
+	});
+},
+orderGrandTotal: (orderId) => {
+	console.log('orderId');
+	console.log(orderId);
+	return new Promise(async (resolve, reject) => {
+		let orderItems = await db
+			.get()
+			.collection(collection.ORDER_COLLECTION)
+			.aggregate([
+				{
+					$match: { _id:objectId(orderId) },
+				},
+				{
+					$unwind: "$product",
+				},
+				{
+					$project: {
+						item: "$product.item",
+						quantity: "$product.quantity",
+						Address: "$deliveryDetails",
+						paymentMethod: "$paymentMethod",
+						status: "$status",
+						date: "$date",
+						id: "$_id",
+						userId:1,
+						totalAmount:1,
+					},
+				},
+				{
+					$lookup: {
+						from: collection.PRODUCT_COLLECTION,
+						localField: "item",
+						foreignField: "_id",
+						as: "product",
+					},
+				},
+				
+				{
+					$project: {
+						totalAmount:1,
+						quantity: 1,
+						product: { $arrayElemAt: ["$product", 0] },
+					},
+				},
+				
+				{
+					$group:{
+						_id: null,
+						total: {
+							$sum: {
+								$multiply: ["$quantity", { $toInt: "$product.Price" }],
+							},
+						},
+					}
+				}
+			])
+			.toArray();
+		// resolve(cartItems);
+		console.log("printng get order producta resolve user helper");
+		console.log(orderItems);
+		resolve(orderItems);
+	});
+},
+
+
 }

@@ -236,6 +236,7 @@ router.get("/cart",verifyLogin, async (req, res) => {
 		if (product.length >= 1) {
 			user = req.session.user._id;
 			totalValue = await userHelper.getTotalAmount(req.session.user._id);
+			console.log('user routrrrrrrr');
 			totalValue=totalValue.cartTotal
 			console.log("total:" + totalValue);
 			cartCount = await userHelper.getCartCount(req.session.user._id);
@@ -327,6 +328,7 @@ router.post("/remove-product", (req, res) => {
 
 router.get("/place-order", verifyLogin, async function (req, res) {
 		try {
+			
 		let total = await userHelper.getTotalAmount(req.session.user._id);
 		let product = await productHelper.getOrderProducts(req.params.id);
 		userHelper.getUserDeliveryAddress().then((savedAddress) => {
@@ -363,6 +365,9 @@ router.post("/place-order",verifyLogin, async (req, res) => {
 		console.log(req.body);
 
 		let product = await userHelper.getCartProductList(req.body.userId);
+		console.log('ctn prdct');
+		console.log(product);
+		console.log(product.product);
 		let totalPrice = await userHelper.getTotalAmount(req.body.userId);
 		console.log('totalPrice');
 		console.log(totalPrice);
@@ -373,7 +378,11 @@ router.post("/place-order",verifyLogin, async (req, res) => {
 			totalPrice = Math.round(req.session.Total);
 
 
+		}else{
+			totalPrice =Math.round(totalPrice.cartTotal);
 		}
+		console.log("datanss");
+		console.log(req.body);
 		console.log(product, totalPrice);
 		userHelper.placeOrder(req.body, product, totalPrice).then((orderId) => {
 			if (req.body["payment-method"] === "COD") {
@@ -383,7 +392,7 @@ router.post("/place-order",verifyLogin, async (req, res) => {
 				res.json({ codSuccess: true });
 			} else if (req.body["payment-method"] === "RAZORPAY") {
 				let id = objectId(orderId);
-				userHelper.generateRazorPay(id, totalPrice.cartTotal).then((response) => {
+				userHelper.generateRazorPay(id, totalPrice).then((response) => {
 					console.log(id, totalPrice);
 					response.razorpay = true;
 					res.json(response);
@@ -392,7 +401,7 @@ router.post("/place-order",verifyLogin, async (req, res) => {
 				console.log("jhgdsc");
 				let id = objectId(orderId);
 				console.log(id, totalPrice);
-				userHelper.generatePaypal(id, totalPrice.cartTotal).then((response) => {
+				userHelper.generatePaypal(id, totalPrice).then((response) => {
 					console.log("das and das");
 					res.json(response);
 				});
@@ -467,6 +476,8 @@ router.get("/order", async (req, res) => {
 
 
 router.get("/view-product/:id", async (req, res) => {
+	console.log("wertyuio");
+	console.log(req.params.id);
 		try {
 		console.log(req.params.id);
 		let product = await productHelper.getOrderProducts(req.params.id);
@@ -474,14 +485,16 @@ router.get("/view-product/:id", async (req, res) => {
 		console.log(product);
 		let order = await userHelper.getUserOrder(req.session.user._id);
 		let orderPrice =await userHelper.getViewOrder(req.params.id);
+		let discountAm =product[0].product.Price-orderPrice.totalAmount
 		console.log('orderPrice');
 		console.log(orderPrice);
+		console.log(discountAm);
 
 		res.render("user/view-product", {
 			product,
 			user: true,
 			user: req.session.user,
-			order,orderPrice
+			order,orderPrice,discountAm,
 		});
 	} catch (err) {
 		res.render("user/404");
@@ -620,7 +633,7 @@ router.post("/check-coupon",verifyLogin, async (req, res) => {
 				response.discount=total.cartTotal-response.totalAmount
 				console.log(total,"have a nice total");
 				response.actual=total.cartTotal
-
+                console.log('coupon checkkkkkkkkk');
 				console.log(response);
 				res.json(response)
 			} else {
