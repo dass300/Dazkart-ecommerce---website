@@ -67,13 +67,16 @@ module.exports = {
     signupOtp: (userData, userDetails) => {
         console.log(userDetails, "user details is here");
         return new Promise((resolve, reject) => {
+            console.log('phone number is',userDetails.mobile);
+			console.log('printing otp of user is ',userData.otp);
+            userData.otp=userData.otp.join("")
+
             let response = {};
             client.verify
                 .services("VA47f3ff62b318d775d3b4b81c2449fa87")
                 .verificationChecks.create({
-                    //to: `+918921653181`,
                     to: `+91${userDetails.mobile}`,
-                    code: userData.otp,
+                    code: userData.otp
                 })
                 .then((verification_check) => {
                     console.log(verification_check.status);

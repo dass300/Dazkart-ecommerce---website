@@ -108,26 +108,28 @@ router.post("/user-signup", (req, res) => {
 
 
 
+// router.post("/otp-verify", (req, res) => {
+// 		try {
+// 		console.log(user)
+// 		userHelper.signupOtp(req.body, user).then((response) => {
+// 			req.session.loggedIn = true;
+// 			req.session.user = response;
+// 			res.redirect("/");
+// 		});
+
+// 		// res.redirect('user/user-signup')
+// 	} catch (err) {
+// 		res.render("user/404");
+// 	}
+// });
+
+
+
+
 router.post("/otp-verify", (req, res) => {
 		try {
-		console.log(user)
-		userHelper.signupOtp(req.body, user).then((response) => {
-			req.session.loggedIn = true;
-			req.session.user = response;
-			res.redirect("/");
-		});
-
-		// res.redirect('user/user-signup')
-	} catch (err) {
-		res.render("user/404");
-	}
-});
-
-
-
-
-router.post("/otp-verify", (req, res) => {
-		try {
+			console.log('printing user is ',user);
+			console.log('printing otp of user is ',req.body);
 		userHelper.signupOtp(req.body,user).then((response) => {
 			req.session.loggedIn = true;
 			req.session.user = response;
