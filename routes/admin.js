@@ -142,6 +142,14 @@ router.get("/products", (req, res) => {
   
 });
 
+router.get("/invoice", (req, res) => {
+    
+  
+    res.render("admin/invoice", { admin: true, product });
+  });
+
+
+
 
 
 router.get("/view-product", function (req, res, next) {

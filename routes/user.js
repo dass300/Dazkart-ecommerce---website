@@ -337,10 +337,14 @@ router.get("/place-order", verifyLogin, async function (req, res) {
 		if(total.status){
 			
 			if (req.session.Total) {
+
 				total = Math.round(req.session.Total);
+
 			}
 			console.log(total,"here is your total");
 		    total=total.cartTotal
+			console.log('totallllllllllll');
+			console.log(total);
 
 			res.render("user/place-order", {user: true, total, user: req.session.user, savedAddress,product,cartItems:true});
 		}else{
@@ -349,6 +353,8 @@ router.get("/place-order", verifyLogin, async function (req, res) {
 			}
 			console.log(req.session.user);
 			total=total.nullTotal
+			console.log('ttttttttttttttotal');
+			console.log(total);
 
 			res.render("user/place-order", {user: true, total, user: req.session.user, savedAddress,product,cartItems:false});
 
