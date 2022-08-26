@@ -570,9 +570,9 @@ module.exports = {
                 totalAmount: total,
                 status: status,
                 couponamount:order.couponamount,
+                date:date.toLocaleString (),
 
-                date: date.toLocaleString(),
-                //date: new Date(),
+                // date: new Date(),
                 // address:ObjectID(order.address),
             };
             db.get()
